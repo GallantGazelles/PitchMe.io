@@ -1,15 +1,15 @@
 {
-  "name": "",
-  "version": "",
+  "name": "GallantGazellesGreenField",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "GallantGazelles",
   "license": "",
   "engines": {
     "node": ">=6.4.0"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
+    "express": "^4.15.2"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
