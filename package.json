@@ -7,7 +7,9 @@
   "engines": {
     "node": ">=6.4.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node testHeroku.js"
+  },
   "dependencies": {
     "express": "^4.15.2"
   },
