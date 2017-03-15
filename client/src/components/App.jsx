@@ -1,4 +1,6 @@
 import React from 'react';
+import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
 
 
 class App extends React.Component {
@@ -8,7 +10,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Hello World!
+        Pitchme.io
+        <NavBar />
+        <Footer />
       </div>
     )
   }
