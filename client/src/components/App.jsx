@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
-import Video from './Video.jsx';
+import MainVideo from './MainVideo.jsx';
 import Footer from './Footer.jsx';
 
 
@@ -13,7 +13,7 @@ class App extends React.Component {
       <div>
         Pitchme.io
         <NavBar />
-        <Video />
+        <MainVideo />
         <Footer />
       </div>
     )
