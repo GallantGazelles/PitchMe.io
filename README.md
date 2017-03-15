@@ -1,13 +1,12 @@
-# Project Name
+# PitchMe.io
 
-> Pithy project description
+> Our web app welcomes startups to pitch their ideas and show their products to the masses. Those who are passionate about innovative ideas can visit our site, check out popular startup ideas and share ideas of their choices on their social network.
 
 ## Team
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Alison Zhang
+  - Craig Rodrigues
+  - Edward Chan
 
 ## Table of Contents
 
@@ -21,15 +20,16 @@
 
 ## Usage
 
-> Some usage instructions
+> Fill this in later when.
 
 ## Requirements
 
-- Node 6.4.x
+- Node 7.6.0
 - Redis 2.6.x
 - Postgresql 9.1.x
-- etc
-- etc
+- React <x.x.x>
+- Redux <x.x.x?
+- React-Router 4
 
 ## Development
 
