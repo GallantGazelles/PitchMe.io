@@ -8,7 +8,7 @@
     "node": ">=6.4.0"
   },
   "scripts": {
-    "start": "node testHeroku.js"
+    "start": "node ./server/app.js"
   },
   "dependencies": {
     "express": "^4.15.2"
