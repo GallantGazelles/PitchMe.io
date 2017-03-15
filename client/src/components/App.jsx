@@ -3,6 +3,7 @@ import NavBar from './NavBar.jsx';
 import MainVideo from './MainVideo.jsx';
 import Footer from './Footer.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
+import SignUp from './SignUp.jsx';
 
 
 class App extends React.Component {
