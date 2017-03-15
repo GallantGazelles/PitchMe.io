@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './NavBar.jsx';
 import MainVideo from './MainVideo.jsx';
 import Footer from './Footer.jsx';
+import TrendingVideos from './TrendingVideos.jsx';
 
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
         Pitchme.io
         <NavBar />
         <MainVideo />
+        <TrendingVideos />
         <Footer />
       </div>
     )
