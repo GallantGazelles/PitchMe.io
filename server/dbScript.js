@@ -108,7 +108,7 @@ pool.connect((err, client, done) => {
       user_id INTEGER, \
       cookie VARCHAR (60), \
       salt VARCHAR(40), \
-      timestamp TIMESTAMP\
+      timestamp TIMESTAMP DEFAULT current_timestamp\
       )'
     ).then(
       client.query(
@@ -121,7 +121,7 @@ pool.connect((err, client, done) => {
       comment TEXT, \
       user_id INTEGER, \
       pitch_id INTEGER, \
-      timestamp TIMESTAMP\
+      timestamp TIMESTAMP DEFAULT current_timestamp\
       )'
     ).then(
       client.query(
