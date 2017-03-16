@@ -36,6 +36,9 @@ pool.connect((err, client, done) => {
     .then(
       client.query(`INSERT INTO users (username, password, profile) VALUES ("User2", "123", "Profile for User2")`)
     )
+    .then(
+      client.query(`INSERT INTO users (username, password, profile) VALUES ("User3", "123", "Profile for User3")`)
+    )
 
     client.query('CREATE TABLE IF NOT EXISTS pitches \
       (id SERIAL PRIMARY KEY, \
