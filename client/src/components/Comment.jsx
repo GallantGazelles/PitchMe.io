@@ -12,4 +12,4 @@ const Comment = () => (
   </div>
 )
 
-export default Discussion;
+export default Comment;

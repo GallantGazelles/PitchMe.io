@@ -1,5 +1,5 @@
 import React from 'react';
-import PitchPic from './PitchPic';
+import PitchPic from './PitchPic.jsx';
 
 const PitchThumbnails = () => (
   <div>

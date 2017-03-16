@@ -4,6 +4,7 @@ import MainVideo from './MainVideo.jsx';
 import Footer from './Footer.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
 import SignUp from './SignUp.jsx';
+import Pitch from './Pitch.jsx';
 import axios from 'axios';
 
 
@@ -27,8 +28,7 @@ class App extends React.Component {
       <div>
         Pitchme.io
         <NavBar />
-        <MainVideo />
-        <TrendingVideos />
+        <Pitch />
         <Footer />
       </div>
     )
