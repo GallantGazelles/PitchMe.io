@@ -11,10 +11,11 @@ var pg = require('pg');
 // const createDummySessions;
 
 const config = {
-  database: 'ggdb'
+  database: 'ggdb',
+  max: 10
 }
 
-let pool = new pg.Client(config);
+let pool = new pg.Pool(config);
 
 pool.connect((err, client, done) => {
 
@@ -83,6 +84,8 @@ pool.connect((err, client, done) => {
       timestamp TIMESTAMP\
       )'
     )
+
+    console.log('Success');
 
     // dummy data
   }
