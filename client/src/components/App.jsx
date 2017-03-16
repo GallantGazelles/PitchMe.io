@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://www.omdbapi.com/?t=Rogue+One&y=2016`)
+    axios.get(`http://localhost:8080/classes/videos`)
          .then(response => console.log(response))
          .catch(error => console.error(error));
   }
