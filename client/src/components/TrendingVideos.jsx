@@ -5,26 +5,28 @@ import VideoTitleBlurb from './VideoTitleBlurb.jsx';
 const TrendingVideos = () => (
   <section>
     <table>
-      <tr>
-        <td>
-          <Video />
-          <VideoTitleBlurb />
-        </td>
-        <td>
-          <Video />
-          <VideoTitleBlurb />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <Video />
-          <VideoTitleBlurb />
-        </td>
-        <td>
-          <Video />
-          <VideoTitleBlurb />
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>
+            <Video />
+            <VideoTitleBlurb />
+          </td>
+          <td>
+            <Video />
+            <VideoTitleBlurb />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Video />
+            <VideoTitleBlurb />
+          </td>
+          <td>
+            <Video />
+            <VideoTitleBlurb />
+          </td>
+        </tr>
+      </tbody>
     </table>
   </section>
 )
