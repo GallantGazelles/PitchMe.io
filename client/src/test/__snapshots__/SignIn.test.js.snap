@@ -12,7 +12,7 @@ exports[`renders correctly 1`] = `
     <input
       name="password"
       placeholder="Password"
-      type="text"
+      type="password"
     />
     <p>
       Forgot your password?

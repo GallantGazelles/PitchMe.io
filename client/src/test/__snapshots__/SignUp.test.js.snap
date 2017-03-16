@@ -22,12 +22,12 @@ exports[`renders correctly 1`] = `
     <input
       name="password"
       placeholder="Password"
-      type="text"
+      type="password"
     />
     <input
       name="re-enter password"
       placeholder="Re-enter Password"
-      type="text"
+      type="password"
     />
     <div>
       Sign Up! button
