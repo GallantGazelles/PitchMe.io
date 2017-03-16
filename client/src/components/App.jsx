@@ -4,12 +4,24 @@ import MainVideo from './MainVideo.jsx';
 import Footer from './Footer.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
 import SignUp from './SignUp.jsx';
+import axios from 'axios';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      videos: []
+    }
   }
+
+  componentDidMount() {
+    axios.get(`http://www.omdbapi.com/?t=Rogue+One&y=2016`)
+         .then(response => console.log(response))
+         .catch(error => console.error(error));
+  }
+
   render() {
     return (
       <div>
