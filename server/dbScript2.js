@@ -29,7 +29,16 @@ pool.connect((err, client, done) => {
       password VARCHAR(40), \
       profile TEXT,\
       CONSTRAINT username_unique UNIQUE (username) \
-      )');
+      )')
+    .then(
+      client.query(`INSERT INTO users (username, password, profile) VALUES ("User1", "123", "Profile for User1")`)
+    )
+    .then(
+      client.query(`INSERT INTO users (username, password, profile) VALUES ("User2", "123", "Profile for User2")`)
+    )
+    .then(
+      client.query(`INSERT INTO users (username, password, profile) VALUES ("User3", "123", "Profile for User3")`)
+    )
 
     client.query('CREATE TABLE IF NOT EXISTS pitches \
       (id SERIAL PRIMARY KEY, \
@@ -42,13 +51,32 @@ pool.connect((err, client, done) => {
       category_id INTEGER, \
       votes INTEGER, \
       investment_status BOOL \
-      )');
-
-    client.query('CREATE TABLE IF NOT EXISTS followings \
+      )')
+    .then(
+      client.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id, votes, investment_status) VALUES (
+        "1", "Pitch 1", "Pitch 1 Video URL", "Pitch 1 Website URL", "Pitch 1 Profile", "Pitch 1 Blurb", "1", "0", "TRUE")`)
+    )
+    .then(
+      client.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id, votes, investment_status) VALUES (
+        "2", "Pitch 2", "Pitch 2 Video URL", "Pitch 2 Website URL", "Pitch 2 Profile", "Pitch 2 Blurb", "2", "2", "FALSE")`)
+    )
+    client.query('CREATE TABLE IF NOT EXISTS followers \
       (id SERIAL PRIMARY KEY, \
       user_id INTEGER, \
       pitch_id INTEGER \
-      )');
+      )')
+    .then(
+      client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ("1", "1")`)
+    )
+    .then(
+      client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ("1", "2")`)
+    )
+    .then(
+      client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ("2", "2")`)
+    )
+    .then(
+      client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ("2", "1")`)
+    )
 
     client.query('CREATE TABLE IF NOT EXISTS categories \
       (id SERIAL PRIMARY KEY, \
