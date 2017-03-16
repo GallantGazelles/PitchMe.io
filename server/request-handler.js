@@ -5,12 +5,15 @@ var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/ggdb';
 
 var handleRootGet = function(req, res, next) {
-  res.send('Hellow world!');
+    //handle get request to send back videos:
+    
+    res.send('Hellow world!');
 };
 
 var handleRootPost = function(req, res, next) {
 	res.send('Hey POST request!');
 };
+
 
 var init = function() {
 	console.log('init');
