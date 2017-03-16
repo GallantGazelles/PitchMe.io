@@ -4,14 +4,12 @@ const SignIn = () => (
   <section>
     <div>
       Sign In
-      <input type="text" name="name" placeholder="Name" />
       <input type="text" name="email" placeholder="Email" />
-      <input type="text" name="re-enter email" placeholder="Re-enter Email" />
       <input type="text" name="password" placeholder="Password" />
-      <input type="text" name="re-enter password" placeholder="Re-enter Password" />
-      <div>Sign Up! button</div>
-      <p>Or</p>
-      <div>Log in with Facebook button</div>
+      <p>Forgot your password?</p>
+      <div>Log in button</div>
+      <input type="checkbox" name="Remember me" />
+      <p>New to Pitchme? Sign up here!</p>
     </div>
   </section>
 )
