@@ -5,18 +5,8 @@ exports[`renders correctly 1`] = `
   <div>
     Sign In
     <input
-      name="name"
-      placeholder="Name"
-      type="text"
-    />
-    <input
       name="email"
       placeholder="Email"
-      type="text"
-    />
-    <input
-      name="re-enter email"
-      placeholder="Re-enter Email"
       type="text"
     />
     <input
@@ -24,20 +14,19 @@ exports[`renders correctly 1`] = `
       placeholder="Password"
       type="text"
     />
-    <input
-      name="re-enter password"
-      placeholder="Re-enter Password"
-      type="text"
-    />
-    <div>
-      Sign Up! button
-    </div>
     <p>
-      Or
+      Forgot your password?
     </p>
     <div>
-      Log in with Facebook button
+      Log in button
     </div>
+    <input
+      name="Remember me"
+      type="checkbox"
+    />
+    <p>
+      New to Pitchme? Sign up here!
+    </p>
   </div>
 </section>
 `;
