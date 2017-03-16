@@ -1,6 +1,5 @@
 var express = require('express');
 var pg = require('pg');
-// var db = require('./db.js');
 
 // const createDummyComments;
 // const createDummyPitches;
@@ -15,10 +14,9 @@ const config = {
   max: 10
 }
 
-let pool = new pg.Pool(config);
+let pool = new pg.Connection(config);
 
 pool.connect((err, client, done) => {
-
   if (err) {
     return console.error(err);
   } else {
