@@ -10,7 +10,8 @@ var config = {
 var client = new pg.Client(config);
 
 client.connect();
-var query2 = client.query('SELECT * FROM testsssss')
-.then(function(results) {
-    console.log(results.rows);
-});
+
+// var query2 = client.query('SELECT * FROM testsssss')
+// .then(function(results) {
+//     console.log(results.rows);
+// });
