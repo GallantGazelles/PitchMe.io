@@ -76,9 +76,7 @@ pool.connect((err, client, done) => {
       )'
     ).then(
       client.query(
-        client.query(
-          `INSERT INTO categories (name) VALUES ('Tech'), ('Games'), ('Books'), ('iPhone'), ('Android'), ('Productivity')`
-        )
+        `INSERT INTO categories (name) VALUES ('Tech'), ('Games'), ('Books'), ('iPhone'), ('Android'), ('Productivity')`
       )
     );
 
@@ -90,9 +88,7 @@ pool.connect((err, client, done) => {
       )'
     ).then(
       client.query(
-        client.query(
-          `INSERT INTO votes (user_id, pitch_id, vote_type) VALUES ('1', '1', '1'), ('1', '2', '-1'), ('2', '1', '-1'), ('2', '2', '0')`
-        )
+        `INSERT INTO votes (user_id, pitch_id, vote_type) VALUES ('1', '1', '1'), ('1', '2', '-1'), ('2', '1', '-1'), ('2', '2', '0')`
       )
     );
 
@@ -103,9 +99,7 @@ pool.connect((err, client, done) => {
       )'
     ).then(
       client.query(
-        client.query(
-          `INSERT INTO investments (user_id, pitch_id) VALUES ('1', '1'), ('1', '2'), ('2', '1'), ('2', '3')`
-        )
+        `INSERT INTO investments (user_id, pitch_id) VALUES ('1', '1'), ('1', '2'), ('2', '1'), ('2', '3')`
       )
     );
 
@@ -114,13 +108,11 @@ pool.connect((err, client, done) => {
       user_id INTEGER, \
       cookie VARCHAR (60), \
       salt VARCHAR(40), \
-      timestamp TIMESTAMP\
+      timestamp TIMESTAMP DEFAULT current_timestamp\
       )'
     ).then(
       client.query(
-        client.query(
-          `INSERT INTO sessions (user_id, cookie, salt) VALUES ('1', '8c429a', '7438'), ('2', '43bca4', '7438'), ('3', 'a4bde', '7438'), ('4', 'e42dfb', '7438')`
-        )
+        `INSERT INTO sessions (user_id, cookie, salt) VALUES ('1', '8c429a', '7438'), ('2', '43bca4', '7438'), ('3', 'a4bde', '7438'), ('4', 'e42dfb', '7438')`
       )
     );
 
@@ -129,7 +121,7 @@ pool.connect((err, client, done) => {
       comment TEXT, \
       user_id INTEGER, \
       pitch_id INTEGER, \
-      timestamp TIMESTAMP\
+      timestamp TIMESTAMP DEFAULT current_timestamp\
       )'
     ).then(
       client.query(

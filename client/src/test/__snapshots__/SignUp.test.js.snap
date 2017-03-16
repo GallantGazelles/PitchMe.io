@@ -3,30 +3,41 @@
 exports[`renders correctly 1`] = `
 <section>
   <div>
-    Sign Up
+    SignUp
+    <input
+      name="name"
+      placeholder="Name"
+      type="text"
+    />
     <input
       name="email"
       placeholder="Email"
       type="text"
     />
     <input
-      name="password"
-      placeholder="Password"
+      name="re-enter email"
+      placeholder="Re-enter Email"
       type="text"
     />
+    <input
+      name="password"
+      placeholder="Password"
+      type="password"
+    />
+    <input
+      name="re-enter password"
+      placeholder="Re-enter Password"
+      type="password"
+    />
+    <div>
+      Sign Up! button
+    </div>
     <p>
-      Forgot your password?
+      Or
     </p>
     <div>
-      Log in button
+      Log in with Facebook button
     </div>
-    <input
-      name="Remember me"
-      type="checkbox"
-    />
-    <p>
-      New to Pitchme? Sign up here!
-    </p>
   </div>
 </section>
 `;
