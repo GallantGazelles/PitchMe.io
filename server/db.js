@@ -1,18 +1,17 @@
 var pg = require('pg');
 
-var client = new pg.Client();
+// var connectionString = process.env.DATABASE_URL || 'postgress://localhost:8080';
+// console.log('connectionString: ', connectionString);
+var config = {
+	database: 'macstudio'
+};
+// config
 
-client.connect(function(err) {
-	if(err) throw err;
-//fill in the query string:
-	client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
-    if (err) throw err;
-    console.log(result.rows[0]);
-    client.end(function(err) {
-    	if(err) throw err;
-    });
+var client = new pg.Client(config);
+
+client.connect();
+var query2 = client.query('SELECT * FROM testsssss')
+.then(function(results) {
+    console.log(results.rows);
 });
 
-
-
-});
