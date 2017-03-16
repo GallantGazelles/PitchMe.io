@@ -2,10 +2,10 @@ var express = require('express');
 var pg = require('pg');
 //var db = require('./db.js');
 
-var connectionString = 'postgres://localhost:5432/macstudio';
+var connectionString = 'postgres://localhost:5432/ggdb';
 
 var handleRootGet = function(req, res, next) {
-  res.send('Hellow world!');
+  res.send('Hello world!');
 };
 
 var handleRootPost = function(req, res, next) {
