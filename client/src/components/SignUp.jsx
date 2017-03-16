@@ -7,8 +7,8 @@ const SignUp = () => (
       <input type="text" name="name" placeholder="Name" />
       <input type="text" name="email" placeholder="Email" />
       <input type="text" name="re-enter email" placeholder="Re-enter Email" />
-      <input type="text" name="password" placeholder="Password" />
-      <input type="text" name="re-enter password" placeholder="Re-enter Password" />
+      <input type="password" name="password" placeholder="Password" />
+      <input type="password" name="re-enter password" placeholder="Re-enter Password" />
       <div>Sign Up! button</div>
       <p>Or</p>
       <div>Log in with Facebook button</div>

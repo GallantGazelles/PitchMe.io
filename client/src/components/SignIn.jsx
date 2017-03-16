@@ -5,7 +5,7 @@ const SignIn = () => (
     <div>
       Sign In
       <input type="text" name="email" placeholder="Email" />
-      <input type="text" name="password" placeholder="Password" />
+      <input type="password" name="password" placeholder="Password" />
       <p>Forgot your password?</p>
       <div>Log in button</div>
       <input type="checkbox" name="Remember me" />
