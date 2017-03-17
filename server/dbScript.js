@@ -4,7 +4,7 @@ var pg = require('pg');
 const config = {
   database: 'ggdb',
   max: 10
-}
+};
 
 let pool = new pg.Pool(config);
 
@@ -41,7 +41,8 @@ pool.connect((err, client, done) => {
       blurb TEXT, \
       category_id INTEGER, \
       votes INTEGER, \
-      investment_status BOOL \
+      investment_status BOOL, \
+      CONSTRAINT pitchname_unique UNIQUE (name)\
       )')
     .then(
       client.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id, votes, investment_status) VALUES (
@@ -72,7 +73,8 @@ pool.connect((err, client, done) => {
 
     client.query('CREATE TABLE IF NOT EXISTS categories \
       (id SERIAL PRIMARY KEY, \
-      name VARCHAR(20) \
+      name VARCHAR(20), \
+      CONSTRAINT categoryname_unique UNIQUE (name)\
       )'
     ).then(
       client.query(
@@ -121,7 +123,7 @@ pool.connect((err, client, done) => {
       comment TEXT, \
       user_id INTEGER, \
       pitch_id INTEGER, \
-      timestamp TIMESTAMP DEFAULT current_timestamp\
+      timestamp TIMESTAMP DEFAULT current_timestamp \
       )'
     ).then(
       client.query(
