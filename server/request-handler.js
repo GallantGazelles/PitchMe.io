@@ -10,7 +10,7 @@ var handleRootGet = function(req, res, next) {
         if(err) {
             console.log("error in selecting all from users table");
         }
-        client.query("SELECT * FROM users")
+        client.query("SELECT * FROM users ORDER BY timestamp DESC")
         .then(function(results) {
             res.status(200).json(results.rows);
         });
