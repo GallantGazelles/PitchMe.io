@@ -1,28 +1,27 @@
-var express = require('express');
-var pg = require('pg');
-var db = require('./db.js');
+const express = require('express');
+const pg = require('pg');
+const db = require('./db.js');
 
-var connectionString = 'postgres://localhost:5432/ggdb';
+const connectionString = 'postgres://localhost:5432/ggdb';
 
-var handleRootGet = function(req, res, next) {
+module.exports.handleRootGet = (req, res, next) => {
     //handle get request to send back videos:
-    pg.connect(connectionString, function(err, client) {
-        if(err) {
-            console.log("error in selecting all from users table");
-        }
-        client.query("SELECT * FROM users")
-        .then(function(results) {
-            res.status(200).json(results.rows);
-        });
+    db.query("SELECT * FROM users")
+    .then(function(results) {
+        res.status(200).json(results.rows);
     });
 };
+//to be done:
+module.exports.handleSignUp = (req, res, next) => {
+    //util file for hashing password
+};
 
-var handleRootPost = function(req, res, next) {
+module.exports.handleRootPost = (req, res, next) => {
 	res.send('Hey POST request!');
 };
 
 
-var init = function() {
+module.exports.init = () => {
 	console.log('init');
 	// pg.connect(connectionString, function(err, client, done) {
  //    	if(err) {
@@ -32,10 +31,4 @@ var init = function() {
  //    	}
  //        //change these to CREATE IF NOT EXISTS later:
  //    });
-};
-
-module.exports = {
-	init: init,
-	handleRootGet: handleRootGet,
-	handleRootPost: handleRootPost
 };
