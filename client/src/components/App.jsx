@@ -4,6 +4,7 @@ import MainVideo from './MainVideo.jsx';
 import Footer from './Footer.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
 import SignUp from './SignUp.jsx';
+import Pitch from './Pitch.jsx';
 import axios from 'axios';
 
 
@@ -17,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://www.omdbapi.com/?t=Rogue+One&y=2016`)
+    axios.get(`http://localhost:8080/classes/videos`)
          .then(response => console.log(response))
          .catch(error => console.error(error));
   }
@@ -27,8 +28,7 @@ class App extends React.Component {
       <div>
         Pitchme.io
         <NavBar />
-        <MainVideo />
-        <TrendingVideos />
+        <Pitch />
         <Footer />
       </div>
     )
