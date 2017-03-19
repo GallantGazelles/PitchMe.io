@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import NavBar from './NavBar.jsx';
 import MainVideo from './MainVideo.jsx';
 import Footer from './Footer.jsx';
@@ -8,17 +8,18 @@ import Pitch from './Pitch.jsx';
 import axios from 'axios';
 
 
-class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      videos: []
+      pitches: []
     }
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:8080/classes/videos`)
+    // Get all pitches. Filter when they are returned.
+    axios.get(`http://localhost:8080/api/pitches`)
          .then(response => console.log(response))
          .catch(error => console.error(error));
   }
@@ -34,6 +35,3 @@ class App extends React.Component {
     )
   }
 }
-
-
-export default App;
