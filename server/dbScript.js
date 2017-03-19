@@ -86,7 +86,8 @@ pool.connect((err, client, done) => {
       (id SERIAL PRIMARY KEY, \
       user_id INTEGER, \
       pitch_id INTEGER, \
-      vote_type INTEGER\
+      vote_type INTEGER,\
+      timestamp TIMESTAMP DEFAULT current_timestamp\
       )'
     ).then(
       client.query(
