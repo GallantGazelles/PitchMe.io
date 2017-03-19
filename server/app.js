@@ -14,11 +14,10 @@ app.use(bodyParser.json());
 // requestHandler.init();
 // app.get('/', requestHandler.handleRootGet);
 
-
 // app.post('/', requestHandler.handleRootPost);
 
 // app.get('/testDB', requestHandler.handleDBTest);
 
-app.listen(8080, function(){
+app.listen(8080, function() {
 	console.log('listening to 8080');
 });
