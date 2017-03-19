@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Users = require('./routes/Users');
+const Followers = require('./routes/Followers');
 
 // Rest API to /api
 
@@ -25,8 +26,8 @@ router.get('/users', Users.getAllUsers);
 // router.get('/categories', categories.something.get);
 
 // FOLLOWERS
-// router.get('/followers', followers.something.get);
-// router.post('/followers', followers.something.post);
+router.get('/followers', Followers.getFollowers);
+router.post('/followers', Followers.postFollower);
 
 
 module.exports = router;
