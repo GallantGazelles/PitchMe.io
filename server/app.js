@@ -6,12 +6,13 @@ const pg = require('pg');
 const db = require('./db.js');
 
 const app = express();
-const router = require('/routes.js');
+const router = require('./routes.js');
 
 app.use(express.static(path.join(__dirname, '/../client/')));
 app.use(bodyParser.json());
+
 app.use('/api', router);
 
-app.listen(8080, function(){
+app.listen(8080, function() {
 	console.log('listening to 8080');
 });
