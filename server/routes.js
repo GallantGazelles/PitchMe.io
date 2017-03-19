@@ -4,9 +4,16 @@ const Users = require('./routes/Users');
 // Rest API to /api
 
 // USERS
-router.get('/users', Users.getAllUsers);
-// router.post('/users', users.something.post);
+//Get all users
+router.get('/users', Users.getUsers);
+
+//Create new User
+router.post('/users', Users.postUser);
+
+//Edit User information
 // router.put('/users', users.something.put);
+
+//Remove User from DB
 // router.delete('/users', users.something.delete);
 
 // COMMENTS

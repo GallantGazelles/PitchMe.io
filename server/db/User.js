@@ -9,11 +9,15 @@ module.exports.getAllUsers = () => {
 }
 
 module.exports.getUserIdByUsername = (username) => {
-  return db.query(`SELECT * FROM users where username = '${username}`);
+  return db.query(`SELECT * FROM users where username = "${username}";`);
+}
+
+module.exports.getUserByUserId = (userId) => {
+  return db.query(`SELECT * FROM users where id = ${userId};`);
 }
 
 module.exports.getUserByPitchId = (pitchId) => {
-  return db.query(`SELECT users.* FROM users, followers where followers.pitch_id = ${pitchId} AND followers.user_id = users.id`);
+  return db.query(`SELECT users.* FROM users, followers where followers.pitch_id = ${pitchId} AND followers.user_id = users.id;`);
 }
 
 module.exports.deleteUserByUserId = (userId) => {
