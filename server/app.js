@@ -1,23 +1,16 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var requestHandler = require('./request-handler.js');
-// var router = express.Router();
-var pg = require('pg');
-var db = require('./db.js');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const requestHandler = require('./request-handler.js');
+const pg = require('pg');
+const db = require('./db.js');
 
-var app = express();
+const app = express();
+const router = require('/routes.js');
 
-app.use(express.static(path.join(__dirname, '/../client/')))
-console.log(path.join(__dirname, '/../client/'))
+app.use(express.static(path.join(__dirname, '/../client/')));
 app.use(bodyParser.json());
-// requestHandler.init();
-// app.get('/', requestHandler.handleRootGet);
-
-
-// app.post('/', requestHandler.handleRootPost);
-
-// app.get('/testDB', requestHandler.handleDBTest);
+app.use('/api', router);
 
 app.listen(8080, function(){
 	console.log('listening to 8080');
