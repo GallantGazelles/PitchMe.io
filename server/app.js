@@ -15,3 +15,5 @@ app.use('/api', router);
 app.listen(8080, function() {
 	console.log('listening to 8080');
 });
+
+module.exports = app;
