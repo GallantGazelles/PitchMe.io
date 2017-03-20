@@ -14,8 +14,8 @@ module.exports.addPitch = (user_id, name, video, website, profile, blurb, catego
   return db.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id) VALUES (${user_id}, '${name}', '${video}', '${website}', '${profile}', '${blurb}', '${category_id}');`);
 };
 //currently by name, later on change to a unique hash we created for the user when pitch was created
-module.exports.deletePitch = (pitchName) => {
-	return db.query(`DELETE FROM pitches WHERE name='${pitchName}'`);
+module.exports.deletePitch = (pitchId) => {
+	return db.query(`DELETE FROM pitches WHERE id='${pitchId}'`);
 };
 
 module.exports.updatePitchByName = (oldPitchName, user_id, newName, video, website, profile, blurb, category_id) => {
