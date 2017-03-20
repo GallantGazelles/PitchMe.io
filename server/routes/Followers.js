@@ -1,9 +1,7 @@
 const db = require('./../db/Followers');
 
 module.exports.getFollowers = (req, res, next) => {
-  const q = req.query.q;
-  const pitchId = req.query.pitchId
-  const userId = req.query.userId;
+  const { q, pitchId, userId } = req.query;
 
   if (q === 'count' && pitchId) {
     // EXAMPLE: /api/followers?q=count&pitchId=1234
@@ -26,10 +24,7 @@ module.exports.getFollowers = (req, res, next) => {
 };
 
 module.exports.postFollower = (req, res, next) => {
-  console.log(req.body);
-
-  const userId = req.body.userId;
-  const pitchId = req.body.pitchId;
+  const { userId, pitchId } = req.body;
 
   // EXAMPLE: /api/followers?userId=3&pitchId=2
   db.postNewPitchFollower(userId, pitchId)
@@ -38,8 +33,7 @@ module.exports.postFollower = (req, res, next) => {
 };
 
 module.exports.removeFollower = (req, res, next) => {
-  const userId = req.body.userId;
-  const pitchId = req.body.pitchId;
+  const { userId, pitchId } = req.body;
 
   // EXAMPLE: /api/followers?userId=3&pitchId=2
   db.deletePitchFollower(userId, pitchId)

@@ -26,7 +26,6 @@ module.exports.postPitches = (req, res, next) => {
   .then(results => res.send('Pitch created!'))
   .catch(error => res.send('Error occcured: Pitch not created'));
 }
-
 module.exports.putPitches = (req, res, next) => {
 
 }
