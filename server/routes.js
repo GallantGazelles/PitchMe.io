@@ -12,8 +12,8 @@ router.get('/users', Users.getAllUsers);
 // router.delete('/users', users.something.delete);
 
 // COMMENTS
-router.get('/comments', Comments.getAllComments);
-router.post('/comments', Comments.createCommentInComments);
+router.get('/comments', Comments.getComments);
+// router.post('/comments', Comments.createCommentInComments);
 // router.put('/comments', comments.something.put);
 // router.delete('/comments', comments.something.delete);
 

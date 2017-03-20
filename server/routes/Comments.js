@@ -1,18 +1,22 @@
 const db = require('./../db/Comments');
 
-module.exports.getAllComments = (req, res) => {
-	db.getAllComments().then(results => res.send(results.rows));
+module.exports.getComments = (req, res) => {
+	const userId = req.query.userId;
+	const pitchId = req.query.pitchId;
+
+	if(pitchId) {
+		db.getCommentsByPitchId(pitchId)
+		.then(results => res.send(results.rows))
+		.catch(error => res.send(error));
+	}
+
+	if(userId) {
+		db.getCommentsByUserId(userId)
+		.then(results => res.send(results.rows))
+		.catch(error => res.send(error));
+	}
 };
 
-module.exports.createCommentInComments = (req, res) => {
-	db.createCommentInComments(req.body.userId, req.body.pitchId, req.body.comment)
-	.then(results => res.send('Successfully created a comment'))
-	.catch(err => res.send('Error in creating comments'));
+module.exports.postComment = (req, res, next) => {
+	res.send('To do on post comment');
 };
-
-module.exports.deleteCommentByCommentId = (req, res) => {
-	db.deleteCommentByCommentId(req.body.commentId)
-	.then()
-}
-
-//change comments:
