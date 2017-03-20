@@ -19,8 +19,11 @@ export default class App extends Component {
 
   componentDidMount() {
     // Get all pitches. Filter when they are returned.
-    axios.get(`http://localhost:8080/api/pitches`)
-         .then(response => console.log(response))
+    axios.get('http://localhost:8080/api/pitches?q=all')
+         .then(response => {
+            console.dir(response.data);
+            this.setState({ pitches: response.data });
+         })
          .catch(error => console.error(error));
   }
 
