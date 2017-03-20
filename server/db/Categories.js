@@ -2,7 +2,7 @@ const pg = require('pg');
 const db = require('../db.js');
 
 module.exports.getAllCategories = () => {
-  return db.query("SELECT * FROM categories");
+  return db.query("SELECT name FROM categories");
 };
 
 module.exports.addCategory = (categoryName) => {
