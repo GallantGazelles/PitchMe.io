@@ -7,8 +7,6 @@ var app = require('../server/app.js');
 
 var server = supertest.agent('http://localhost:8080');
 
-//beforeEach and afterEach hooks?
-
 describe('sample test', function() {
 
     //in beforeEach may also need to connect to server
@@ -158,6 +156,7 @@ describe('sample test', function() {
 			}
 		})
 	});
+	
 
 	it('should return homepage', function(done) {
 		server.get('/')
