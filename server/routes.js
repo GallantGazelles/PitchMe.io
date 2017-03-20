@@ -5,10 +5,17 @@ const Followers = require('./routes/Followers');
 // Rest API to /api
 
 // USERS
-router.get('/users', Users.getAllUsers);
-// router.post('/users', users.something.post);
-// router.put('/users', users.something.put);
-// router.delete('/users', users.something.delete);
+//Get all users
+router.get('/users', Users.getUsers);
+
+//Create new User
+router.post('/users', Users.postUsers);
+
+//Edit User information
+router.put('/users', Users.putUsers);
+
+//Remove User from DB
+router.delete('/users', Users.deleteUsers);
 
 // COMMENTS
 // router.get('/comments', comments.something.get);
