@@ -1,7 +1,11 @@
 const router = require('express').Router();
 const Users = require('./routes/Users');
 const Followers = require('./routes/Followers');
+<<<<<<< HEAD
 const Pitches = require('./routes/Pitches');
+=======
+const Comments = require('./routes/Comments');
+>>>>>>> a29c7b35839a08bac098abb6c7c8ab581599743b
 
 // Rest API to /api
 
@@ -19,8 +23,8 @@ router.put('/users', Users.putUsers);
 router.delete('/users', Users.deleteUsers);
 
 // COMMENTS
-// router.get('/comments', comments.something.get);
-// router.post('/comments', comments.something.post);
+router.get('/comments', Comments.getComments);
+// router.post('/comments', Comments.createCommentInComments);
 // router.put('/comments', comments.something.put);
 // router.delete('/comments', comments.something.delete);
 
@@ -36,6 +40,7 @@ router.get('/pitches', Pitches.getPitches);
 // FOLLOWERS
 router.get('/followers', Followers.getFollowers);
 router.post('/followers', Followers.postFollower);
+router.delete('/followers', Followers.removeFollower);
 
 
 module.exports = router;
