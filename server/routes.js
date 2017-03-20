@@ -30,8 +30,8 @@ router.get('/comments', Comments.getComments);
 // PITCHES
 router.get('/pitches', Pitches.getPitches);
 router.post('/pitches', Pitches.postPitches);
-// router.put('/pitches', pitches.something.put);
-// router.delete('/pitches', pitches.something.delete);
+router.put('/pitches', Pitches.putPitches);
+router.delete('/pitches', Pitches.deletePitches);
 
 // CATEGORIES
 
