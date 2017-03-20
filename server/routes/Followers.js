@@ -6,17 +6,17 @@ module.exports.getFollowers = (req, res, next) => {
   const userId = req.query.userId;
 
   if (q === 'count' && pitchId) {
-    // Example: /api/followers?q=count&pitchId=1234
+    // EXAMPLE: /api/followers?q=count&pitchId=1234
     db.getPitchFollowerCount(pitchId)
       .then(results => res.send(results.rows))
       .catch(error => res.send(error));
   } else if (q === 'follows') {
-    // Example: /api/followers?q=followst&pitchId=1234
+    // EXAMPLE: /api/followers?q=followst&pitchId=1234
     db.getPitchFollowers(pitchId)
       .then(results => res.send(results.rows))
       .catch(error => res.send(error));
   } else if (userId) {
-    // Example: /api/followers?userId=5678
+    // EXAMPLE: /api/followers?userId=5678
     db.getUserPitchFollows(userId)
       .then(results => res.send(results.rows))
       .catch(error => res.send(error));
@@ -26,6 +26,23 @@ module.exports.getFollowers = (req, res, next) => {
 };
 
 module.exports.postFollower = (req, res, next) => {
-  // TODO
-  res.send('Todo');
+  console.log(req.body);
+
+  const userId = req.body.userId;
+  const pitchId = req.body.pitchId;
+
+  // EXAMPLE: /api/followers?userId=3&pitchId=2
+  db.postNewPitchFollower(userId, pitchId)
+    .then(success => res.send())
+    .catch(error => res.send(error));
 };
+
+module.exports.removeFollower = (req, res, next) => {
+  const userId = req.body.userId;
+  const pitchId = req.body.pitchId;
+
+  // EXAMPLE: /api/followers?userId=3&pitchId=2
+  db.deletePitchFollower(userId, pitchId)
+    .then(success => res.send())
+    .catch(error => res.send(error));
+}

@@ -14,3 +14,11 @@ module.exports.getPitchFollowers = (pitchId) => {
 module.exports.getUserPitchFollows = (userId) => {
   return db.query(`SELECT pitches.* from pitches, followers where followers.user_id = ${userId} AND pitches.id = followers.pitch_id;`);
 };
+
+module.exports.postNewPitchFollower = (userId, pitchId) => {
+  return db.query(`INSERT INTO followers (user_id, pitch_id) VALUES (${userId}, ${pitchId})`);
+};
+
+module.exports.deletePitchFollower = (userId, pitchId) => {
+  return db.query(`DELETE FROM followers WHERE user_id = ${userId} AND pitch_id = ${pitchId}`);
+}
