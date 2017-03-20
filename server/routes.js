@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Users = require('./routes/Users');
 const Followers = require('./routes/Followers');
+const Comments = require('./routes/Comments');
 
 // Rest API to /api
 
@@ -18,8 +19,8 @@ router.put('/users', Users.putUsers);
 router.delete('/users', Users.deleteUsers);
 
 // COMMENTS
-// router.get('/comments', comments.something.get);
-// router.post('/comments', comments.something.post);
+router.get('/comments', Comments.getComments);
+// router.post('/comments', Comments.createCommentInComments);
 // router.put('/comments', comments.something.put);
 // router.delete('/comments', comments.something.delete);
 

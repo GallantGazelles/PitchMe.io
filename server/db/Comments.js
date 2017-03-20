@@ -12,11 +12,11 @@ module.exports.getCommentsByPitchName = (pitchName) => {
 }
 
 module.exports.getCommentsByPitchId = (pitchId) => {
-  return db.query(`SELECT comments.* FROM comments, pitches where comments.pitch_id = '${pitchId}' ORDER BY timestamp DESC`);
+  return db.query(`SELECT comments.* FROM comments WHERE comments.pitch_id = '${pitchId}' ORDER BY timestamp DESC`);
 }
 
 module.exports.getCommentsByUserId = (userId) => {
-  return db.query(`SELECT comments by user_id = '${userId}'`);
+  return db.query(`SELECT comments.* FROM comments WHERE comments.user_id = '${userId}' ORDER BY timestamp DESC`);
 }
 
 module.exports.deleteCommentByCommentId = (commentId) => {
