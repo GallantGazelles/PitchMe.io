@@ -28,6 +28,7 @@ router.get('/users', Users.getAllUsers);
 // FOLLOWERS
 router.get('/followers', Followers.getFollowers);
 router.post('/followers', Followers.postFollower);
+router.delete('/followers', Followers.removeFollower);
 
 
 module.exports = router;
