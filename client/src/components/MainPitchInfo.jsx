@@ -13,9 +13,11 @@ export default () => (
         <Item.Extra>
           <Statistic>
             <Statistic.Value>
+              1602
+            </Statistic.Value>
+            <Statistic.Value>
               <Icon name='arrow circle outline up' color='black' />
               <Icon name='arrow circle outline down' color='grey' />
-              1602
             </Statistic.Value>
           </Statistic>
         </Item.Extra>
