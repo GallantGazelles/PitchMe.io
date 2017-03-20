@@ -7,6 +7,7 @@ import SignUp from './SignUp.jsx';
 import Pitch from './Pitch.jsx';
 import axios from 'axios';
 
+import { Container } from 'semantic-ui-react';
 
 export default class App extends Component {
   constructor(props) {
@@ -29,12 +30,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        Pitchme.io
+      <Container>
         <NavBar />
         <Pitch />
         <Footer />
-      </div>
+      </Container>
     )
   }
 }
