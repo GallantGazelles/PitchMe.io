@@ -40,8 +40,8 @@ pool.connect((err, client, done) => {
       profile TEXT, \
       blurb TEXT, \
       category_id INTEGER, \
-      votes INTEGER, \
-      investment_status BOOL, \
+      votes INTEGER DEFAULT 0, \
+      investment_status BOOL DEFAULT FALSE, \
       CONSTRAINT pitchname_unique UNIQUE (name)\
       )')
     .then(
