@@ -1,11 +1,8 @@
 const router = require('express').Router();
 const Users = require('./routes/Users');
 const Followers = require('./routes/Followers');
-<<<<<<< HEAD
 const Pitches = require('./routes/Pitches');
-=======
 const Comments = require('./routes/Comments');
->>>>>>> a29c7b35839a08bac098abb6c7c8ab581599743b
 
 // Rest API to /api
 
