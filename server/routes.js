@@ -8,13 +8,13 @@ const Users = require('./routes/Users');
 router.get('/users', Users.getUsers);
 
 //Create new User
-router.post('/users', Users.postUser);
+router.post('/users', Users.postUsers);
 
 //Edit User information
-// router.put('/users', users.something.put);
+router.put('/users', Users.putUsers);
 
 //Remove User from DB
-// router.delete('/users', users.something.delete);
+router.delete('/users', Users.deleteUsers);
 
 // COMMENTS
 // router.get('/comments', comments.something.get);

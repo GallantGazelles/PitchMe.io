@@ -21,7 +21,7 @@ module.exports.getUserByPitchId = (pitchId) => {
 }
 
 module.exports.deleteUserByUserId = (userId) => {
-  return db.query(`DELETE FROM users where user_id = ${userId}`);
+  return db.query(`DELETE FROM users where id = ${userId}`);
 }
 
 module.exports.deleteUserByUsername = (username) => {
@@ -30,4 +30,12 @@ module.exports.deleteUserByUsername = (username) => {
 
 module.exports.createUser = (username, password, profile) => {
   return db.query(`INSERT INTO users (username, password, profile) VALUES ('${username}', '${password}', '${profile}')`);
+}
+
+module.exports.editUser = (userId, password, profile) => {
+  return db.query(`INSERT INTO users (username, password, profile) VALUES ('${username}', '${password}', '${profile}')`);
+}
+
+module.exports.getUserPassword = (userId) => {
+  return db.query(`SELECT password FROM users where id = ${userId};`)
 }

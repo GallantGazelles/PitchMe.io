@@ -13,7 +13,7 @@ module.exports.getUsers = (req, res, next) => {
   }
 };
 
-module.exports.postUser = (req, res, next) => {
+module.exports.postUsers = (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
   let profile = req.body.profile;
@@ -22,10 +22,26 @@ module.exports.postUser = (req, res, next) => {
   .catch(error => res.send('User already exists!'));
 };
 
-module.exports.putUser = (req, res, next) => {
-
+module.exports.deleteUsers = (req, res, next) => {
+  let userId = req.body.userId;
+  User.deleteUserByUserId(userId)
+  .then(results => res.send('User successfully deleted!'))
+  .catch(error => res.send('Error in deleting user!'));
 };
 
-module.exports.deleteUser = (req, res, next) => {
-  let userId
-};
+module.exports.putUsers = (req, res, next) => {
+  let userId = req.body.userId;
+  let password = req.body.password;
+  let profile = req.body.profile;
+
+  User.getUserPassword(userId)
+  .then((results) => {
+    if (results.rows !== password) {
+      return res.send('Invalid Password');
+    } else {
+      User.editUser(userId, password, profile)
+    }
+  })
+  .then((results) => res.send('Profile successfully changed!'))
+  .catch( error => res.send('An error occurred in changing your profile!'))
+}
