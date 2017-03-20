@@ -1,48 +1,43 @@
-const User = require('./../db/User');
+const Pitch = require('./../db/Pitches');
 
-module.exports.getUsers = (req, res, next) => {
-  console.log(req.query.user_id);
-  let q = req.query.q;
-  let userId = req.query.userId
-  if (q === 'users') {
-    User.getAllUsers().then(results => res.send(results.rows)).catch(error => res.send('Oops!'))
-  } else if (q === 'user') {
-    User.getUserByUserId(req.query.user_id).then(results=> res.send(results.rows)).catch(error => res.send('Oops!'));
+module.exports.getPitches = (req, res, next) => {
+  const { q, pitchId, cat } = req.query;
+
+  if (q === 'all') {
+    Pitch.getAllPitches()
+      .then(results => res.send(results.rows))
+      .catch(error => res.send('error in getting pitches' , error));
+  } else if (q === 'pitch') {
+    Pitch.getPitchByPitchId(pitchId)
+      .then(results => res.send(results.rows))
+      .catch(error => res.send('error in getting pitch ', error));
+  } else if (q === 'cat') {
+    Pitch.getPitchByCategoryId(cat)
+      .then(results => res.send(results.rows))
+      .catch(error => res.send('error in sorting by category', error));
   } else {
-    res.status(404).send('Bad Query');
+    res.send('Bad query');
   }
-};
+}
 
-module.exports.postUsers = (req, res, next) => {
-  let username = req.body.username;
-  let password = req.body.password;
-  let profile = req.body.profile;
-  User.createUser(username, password, profile)
-  .then(results => res.send('User created!'))
-  .catch(error => res.send('User already exists!'));
-};
+module.exports.postPitches = (req, res, next) => {
+  const {userId, name, video, website, profile, blurb, catId} = req.body;
+  Pitch.addPitch(userId, name, video, website, profile, blurb, catId)
+  .then(results => res.send('Pitch created!'))
+  .catch(error => res.send('Error occcured: Pitch not created'));
+}
 
-module.exports.deleteUsers = (req, res, next) => {
-  let userId = req.body.userId;
-  User.deleteUserByUserId(userId)
-  .then(results => res.send('User successfully deleted!'))
-  .catch(error => res.send('Error in deleting user!'));
-};
+module.exports.putPitches = (req, res, next) => {
+  const {pitchId, userId, newName, video, website, profile, blurb, catId} = req.body;
+  Pitch.updatePitchByPitchId(pitchId, userId, newName, video, website, profile, blurb, catId)
+  .then(results => res.send('Pitch edited!'))
+  .catch(error => res.send('Error occurred: Pitch no edited ' + error));
+}
 
-module.exports.putUsers = (req, res, next) => {
-  let userId = req.body.userId;
-  let password = req.body.password;
-  let profile = req.body.profile;
 
-  User.getUserPassword(userId)
-  .then((results) => {
-    if (results.rows[0].password !== password) {
-      console.log(results.rows[0].password)
-      throw new Error('Invalid Password!')
-    } else {
-      User.editUserProfile(userId, profile)
-    }
-  })
-  .then((results) => res.send('Profile successfully changed!'))
-  .catch( error => res.send('An error occurred in changing your profile!'))
+module.exports.deletePitches = (req, res, next) => {
+  const { pitchId } = req.body;
+  Pitch.deletePitch(pitchId)
+      .then(results => res.send('Pitch deleted!'))
+      .catch(error => res.send('Error occurred: Pitch not deleted'));
 }

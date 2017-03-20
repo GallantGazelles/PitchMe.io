@@ -1,8 +1,7 @@
 const db = require('./../db/Comments');
 
 module.exports.getComments = (req, res) => {
-	const userId = req.query.userId;
-	const pitchId = req.query.pitchId;
+	const { userId, pitchId } = req.query;
 
 	if(pitchId) {
 		db.getCommentsByPitchId(pitchId)

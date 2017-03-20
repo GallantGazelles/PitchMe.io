@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const Users = require('./routes/Users');
 const Followers = require('./routes/Followers');
+const Pitches = require('./routes/Pitches');
 const Categories = require('./routes/Categories');
 const Comments = require('./routes/Comments');
+// const Categories = require('./routes/Categories');
 
 // Rest API to /api
 
@@ -26,12 +28,13 @@ router.get('/comments', Comments.getComments);
 // router.delete('/comments', comments.something.delete);
 
 // PITCHES
-// router.get('/pitches', pitches.something.get);
-// router.post('/pitches', pitches.something.post);
-// router.put('/pitches', pitches.something.put);
-// router.delete('/pitches', pitches.something.delete);
+router.get('/pitches', Pitches.getPitches);
+router.post('/pitches', Pitches.postPitches);
+router.put('/pitches', Pitches.putPitches);
+router.delete('/pitches', Pitches.deletePitches);
 
 // CATEGORIES
+
 router.get('/categories', Categories.getCategories);
 
 // FOLLOWERS
