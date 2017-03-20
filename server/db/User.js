@@ -32,8 +32,8 @@ module.exports.createUser = (username, password, profile) => {
   return db.query(`INSERT INTO users (username, password, profile) VALUES ('${username}', '${password}', '${profile}')`);
 }
 
-module.exports.editUser = (userId, password, profile) => {
-  return db.query(`INSERT INTO users (username, password, profile) VALUES ('${username}', '${password}', '${profile}')`);
+module.exports.editUserProfile = (userId, profile) => {
+  return db.query(`UPDATE users SET profile = '${profile}' WHERE id = ${userId};`);
 }
 
 module.exports.getUserPassword = (userId) => {

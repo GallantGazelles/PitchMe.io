@@ -36,10 +36,11 @@ module.exports.putUsers = (req, res, next) => {
 
   User.getUserPassword(userId)
   .then((results) => {
-    if (results.rows !== password) {
-      return res.send('Invalid Password');
+    if (results.rows[0].password !== password) {
+      console.log(results.rows[0].password)
+      throw new Error('Invalid Password!')
     } else {
-      User.editUser(userId, password, profile)
+      User.editUserProfile(userId, profile)
     }
   })
   .then((results) => res.send('Profile successfully changed!'))
