@@ -2,6 +2,8 @@ const router = require('express').Router();
 const Users = require('./routes/Users');
 const Followers = require('./routes/Followers');
 const Comments = require('./routes/Comments');
+// const Categories = require('./routes/Categories');
+const Pitches = require('./routes/Pitches');
 
 // Rest API to /api
 
@@ -31,7 +33,7 @@ router.get('/comments', Comments.getComments);
 // router.delete('/pitches', pitches.something.delete);
 
 // CATEGORIES
-// router.get('/categories', categories.something.get);
+// router.get('/categories', Categories.getAllCategories);
 
 // FOLLOWERS
 router.get('/followers', Followers.getFollowers);

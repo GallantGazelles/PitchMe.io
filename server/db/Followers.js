@@ -1,8 +1,6 @@
 const pg = require('pg');
 const db = require('../db.js');
 
-const connectionString = 'postgres://localhost:5432/ggdb';
-
 module.exports.getPitchFollowerCount = (pitchId) => {
   return db.query(`SELECT COUNT(id) from followers where pitch_id = ${pitchId};`);
 };
