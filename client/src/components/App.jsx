@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar.jsx';
-import MainVideo from './MainVideo.jsx';
+import Video from './Video.jsx';
+import MainPitchInfo from './MainPitchInfo.jsx';
 import Footer from './Footer.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
 import SignUp from './SignUp.jsx';
 import Pitch from './Pitch.jsx';
 import axios from 'axios';
 
-import { Container } from 'semantic-ui-react';
+import { Container, Divider } from 'semantic-ui-react';
 
 export default class App extends Component {
   constructor(props) {
@@ -32,7 +33,10 @@ export default class App extends Component {
     return (
       <Container>
         <NavBar />
-        <Pitch />
+        <Video />
+        <Divider hidden />
+        <MainPitchInfo />
+        <Divider hidden />
         <Footer />
       </Container>
     )
