@@ -6,7 +6,6 @@ module.exports.getAllPitches = () => {
   return db.query("SELECT * FROM users");
 };
 //add pitch, needs all info:
-//should set the default value of investment status & votes in the table schema
 module.exports.addAPitch = (user_id, name, video, webiste, profile, blurb, category_id)=> {
   return db.query(`INSERT INTO users (user_id, name, video, website, profile, blurb, category_id) VALUES ('${user_id}', '${name}', '${video}', '${website}', '${profile}', '${blurb}', '${category_id}')`);
 };
