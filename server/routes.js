@@ -4,6 +4,8 @@ const Followers = require('./routes/Followers');
 const Pitches = require('./routes/Pitches');
 const Categories = require('./routes/Categories');
 const Comments = require('./routes/Comments');
+// const Categories = require('./routes/Categories');
+const Pitches = require('./routes/Pitches');
 
 // Rest API to /api
 
@@ -33,6 +35,7 @@ router.post('/pitches', Pitches.postPitches);
 // router.delete('/pitches', pitches.something.delete);
 
 // CATEGORIES
+
 router.get('/categories', Categories.getCategories);
 
 // FOLLOWERS
