@@ -27,7 +27,7 @@ router.get('/comments', Comments.getComments);
 
 // PITCHES
 router.get('/pitches', Pitches.getPitches);
-// router.post('/pitches', pitches.something.post);
+router.post('/pitches', Pitches.postPitches);
 // router.put('/pitches', pitches.something.put);
 // router.delete('/pitches', pitches.something.delete);
 

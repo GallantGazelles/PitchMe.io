@@ -1,9 +1,9 @@
 const Pitch = require('./../db/Pitches');
 
 module.exports.getPitches = (req, res, next) => {
-  var q = req.query.q;
-  var id = req.query.pitchId;
-  var cat = req.query.cat;
+  let q = req.query.q;
+  let id = req.query.pitchId;
+  let cat = req.query.cat;
 
   if (q === 'all') {
     console.log(q);
@@ -17,4 +17,20 @@ module.exports.getPitches = (req, res, next) => {
   } else {
     res.send('Bad query');
   }
+}
+
+module.exports.postPitches = (req, res, next) => {
+  let {userId, name, video, website, profile, blurb, category_id} = req.body;
+  console.log(userId, name, video, website, profile, blurb, category_id);
+  Pitch.addPitch(userId, name, video, website, profile, blurb, category_id)
+  .then(results => res.send('Pitch created!'))
+  .catch(error => res.send('Error occcured: Pitch not created'));
+}
+
+module.exports.putPitches = (req, res, next) => {
+
+}
+
+module.exports.deletePitches = (req, res, next) => {
+
 }
