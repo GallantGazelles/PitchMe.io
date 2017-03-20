@@ -149,29 +149,55 @@ describe('sample test', function() {
 	});
 
 	afterEach(function() {
-		//close connection?
+		//close connection
 		client.end((err) => {
 			if(err) {
 				console.error(err);
 			}
-		})
-	});
-	
-
-	it('should return homepage', function(done) {
-		server.get('/')
-		.expect('Content-type', /json/)
-		.expect(200)
-		.end(function(err, res) {
-			expect(res.status).to.equal(200);
-			expect(!!res.body.error).to.equal(false);
-			console.log('res body error: ', res.body.error);
-			done();
 		});
 	});
 
-	// it('should return all users', function(done) {
-	// 	d
+
+	// it('should return homepage', function(done) {
+	// 	server.get('/')
+	// 	.expect('Content-type', /json/)
+	// 	.expect(200)
+	// 	.end(function(err, res) {
+	// 		expect(res.status).to.equal(200);
+	// 		expect(!!res.body.error).to.equal(false);
+	// 		console.log('res body error: ', res.body.error);
+	// 		done();
+	// 	});
 	// });
+
+	it('should return all users', function(done) {
+		supertest(app)
+		.get('/api/users?q=users')
+		// .expect('Content-Type', /json/)
+		.expect(200)
+		.then(response => {
+			console.log(response.body);
+			// expect(response.body)
+			done();
+		})
+	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
