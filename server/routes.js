@@ -5,7 +5,6 @@ const Pitches = require('./routes/Pitches');
 const Categories = require('./routes/Categories');
 const Comments = require('./routes/Comments');
 // const Categories = require('./routes/Categories');
-const Pitches = require('./routes/Pitches');
 
 // Rest API to /api
 
