@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section>
+  <div>
+    SignUp
+    <input
+      name="name"
+      placeholder="Name"
+      type="text"
+    />
+    <input
+      name="email"
+      placeholder="Email"
+      type="text"
+    />
+    <input
+      name="re-enter email"
+      placeholder="Re-enter Email"
+      type="text"
+    />
+    <input
+      name="password"
+      placeholder="Password"
+      type="password"
+    />
+    <input
+      name="re-enter password"
+      placeholder="Re-enter Password"
+      type="password"
+    />
+    <div>
+      Sign Up! button
+    </div>
+    <p>
+      Or
+    </p>
+    <div>
+      Log in with Facebook button
+    </div>
+  </div>
+</section>
+`;
