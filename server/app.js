@@ -12,6 +12,9 @@ const router = require('./routes.js');
 // const SessionTAB = require('./routes/Sessions');
 
 app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, '/../client/')));
+//Test for redux
+app.use(express.static(path.join(__dirname, '/../redux/')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
