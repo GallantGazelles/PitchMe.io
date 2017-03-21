@@ -6,5 +6,5 @@ module.exports.getCategories = (req, res, next) => {
       let response = results.rows.map(category => category.name);
       res.send(response);
     })
-    .catch(error => res.send(error));
+    .catch(error => res.status(404).send(error));
 };
