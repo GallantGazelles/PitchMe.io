@@ -6,13 +6,13 @@ module.exports.getComments = (req, res) => {
 	if(pitchId) {
 		db.getCommentsByPitchId(pitchId)
 		.then(results => res.send(results.rows))
-		.catch(error => res.send(error));
+		.catch(error => res.status(404).send(error));
 	}
 
 	if(userId) {
 		db.getCommentsByUserId(userId)
 		.then(results => res.send(results.rows))
-		.catch(error => res.send(error));
+		.catch(error => res.status(404).send(error));
 	}
 };
 
