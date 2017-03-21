@@ -7,12 +7,12 @@ module.exports.getComments = (req, res) => {
 		db.getCommentsByPitchId(pitchId)
 		.then(results => res.send(results.rows))
 		.catch(error => res.status(404).send(error));
-	}
-
-	if(userId) {
+	}else if(userId) {
 		db.getCommentsByUserId(userId)
 		.then(results => res.send(results.rows))
 		.catch(error => res.status(404).send(error));
+	} else {
+		res.status(404).send('Bad request');
 	}
 };
 
