@@ -4,6 +4,7 @@ import Video from './Video.jsx';
 import MainPitchInfo from './MainPitchInfo.jsx';
 import Footer from './Footer.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
+import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
 import Pitch from './Pitch.jsx';
 import axios from 'axios';
@@ -33,7 +34,7 @@ export default class App extends Component {
     return (
       <Container>
         <NavBar />
-        <Video />
+        <SignIn />
         <Divider hidden />
         <MainPitchInfo />
         <Divider hidden />
