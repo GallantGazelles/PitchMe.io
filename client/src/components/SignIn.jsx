@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Container, Divider, Form, Header, Segment } from 'semantic-ui-react';
+import { Button, Checkbox, Container, Divider, Form, Header, Icon, Segment } from 'semantic-ui-react';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -14,7 +14,10 @@ export default class SignIn extends Component {
     return (
       <Container text>
         <Segment padded raised>
-          <Header as='h2'>Sign In</Header>
+          <Segment basic clearing>
+            <Header as='h1' floated='left'>Sign In</Header>
+            <Header as='h5' floated='right'>New to PitchMe? Sign up here! <Icon name='write' /></Header>
+          </Segment>
           <Form>
             <Form.Input label='Email' />
             <Form.Input label='Password' type='password' />
@@ -24,7 +27,11 @@ export default class SignIn extends Component {
           <Divider horizontal>
             <Header as='h4'>Or</Header>
           </Divider>
-
+          <Segment basic textAlign='center'>
+            <Button color='facebook' size='huge'>
+              <Icon name='facebook' /> Sign in with Facebook
+            </Button>
+          </Segment>
         </Segment>
       </Container>
     )

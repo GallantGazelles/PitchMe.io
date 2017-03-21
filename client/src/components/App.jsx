@@ -35,6 +35,7 @@ export default class App extends Component {
       <Container>
         <NavBar />
         <SignIn />
+        <SignUp />
         <Divider hidden />
         <MainPitchInfo />
         <Divider hidden />
