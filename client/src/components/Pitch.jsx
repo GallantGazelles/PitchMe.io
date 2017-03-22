@@ -1,5 +1,6 @@
 import React from 'react';
 import Video from './Video.jsx';
+import Comment from './Comment.jsx';
 import { Button, Container, Divider, Grid, Header, Icon, Image, Item, Label, Segment, Statistic } from 'semantic-ui-react';
 
 export default () => (
@@ -13,7 +14,7 @@ export default () => (
           <Item.Group>
             <Item>
               <Item.Content>
-                <Item.Header as='a'><Icon color='green' name='check' />1609 Votes</Item.Header>
+                <Item.Header as='h1'><Icon color='green' name='check' />1609 Votes</Item.Header>
               </Item.Content>
             </Item>
             <Item>
@@ -44,6 +45,6 @@ export default () => (
       </Header>
     </Divider>
     <Divider hidden />
-
+    <Comment />
   </Segment>
 )
