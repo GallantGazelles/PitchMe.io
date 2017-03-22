@@ -6,7 +6,11 @@ const connectionString = 'postgres://localhost:5432/ggdb';
 module.exports.getAllUsers = () => {
   //Returns promise with query
   return db.query("SELECT * FROM users");
-}
+};
+
+module.exports.getUserByUsername = (username) => {
+  return db.query(`SELECT * FROM users WHERE username='${username}'`);
+};
 
 module.exports.getUserIdByUsername = (username) => {
   return db.query(`SELECT * FROM users where username = "${username}";`);
@@ -34,8 +38,13 @@ module.exports.createUser = (username, password, profile) => {
 
 module.exports.editUserProfile = (userId, profile) => {
   return db.query(`UPDATE users SET profile = '${profile}' WHERE id = ${userId};`);
-}
+};
 
 module.exports.getUserPassword = (userId) => {
   return db.query(`SELECT password FROM users where id = ${userId};`)
+};
+
+module.exports.getUserPasswordByName = (username) => {
+  return db.query(`SELECT password FROM users WHERE username='${username}'`);
 }
+
