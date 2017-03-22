@@ -16,17 +16,15 @@ import { Container, Divider } from 'semantic-ui-react';
 
 const Index = () => (
   <Router>
-    <div>
-      <Container>
-        <NavBar />
-        <Route exact path="/" component={ App }/>
-        <Route path="/pitch" component={ Pitch }/>
-        <Route path="/signup" component={ SignUp }/>
-        <Route path="/signin" component={ SignIn }/>
-        <Divider hidden />
-        <Footer />
-      </Container>
-    </div>
+    <Container>
+      <NavBar />
+      <Route exact path="/" component={ App }/>
+      <Route path="/pitch" component={ Pitch }/>
+      <Route path="/signup" component={ SignUp }/>
+      <Route path="/signin" component={ SignIn }/>
+      <Divider hidden />
+      <Footer />
+    </Container>
   </Router>
 )
 

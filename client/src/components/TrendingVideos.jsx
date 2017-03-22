@@ -11,7 +11,7 @@ const TrendingVideos = () => (
     </Divider>
     <Divider hidden />
 
-    <Grid container padded column={3} columns='equal'>
+    <Grid container padded columns={3}>
       <Grid.Row>
         <Grid.Column>
           <Card centered color='black'>
