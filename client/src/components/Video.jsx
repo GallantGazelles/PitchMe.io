@@ -1,11 +1,17 @@
 import React from 'react';
+import { Container, Embed, Segment } from 'semantic-ui-react';
 
-const Video = () => (
-  <section>
-    <div>
-      <iframe src="https://player.vimeo.com/video/151002965" width="640" height="251" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    </div>
-  </section>
+export default () => (
+  <Container text>
+    <Segment raised>
+      <Embed
+        autoplay = {true}
+        brandedUI = {false}
+        color = 'white'
+        hd = {false}
+        id = 'D0WnZyxp_Wo'
+        source = 'youtube'
+      />
+    </Segment>
+  </Container>
 )
-
-export default Video;

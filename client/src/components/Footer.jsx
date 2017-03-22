@@ -1,18 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Divider, Grid, Header, Icon, Input, Menu } from 'semantic-ui-react';
 
-const Footer = (props) => (
-  <footer>
-    <div>
-      Copyright Gallant Gazelles 2017
-    </div>
-    <div>
-      <span>Home </span>
-      <span>About Us </span>
-      <span>FAQ </span>
-      <span>Privacy Policy </span>
-      <span>Support</span>
-    </div>
-  </footer>
-)
+export default class Footer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { activeItem: 'home' };
 
-export default Footer;
+    this.handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  }
+
+
+  render () {
+    const { activeItem } = this.state;
+
+    return (
+      <div>
+        <Divider hidden />
+        <Divider />
+
+        <Grid padded container columns='2'>
+
+          <Grid.Column floated='left' verticalAlign='middle'>
+            <Header as="h3">
+              <Icon name='meh' />PitchMe
+            </Header>
+          </Grid.Column>
+
+          <Grid.Column floated='right' verticalAlign='middle'>
+            <Menu text>
+              <Menu.Menu position='right'>
+                <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+                <Menu.Item name='companies' active={activeItem === 'companies'} onClick={this.handleItemClick} />
+                <Menu.Item name='trending pitches' active={activeItem === 'trending pitches'} onClick={this.handleItemClick} />
+              </Menu.Menu>
+            </Menu>
+          </Grid.Column>
+
+        </Grid>
+      </div>
+    )
+  }
+}
