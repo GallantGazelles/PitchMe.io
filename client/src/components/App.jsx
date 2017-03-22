@@ -36,7 +36,6 @@ export default class App extends Component {
         <NavBar />
         <Pitch />
         <Divider hidden />
-        <TrendingVideos />
         <Footer />
       </Container>
     )

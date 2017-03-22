@@ -38,13 +38,7 @@ export default () => (
       </Grid>
     </Container>
 
-    <Divider horizontal>
-      <Header as='h4'>
-        <Icon name='comment' />
-        Comments
-      </Header>
-    </Divider>
-    <Divider hidden />
     <Comment />
+
   </Segment>
 )
