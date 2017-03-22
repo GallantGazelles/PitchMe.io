@@ -26,7 +26,7 @@ export default class NavBar extends Component {
             <Menu.Menu position='right'>
               <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
               <Menu.Item name='how it works' as={Link} to='/howitworks' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
-              <Menu.Item name='sign in' as={Link} to='/signin' active={activeItem === 'companies'} onClick={this.handleItemClick} />
+              <Menu.Item name='sign in' as={Link} to='/signin' active={activeItem === 'sign in'} onClick={this.handleItemClick} />
               <Menu.Item name='sign up' as={Link} to='/signup' active={activeItem === 'sign up'} onClick={this.handleItemClick} />
               <Menu.Item>
                 <Input icon='search' placeholder='Search...' />
