@@ -15,9 +15,9 @@ export default () => (
       <Comment>
         <Comment.Avatar src='http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg' />
         <Comment.Content>
-          <Comment.Author>Joe Henderson</Comment.Author>
+          <Comment.Author>Ed Chan</Comment.Author>
           <Comment.Metadata>
-            <div>1 day ago</div>
+            <span>Today at 5:42PM</span>
           </Comment.Metadata>
           <Comment.Text>
             <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there.</p>
@@ -32,9 +32,14 @@ export default () => (
       <Comment>
         <Comment.Avatar src='http://react.semantic-ui.com/assets/images/avatar/small/matt.jpg' />
         <Comment.Content>
-          <Comment.Author>Christian Rocha</Comment.Author>
+          <Comment.Author>Craig Rodrigues</Comment.Author>
           <Comment.Metadata>
-            <div>2 days ago</div>
+            <span>2 days ago</span>
+            <div>Investment Banker</div>
+            <div>
+              <Icon name='star' />
+              5 Favorites
+            </div>
           </Comment.Metadata>
           <Comment.Text>I re-tweeted this.</Comment.Text>
           <Comment.Actions>
