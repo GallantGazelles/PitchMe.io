@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar.jsx';
 import Video from './Video.jsx';
 import MainPitchInfo from './MainPitchInfo.jsx';
-import Footer from './Footer.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
-import SignIn from './SignIn.jsx';
-import SignUp from './SignUp.jsx';
-import Pitch from './Pitch.jsx';
-import VoteButtons from './VoteButtons.jsx';
 import axios from 'axios';
-
 import { Container, Divider } from 'semantic-ui-react';
 
 export default class App extends Component {
@@ -33,12 +26,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <Container>
-        <NavBar />
-        <Pitch />
+      <section>
+        <Video />
         <Divider hidden />
-        <Footer />
-      </Container>
+        <MainPitchInfo />
+        <Divider hidden />
+        <TrendingVideos />
+      </section>
     )
   }
 }

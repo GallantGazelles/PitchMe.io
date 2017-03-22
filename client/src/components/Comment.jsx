@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Comment, Container, Divider, Form, Header, Icon } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Comment, Container, Divider, Form, Header, Icon } from 'semantic-ui-react';
 
 export default () => (
   <Container text>

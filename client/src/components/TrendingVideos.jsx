@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Divider, Grid, Header, Icon, Image } from 'semantic-ui-react';
 
 const TrendingVideos = () => (
-  <div>
+  <section>
     <Divider horizontal>
       <Header as='h4'>
         <Icon name='line chart' />
@@ -126,7 +126,7 @@ const TrendingVideos = () => (
         </Grid.Column>
       </Grid.Row>
     </Grid>
-  </div>
+  </section>
 )
 
 export default TrendingVideos;
