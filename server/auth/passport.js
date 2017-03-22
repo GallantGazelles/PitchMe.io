@@ -25,15 +25,32 @@ passport.use(new LocalStrategy ( (username, password, done) => {
 }));
 
 passport.serializeUser((user, done) => {
-	done(null, user.id);
+	done(null, user.username);
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((username, done) => {
 	//find a user in sesssions db table
-	db.query('SELECT * FROM users WHERE id=${id}')
+	db.query(`SELECT * FROM users WHERE username='${username}'`)
 	.then((user) => {
 		done(null, user);
 	}).catch((err) => {
 		done(null, false, {message: err.message});
 	});
 });
+
+passport.authenticateMiddleware = () => {
+	return ((req, res, next) => {
+		if(req.isAuthenticated()) {
+			return next();
+		}
+		res.redirect('/login');
+	});
+};
+
+module.export
+
+
+
+
+
+
