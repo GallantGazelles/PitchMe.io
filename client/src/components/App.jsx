@@ -7,6 +7,7 @@ import TrendingVideos from './TrendingVideos.jsx';
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
 import Pitch from './Pitch.jsx';
+import VoteButtons from './VoteButtons.jsx';
 import axios from 'axios';
 
 import { Container, Divider } from 'semantic-ui-react';
