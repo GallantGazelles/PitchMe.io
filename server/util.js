@@ -8,6 +8,3 @@ module.exports.createHash = (data, salt) => {
 module.exports.createSalt = () => {
 	return crypto.randomBytes(20).toString('hex');
 };
-
-
-

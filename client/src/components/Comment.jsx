@@ -1,15 +1,26 @@
 import React from 'react';
+import SingleComment from './SingleComment.jsx';
+import { Button, Comment, Container, Divider, Form, Header, Icon } from 'semantic-ui-react';
 
-const Comment = () => (
-  <div>
-    <div><img src="https://cdn2.iconfinder.com/data/icons/faceavatars/PNG/D04.png"></img></div>
-    <div>
-      <p>NAME: Allen Le</p>
-      <p>OCCUPATION: Based God</p>
-      <p>COMMENT: 'Hello World'</p>
-    </div>
-    <div><p>TIMESTAMP</p></div>
-  </div>
+export default () => (
+  <Container text>
+    <Divider horizontal>
+      <Header as='h4'>
+        <Icon name='comment' />
+        Comments
+      </Header>
+    </Divider>
+    <Divider hidden />
+
+    <Comment.Group>
+      <SingleComment />
+      <SingleComment />
+      <SingleComment />
+
+      <Form reply onSubmit={e => e.preventDefault()}>
+        <Form.TextArea />
+        <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+      </Form>
+    </Comment.Group>
+  </Container>
 )
-
-export default Comment;

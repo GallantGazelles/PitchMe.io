@@ -23,7 +23,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', auth);
 app.use(express.static(path.join(__dirname, '/../client/')));
-
+app.use('/pitch', express.static(path.join(__dirname, '/../client/')));
+app.use('/signup', express.static(path.join(__dirname, '/../client/')));
+app.use('/signin', express.static(path.join(__dirname, '/../client/')));
+app.use('/notfound', express.static(path.join(__dirname, '/../client/')));
+app.use('/user', express.static(path.join(__dirname, '/../client/')));
 app.use('/api', router);
 
 app.listen(8080, function() {

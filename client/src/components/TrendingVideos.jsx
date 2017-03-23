@@ -1,34 +1,42 @@
 import React from 'react';
-import Video from './Video.jsx';
-import VideoTitleBlurb from './VideoTitleBlurb.jsx';
+import TrendingVideoCard from './TrendingVideoCard.jsx'
+import { Card, Divider, Grid, Header, Icon, Image } from 'semantic-ui-react';
 
-const TrendingVideos = () => (
+
+export default () => (
   <section>
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <Video />
-            <VideoTitleBlurb />
-          </td>
-          <td>
-            <Video />
-            <VideoTitleBlurb />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <Video />
-            <VideoTitleBlurb />
-          </td>
-          <td>
-            <Video />
-            <VideoTitleBlurb />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <Divider horizontal>
+      <Header as='h4'>
+        <Icon name='line chart' />
+        Trending Pitches
+      </Header>
+    </Divider>
+    <Divider hidden />
+
+    <Grid container padded columns={3}>
+      <Grid.Row>
+        <Grid.Column>
+          <TrendingVideoCard />
+        </Grid.Column>
+        <Grid.Column>
+          <TrendingVideoCard />
+        </Grid.Column>
+        <Grid.Column>
+          <TrendingVideoCard />
+        </Grid.Column>
+      </Grid.Row>
+
+      <Grid.Row>
+        <Grid.Column>
+          <TrendingVideoCard />
+        </Grid.Column>
+        <Grid.Column>
+          <TrendingVideoCard />
+        </Grid.Column>
+        <Grid.Column>
+          <TrendingVideoCard />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   </section>
 )
-
-export default TrendingVideos;

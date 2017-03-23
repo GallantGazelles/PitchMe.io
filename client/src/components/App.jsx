@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar.jsx';
-import MainVideo from './MainVideo.jsx';
-import Footer from './Footer.jsx';
+import Video from './Video.jsx';
+import MainPitchInfo from './MainPitchInfo.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
-import SignUp from './SignUp.jsx';
-import Pitch from './Pitch.jsx';
 import axios from 'axios';
-
+import { Container, Divider } from 'semantic-ui-react';
 
 export default class App extends Component {
   constructor(props) {
@@ -29,12 +26,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        Pitchme.io
-        <NavBar />
-        <Pitch />
-        <Footer />
-      </div>
+      <section>
+        <Video />
+        <Divider hidden />
+        <MainPitchInfo />
+        <Divider hidden />
+        <TrendingVideos />
+      </section>
     )
   }
 }
