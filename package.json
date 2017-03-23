@@ -37,11 +37,8 @@
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "react-test-renderer": "^15.4.2",
-<<<<<<< HEAD
     "semantic-ui-react": "^0.67.1",
-=======
     "redux": "^3.6.0",
->>>>>>> Testing redux
     "webpack": "^2.2.1"
   },
   "devDependencies": {
