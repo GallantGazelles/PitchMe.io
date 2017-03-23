@@ -8,23 +8,19 @@ export default () => (
     <Video />
     <Container text>
       <Grid padded columns={2}>
-        <Grid.Column width={5}>
+        <Grid.Column width={6}>
           <Image centered size='small' src='https://ph-files.imgix.net/8a2b7acf-d24d-46f3-9060-723db65625a9?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=120&h=120&fit=crop&dpr=2' />
           <Segment basic textAlign='center'>
-          <Item.Group>
             <Item>
               <Item.Content>
-                <Item.Header as='h1'><Icon color='green' name='check' />1609 Votes</Item.Header>
+                <Item.Header as='h2'><Icon color='green' name='check' />1609 Votes</Item.Header>
+                <Button icon size='big'><Icon name='arrow up' /></Button>
+                <Button icon size='big'><Icon name='arrow down' /></Button>
               </Item.Content>
             </Item>
-            <Item>
-              <Button icon size='big'><Icon name='arrow up' /></Button>
-              <Button icon size='big'><Icon name='arrow down' /></Button>
-            </Item>
-          </Item.Group>
           </Segment>
         </Grid.Column>
-        <Grid.Column width={11}>
+        <Grid.Column width={10}>
           <Header as='h1'>
             Shift
             <Header.Subheader>
@@ -33,7 +29,7 @@ export default () => (
           </Header>
           <p>Spicy jalapeno bacon ipsum dolor amet jowl cow ribeye corned beef. Pastrami tongue meatloaf chuck, bresaola pig strip steak andouille corned beef kielbasa brisket.</p>
           <p>Spicy jalapeno bacon ipsum dolor amet jowl cow ribeye corned beef. Pastrami tongue meatloaf chuck, bresaola pig strip steak andouille corned beef kielbasa brisket.</p>
-          <p><Label>Tech</Label><Label>iPhone</Label></p>
+          <Label>Tech</Label><Label>iPhone</Label>
         </Grid.Column>
       </Grid>
     </Container>
