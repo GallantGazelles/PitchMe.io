@@ -1,14 +1,16 @@
 import React from 'react';
 import { Container, Embed, Segment } from 'semantic-ui-react';
 
-export default () => (
+
+export default (props) => (
   <Container text>
-    <Segment raised>
+    <Segment>
       <Embed
+        active
         autoplay = {true}
         brandedUI = {false}
         color = 'white'
-        hd = {false}
+        hd = {true}
         id = 'D0WnZyxp_Wo'
         source = 'youtube'
       />

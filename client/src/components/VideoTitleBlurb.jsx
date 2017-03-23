@@ -1,6 +1,7 @@
 import React from 'react';
+import { Segment } from 'semantic-ui-react';
 
-const VideoTitleBlurb = () => (
+export default (props) => (
   <section>
     <div>
       <p>Shift</p>
