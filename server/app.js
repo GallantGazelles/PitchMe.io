@@ -8,7 +8,11 @@ const app = express();
 const router = require('./routes.js');
 
 app.use('/', express.static(path.join(__dirname, '/../client/')));
-app.use('/*', express.static(path.resolve(__dirname, '/../client')));
+app.use('/pitch', express.static(path.join(__dirname, '/../client/')));
+app.use('/signup', express.static(path.join(__dirname, '/../client/')));
+app.use('/signin', express.static(path.join(__dirname, '/../client/')));
+app.use('/notfound', express.static(path.join(__dirname, '/../client/')));
+app.use('/user', express.static(path.join(__dirname, '/../client/')));
 
 app.use(bodyParser.json());
 
