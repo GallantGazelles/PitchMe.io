@@ -9,16 +9,16 @@ const User = require('../db/User.js');
 router.get('/login', (req, res, next) => {
 	//render or redirect
 	// res.render('');
-	console.log(res.cookie);
+	// console.log(res);
 	console.log(res.session);
 	res.end('GET login bye');
 });
 
-router. post('/login', passport.authenticate('local', {session: false}), (req, res, next) => {
-	//redirect to home
-	// res.redirect('/login');
-	// console.log('response is: ', req.body);
-	console.log('response cookie: ', req.cookies);
+router.post('/login', passport.authenticate('local', {session: false}), (req, res, next) => {
+	//redirect to loggedIn home
+	// res.redirect('');
+	// console.log('response cookie: ', req.cookies);
+	console.log('reqeust user: ', req.user.rows);
 	res.end('POST login bye');
 });
 
@@ -34,11 +34,8 @@ var localStrategy = new LocalStrategy((username, password, done) => {
 			//check pwd
 			console.log('check pwd');
 			if(_comparePassword(password, user.rows[0].password)) {
-				//true?
-				console.log('true~~~');
 				done(null, user);
 			} else {
-				console.log('false~~');
 				throw 'Invalid information';
 			}
 		} else {
@@ -55,7 +52,20 @@ passport.use('local', localStrategy);
 const _comparePassword = (newPass, oldPass) => {
     //should hash newPass, and then compare
     return newPass === oldPass;
-
 };
+
+passport.serializeUser((user, done) => {
+	done(null, user.username);
+});
+
+passport.deserializeUser((username, done) => {
+	//find a user in sesssions db table
+	db.query(`SELECT * FROM users WHERE username='${username}'`)
+	.then((user) => {
+		done(null, user);
+	}).catch((err) => {
+		done(null, false, {message: err.message});
+	});
+});
 
 
