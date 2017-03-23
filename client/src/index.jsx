@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import App from './components/App.jsx';
+import Companies from './components/CompaniesList.jsx';
 import Footer from './components/Footer.jsx';
 import Pitch from './components/Pitch.jsx';
 import NavBar from './components/NavBar.jsx';
@@ -21,6 +22,7 @@ const Index = () => (
     <Container>
       <NavBar />
       <Route exact path="/" component={ App }/>
+      <Route path="/companies" component={ Companies }/>
       <Route path="/pitch" component={ Pitch }/>
       <Route path="/signup" component={ SignUp }/>
       <Route path="/signin" component={ SignIn }/>
