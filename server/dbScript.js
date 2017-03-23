@@ -108,14 +108,17 @@ pool.connect((err, client, done) => {
 
     client.query('CREATE TABLE IF NOT EXISTS sessions \
       (id SERIAL PRIMARY KEY, \
+      session_id VARCHAR(40) NOT NULL,\
       user_id INTEGER, \
+      expire TIMESTAMP,\
       cookie VARCHAR (60), \
       salt VARCHAR(40), \
-      timestamp TIMESTAMP DEFAULT current_timestamp\
+      timestamp TIMESTAMP DEFAULT current_timestamp,\
+      CONSTRAINT sessionID_unique UNIQUE (session_id)\
       )'
     ).then(
       client.query(
-        `INSERT INTO sessions (user_id, cookie, salt) VALUES ('1', '8c429a', '7438'), ('2', '43bca4', '7438'), ('3', 'a4bde', '7438'), ('4', 'e42dfb', '7438')`
+        `INSERT INTO sessions (session_id, user_id, cookie, salt) VALUES ('g1xtDzza0vfgZpC8AwRgHRv5gGMBjx-L', '1', '8c429a', '7438'), ('zZYi7AR_Q1TrSl_ZcTTCzIJTyvT5TKYd', '2', '43bca4', '7438'), ('B9stZQm1eaoxKWUB1SByW1VlXGV5N90H', '3', 'a4bde', '7438'), ('VXrrbfy1tW2YMgEsxfYdUXzVl6OKpPCx', '4', 'e42dfb', '7438')`
       )
     );
 
