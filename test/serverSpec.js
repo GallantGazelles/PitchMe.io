@@ -63,7 +63,7 @@ describe('test homepage & users table', () => {
 		});
 	});
     //Users get:
-	it('should return all users', (done) => {
+	xit('should return all users', (done) => {
 		supertest(app)
 		.get('/api/users?q=users')
 		// .expect('Content-Type', /json/)
@@ -78,7 +78,7 @@ describe('test homepage & users table', () => {
 		});
 	});
 
-	it('should return a user given his/her userId', (done) => {
+	xit('should return a user given his/her userId', (done) => {
 		supertest(app)
 		.get('/api/users?q=user&user_id=1')
 		.end((err, res) => {
@@ -92,6 +92,18 @@ describe('test homepage & users table', () => {
 		});
 	});
 
+	//users POST:
+	// it('should be able to add non-existing user', (done) => {
+	// 	supertest(app)
+	// 	.post('/api/users')
+	// 	.send({username: 'Alison', password: 'test', profile: 'helloYo'})
+	// 	.expect('Content-type', /json/)
+	// 	.end((err, res) => {
+	// 		expect(res.status).to.equal(200);
+	// 		done();
+	// 	});
+	// });
+
 	// it('should be able to add users', function(done) {
 	// 	supertest(app)
 	// 	.post('/api/users')
@@ -100,7 +112,7 @@ describe('test homepage & users table', () => {
 });
 
 
-describe('test categories table', () => {
+xdescribe('test categories table', () => {
 
 	beforeEach((done) => {
 		console.log('=================');
@@ -142,7 +154,7 @@ describe('test categories table', () => {
     });
 });
 
-describe('test pitches table', () => {
+xdescribe('test pitches table', () => {
 	beforeEach((done) => {
 		console.log('+++++++++++++++++++++');
 
@@ -240,7 +252,7 @@ describe('test pitches table', () => {
 });
 
 
-describe('test comments table', () => {
+xdescribe('test comments table', () => {
 	beforeEach((done) => {
 		console.log('-------------------');
 
@@ -303,7 +315,7 @@ describe('test comments table', () => {
 	});
 });
 
-describe('test followers table', () => {
+xdescribe('test followers table', () => {
 	beforeEach((done) => {
 		console.log('&&&&&&&&&&&&&&&&&&&&&&&');
 
