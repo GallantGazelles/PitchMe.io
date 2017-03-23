@@ -7,8 +7,9 @@ const pg = require('pg');
 const db = require('./db.js');
 const session = require('express-session');
 const app = express();
+const auth = require('./routes/auth.js');
 const router = require('./routes.js');
-const SessionTAB = require('./routes/Sessions');
+// const SessionTAB = require('./routes/Sessions');
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -20,10 +21,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());//what's this?
-app.use('/auth', function(req, res) {
-	d
-});
+app.use('/auth', auth);
 app.use(express.static(path.join(__dirname, '/../client/')));
 
 app.use('/api', router);
