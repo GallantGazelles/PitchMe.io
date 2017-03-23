@@ -7,7 +7,7 @@ export default (props) => (
     <Segment>
       <Embed
         active
-        autoplay = {true}
+        autoplay = {false}
         brandedUI = {false}
         color = 'white'
         hd = {true}
