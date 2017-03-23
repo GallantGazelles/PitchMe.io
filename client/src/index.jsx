@@ -13,6 +13,7 @@ import NavBar from './components/NavBar.jsx';
 import NotFound from './components/NotFound.jsx';
 import SignIn from './components/SignIn.jsx';
 import SignUp from './components/SignUp.jsx';
+import UserProfile from './components/UserProfile.jsx';
 import { Container, Divider } from 'semantic-ui-react';
 
 const Index = () => (
@@ -24,6 +25,7 @@ const Index = () => (
       <Route path="/signup" component={ SignUp }/>
       <Route path="/signin" component={ SignIn }/>
       <Route path="/notfound" component={ NotFound }/>
+      <Route path="/user" component={ UserProfile }/>
       <Divider hidden />
       <Footer />
     </Container>

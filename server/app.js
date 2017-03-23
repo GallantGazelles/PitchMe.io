@@ -12,6 +12,7 @@ app.use('/pitch', express.static(path.join(__dirname, '/../client/')));
 app.use('/signup', express.static(path.join(__dirname, '/../client/')));
 app.use('/signin', express.static(path.join(__dirname, '/../client/')));
 app.use('/notfound', express.static(path.join(__dirname, '/../client/')));
+app.use('/user', express.static(path.join(__dirname, '/../client/')));
 
 app.use(bodyParser.json());
 
