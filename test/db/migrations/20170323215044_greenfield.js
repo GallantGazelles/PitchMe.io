@@ -16,7 +16,7 @@ exports.up = function(knex, Promise) {
   		table.string('comment');
   		table.integer('user_id').notNullable();
   		table.integer('pitch_id').notNullable();
-  		table.timestamp('timestamp');
+  		table.timestamp('timestamp').defaultTo(knex.fn.now());
   	});
   }).then(() => {
   	return knex.schema.createTable('followers', (table) => {
@@ -40,8 +40,8 @@ exports.up = function(knex, Promise) {
   		table.string('profile');
   		table.string('blurb');
   		table.integer('category_id');
-  		table.integer('votes');
-  		table.boolean('investment_status');
+  		table.integer('votes').defaultTo(0);
+  		table.boolean('investment_status').defaultTo('FALSE');
   	});
   }).then(() => {
   	return knex.schema.createTable('votes', (table) => {
@@ -49,7 +49,7 @@ exports.up = function(knex, Promise) {
   		table.integer('user_id');
   		table.integer('pitch_id');
   		table.integer('vote_type');
-  		table.timestamp('timestamp');
+  		table.timestamp('timestamp').defaultTo(knex.fn.now());
   	});
   });
 };

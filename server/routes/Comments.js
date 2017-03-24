@@ -17,5 +17,11 @@ module.exports.getComments = (req, res) => {
 };
 
 module.exports.postComment = (req, res, next) => {
-	res.send('To do on post comment');
+	const {userId, pitchId, comment} = req.body;
+	db.createCommentInComments(userId, pitchId, comment)
+	.then(results => {
+		res.send('successfully posted comment');
+	}).catch(error => {
+		res.status(404).send('failed to post comment');
+	});
 };

@@ -2,20 +2,11 @@ process.env.NODE_ENV = 'test';
 var supertest = require('supertest');
 var expect = require('chai').expect;
 var app = require('../server/app.js');
+var knex = require('./db/knex.js').knex;
 
-describe('test homepage & users table', () => {
-	// beforeEach((done) => {
-	// 	console.log("**************beforeEach")
-	// 	
-	//     console.log('Success');
-	// });
 
-	// afterEach(() => {
-	// 	//return a promise so that we don't need to call done() anymore
-	// });
-
+describe('test homepage', () => {
 	it('should return homepage', (done) => {
-		console.log("starting homepage test")
 		supertest(app).get('/')
 		.expect('Content-type', /html/)
 		.end((err, res) => {
@@ -27,7 +18,30 @@ describe('test homepage & users table', () => {
 			done();
 		});
 	});
-    //Users get:
+});
+
+describe('test users table', () => {
+	beforeEach((done) => {
+		knex.migrate.rollback()
+		.then(() => {
+			knex.migrate.latest()
+			.then(() => {
+				return knex.seed.run()
+				.then(() => {
+					done();
+				});
+			});
+		});
+	});
+
+	afterEach((done) => {
+		knex.migrate.rollback()
+		.then(() => {
+			done();
+		});
+	});
+	
+    //users GET:
 	it('should return all users', (done) => {
 		supertest(app)
 		.get('/api/users?q=users')
@@ -61,6 +75,9 @@ describe('test homepage & users table', () => {
 		.post('/api/users')
 		.send({username: 'Alison', password: 'test', profile: 'helloYo'})
 		.end((err, res) => {
+			if(err) {
+				return done(err);
+			}
 			expect(res.status).to.equal(200);
 			done();
 		});
@@ -71,56 +88,101 @@ describe('test homepage & users table', () => {
 		.post('/api/users')
 		.send({username: 'Alison', password: 'test', profile: 'helloYo'})
 		.end((err, res) => {
-			expect(res.status).to.equal(404);
+			if(err) {
+				return done(err);
+			}
 			supertest(app)
-			.get('/api/users?q=users')
+			.post('/api/users')
+			.send({username: 'Alison', password: 'test', profile: 'helloYo'})
 			.end((err, res) => {
-				expect(res.body.length).to.equal(4);
-				supertest(app)
-				.delete()
+				if(err) {
+				    return done(err);
+				}
+				expect(res.status).to.equal(404);
 				done();
 			});
 		});
 	});
-
-	
+    //users PUT:
+    it('should update user profile given username and password', (done) => {
+    	supertest(app)
+    	.put('/api/users')
+    	.send({"username": "User1", "password": "123", "profile": "changed profile"})
+    	.end((err, res) => {
+    		if(err) {
+				return done(err);
+			}
+    		expect(res.status).to.equal(200);
+    		supertest(app)
+    		.get('/api/users?q=user&user_id=1')
+    		.end((err, res) => {
+    			if(err) {
+				    return done(err);
+				}
+    			expect(res.body[0].username).to.equal('User1');
+    			expect(res.body[0].profile).to.equal('changed profile');
+	    		done();
+    		});
+    	});
+    });
+    //user DELETE:
+    it('should delete user given username', (done) => {
+    	supertest(app)
+    	.delete(`/api/users/?username=User1`)
+    	.end((err, res) => {
+    		if(err) {
+				return done(err);
+			}
+    		expect(res.status).to.equal(200);
+    		supertest(app)
+    		.get('/api/users?q=users')
+    		.end((err, res) => {
+    			if(err) {
+				  return done(err);
+				}
+    			expect(res.body.length).to.equal(2);
+    			let usersAfterDelete = [];
+    			res.body.forEach((item) => {
+    				usersAfterDelete.push(item.username);
+    			});
+    			expect(usersAfterDelete.indexOf('User1')).to.equal(-1);
+    			done();
+    		});
+    	});
+    });
 });
 
 
-xdescribe('test categories table', () => {
+describe('test categories table', () => {
 
 	beforeEach((done) => {
-		console.log('=================');
-	    client.query('DROP TABLE IF EXISTS categories')
-	    .then((results) => {
-		    return (client.query('CREATE TABLE categories \
-		      (id SERIAL PRIMARY KEY, \
-		      name VARCHAR(20), \
-		      CONSTRAINT categoryname_unique UNIQUE (name)\
-		      )'));
-	    })
-	    .then((results) => {
-	      return client.query(
-	        `INSERT INTO categories (name) VALUES ('Tech'), ('Games'), ('Books'), ('iPhone'), ('Android'), ('Productivity')`);
-	    })
-	    .then(() => {
-	    	done();
-	    })
-	    .catch((err) => {
-	    	console.error(err);
-	    });
-	    console.log('Success');
+		knex.migrate.rollback()
+		.then(() => {
+			knex.migrate.latest()
+			.then(() => {
+				return knex.seed.run()
+				.then(() => {
+					done();
+				});
+			});
+		});
 	});
 
-	afterEach(() => {
-		return client.query('DROP TABLE IF EXISTS categories');
+	afterEach((done) => {
+		knex.migrate.rollback()
+		.then(() => {
+			done();
+		});
 	});
 	
-    //Categories get:
+    //categories GET:
     it('should return all categories', (done) => {
     	supertest(app)
     	.get('/api/categories')
     	.end((err, res) => {
+    		if(err) {
+				return done(err);
+			}
     		// console.log('response: ', response);
 			expect(res.status).to.equal(200);
     		expect(res.body.length).to.equal(6);
@@ -129,47 +191,34 @@ xdescribe('test categories table', () => {
     });
 });
 
-xdescribe('test pitches table', () => {
+describe('test pitches table', () => {
 	beforeEach((done) => {
-		console.log('+++++++++++++++++++++');
-
-		client.query('DROP TABLE IF EXISTS pitches')
+		knex.migrate.rollback()
 		.then(() => {
-			return client.query('CREATE TABLE IF NOT EXISTS pitches \
-			(id SERIAL PRIMARY KEY, \
-			user_id INTEGER, \
-			name VARCHAR(40), \
-			video TEXT, \
-			website TEXT, \
-			profile TEXT, \
-			blurb TEXT, \
-			category_id INTEGER, \
-			votes INTEGER DEFAULT 0, \
-			investment_status BOOL DEFAULT FALSE, \
-			CONSTRAINT pitchname_unique UNIQUE (name)\
-			)');
-		}).then(() => {
-			return client.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id, votes, investment_status) VALUES (
-			'1', 'Pitch 1', 'Pitch 1 Video URL', 'Pitch 1 Website URL', 'Pitch 1 Profile', 'Pitch 1 Blurb', '1', '0', 'TRUE')`);
-		}).then(() => {
-			return client.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id, votes, investment_status) VALUES (
-			'2', 'Pitch 2', 'Pitch 2 Video URL', 'Pitch 2 Website URL', 'Pitch 2 Profile', 'Pitch 2 Blurb', '2', '2', 'FALSE')`);
-		}).then(() => {
-			done();
-		}).catch((err) => {
-			console.error(err);
+			knex.migrate.latest()
+			.then(() => {
+				return knex.seed.run()
+				.then(() => {
+					done();
+				});
+			});
 		});
-	    console.log('Success');
 	});
 
-	afterEach(() => {
-		return client.query('DROP TABLE IF EXISTS pitches');
+	afterEach((done) => {
+		knex.migrate.rollback()
+		.then(() => {
+			done();
+		});
 	});
-
+    //pitches GET:
 	it('should return all pitches', (done) => {
 		supertest(app)
     	.get('/api/pitches?q=all')
     	.end((err, res) => {
+    		if(err) {
+				return done(err);
+			}
 			expect(res.status).to.equal(200);
     		expect(res.body.length).to.equal(2);
     		done();
@@ -180,7 +229,10 @@ xdescribe('test pitches table', () => {
 		supertest(app)
 		.get('/api/pitches?q=pitch&pitchId=2')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(200);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
 			expect(res.body).to.deep.equal([{ id: 2,
 			    user_id: 2,
 			    name: 'Pitch 2',
@@ -196,11 +248,14 @@ xdescribe('test pitches table', () => {
 		});
 	});
 
-	it('should return pitches given a category id', (done) => {
+	it('should return pitches given a category_id', (done) => {
 		supertest(app)
 		.get('/api/pitches?q=cat&cat=1')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(200);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
 			expect(res.body).to.deep.equal([{ id: 1,
 			    user_id: 1,
 			    name: 'Pitch 1',
@@ -215,51 +270,132 @@ xdescribe('test pitches table', () => {
 			done();
 		});
 	});
+	//pitches POST:
+	it('should be able to create a new pitch', (done) => {
+		supertest(app)
+		.post('/api/pitches')
+		.send({user_id: 3, name: 'new Pitch', video: 'new pitch video', website: 'new pitch website', profile: 'new pitch profile', blurb: 'new pitch blurb', category_id: 4})
+		.end((err, res) => {
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
+			supertest(app)
+	    	.get('/api/pitches?q=all')
+	    	.end((err, res) => {
+	    		if(err) {
+					return done(err);
+				}
+	    		expect(res.body.length).to.equal(3);
+	    		expect(res.body[2].user_id).to.equal(3);
+	    		expect(res.body[2].name).to.equal('new Pitch');
+	    		expect(res.body[2].video).to.equal('new pitch video');
+	    		expect(res.body[2].website).to.equal('new pitch website');
+	    		expect(res.body[2].profile).to.equal('new pitch profile');
+	    		done();
+            });
+
+		});
+	});
+	//pitches PUT:
+	it('should update pitch information', (done) =>{
+		supertest(app)
+		.put('/api/pitches')
+		.send({pitchId: 1, userId: 1, newName: "Pitch 1",video: "Pitch 1 new video URL", website: "new website", profile: "new profile", blurb: "new blurb", catId: 1})
+		.end((err, res) => {
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
+			supertest(app)
+			.get('/api/pitches?q=pitch&pitchId=1')
+			.end((err, res) => {
+				if(err) {
+					return done(err);
+				}
+				expect(res.body[0].id).to.equal(1);
+				expect(res.body[0].name).to.equal('Pitch 1');
+				expect(res.body[0].video).to.equal('Pitch 1 new video URL');
+				expect(res.body[0].website).to.equal('new website');
+				expect(res.body[0].profile).to.equal('new profile');
+				expect(res.body[0].blurb).to.equal('new blurb');
+				expect(res.body[0].category_id).to.equal(1);
+				done();
+		    });
+		});
+	});
+	//pitches delete:
+	it('should be able to delete a pitch given pitchId', (done) => {
+		supertest(app)
+		.delete('/api/pitches')
+		.send({pitchId : 1})
+		.end((err, res) => {
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
+			supertest(app)
+			.get('/api/pitches?q=pitch&pitchId=1')
+			.end((err, res) => {
+				if(err) {
+				    return done(err);
+			    }
+			    expect(res.body.length).to.equal(0);
+			    supertest(app)
+			    .get('/api/pitches?q=all')
+			    .end((err, res) => {
+			    	if(err) {
+			    		return done(err);
+			    	}
+			    	expect(res.body.length).to.equal(1);
+			    	done();
+			    });
+			});
+		});
+	});
 
 	it('should return 404 for undefined routes', (done) => {
 		supertest(app)
 		.get('/api/pitches?q=dkjfslk')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(404);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(404);
 			done();
 		});
 	});
 });
 
 
-xdescribe('test comments table', () => {
+describe('test comments table', () => {
 	beforeEach((done) => {
-		console.log('-------------------');
-
-		client.query('DROP TABLE IF EXISTS comments')
+		knex.migrate.rollback()
 		.then(() => {
-			return client.query('CREATE TABLE IF NOT EXISTS comments \
-			      (id SERIAL PRIMARY KEY, \
-			      comment TEXT, \
-			      user_id INTEGER, \
-			      pitch_id INTEGER, \
-			      timestamp TIMESTAMP DEFAULT current_timestamp \
-			      )');
-		}).then(() => {
-			return client.query(
-	        `INSERT INTO comments (comment, user_id, pitch_id) VALUES ('Hello', '1', '1'), ('Yo', '2', '1'), ('What', '3', '1'), ('No!', '1', '1')`
-	        );
-		}).then(() => {
-			done();
-		}).catch((err) => {
-			console.error(err);
+			knex.migrate.latest()
+			.then(() => {
+				return knex.seed.run()
+				.then(() => {
+					done();
+				});
+			});
 		});
-	    console.log('Success');
 	});
 
-	afterEach(() => {
-		return client.query('DROP TABLE IF EXISTS comments');
+	afterEach((done) => {
+		knex.migrate.rollback()
+		.then(() => {
+			done();
+		});
 	});
 
 	it('should return all comments given a userId', (done) => {
 		supertest(app)
     	.get('/api/comments?userId=1')
     	.end((err, res) => {
+    		if(err) {
+				return done(err);
+			}
 			expect(res.status).to.equal(200);
     		expect(res.body.length).to.equal(2);
     		expect(res.body[0].comment).to.equal('Hello');
@@ -274,51 +410,69 @@ xdescribe('test comments table', () => {
 		supertest(app)
 		.get('/api/comments?pitchId=1')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(200);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
 			expect(res.body.length).to.equal(4);
 			done();
 		});
 	});
 
+	it('should post a comment', (done) => {
+		supertest(app)
+		.post('/api/comments')
+		.send({userId: 6, pitchId: 1, comment: 'no comments'})
+		.end((err, res) => {
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
+			supertest(app)
+			.get('/api/comments?pitchId=1')
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				expect(res.status).to.equal(200);
+				expect(res.body.length).to.equal(5);
+				done();
+			})
+		})
+	})
+
 	it('should return 404 for undefined routes', (done) => {
 		supertest(app)
 		.get('/api/comments?q=dkjfslk')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(404);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(404);
 			done();
 		});
 	});
 });
 
-xdescribe('test followers table', () => {
+describe('test followers table', () => {
 	beforeEach((done) => {
-		console.log('&&&&&&&&&&&&&&&&&&&&&&&');
-
-		client.query('DROP TABLE IF EXISTS followers')
+		knex.migrate.rollback()
 		.then(() => {
-			return client.query('CREATE TABLE IF NOT EXISTS followers \
-		      (id SERIAL PRIMARY KEY, \
-		      user_id INTEGER, \
-		      pitch_id INTEGER \
-		      )');
-		}).then(() => {
-			return client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ('1', '1')`);
-		}).then(() => {
-			return client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ('1', '2')`);
-		}).then(() => {
-			return client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ('2', '2')`);
-		}).then(() => {
-			return client.query(`INSERT INTO followers (user_id, pitch_id) VALUES ('2', '1')`);
-		}).then(() => {
-			done();
-		}).catch((err) => {
-			console.error(err);
+			knex.migrate.latest()
+			.then(() => {
+				return knex.seed.run()
+				.then(() => {
+					done();
+				});
+			});
 		});
-	    console.log('Success');
 	});
 
-	afterEach(() => {
-		return client.query('DROP TABLE IF EXISTS followers');
+	afterEach((done) => {
+		knex.migrate.rollback()
+		.then(() => {
+			done();
+		});
 	});
 
 	it('should return number of followers', (done) => {
@@ -335,7 +489,10 @@ xdescribe('test followers table', () => {
 		supertest(app)
 		.get('/api/followers?q=follows&pitchId=1')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(200);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
 			expect(res.body).to.deep.equal([ { id: 1,
 			    username: 'User1',
 			    password: '123',
@@ -349,13 +506,26 @@ xdescribe('test followers table', () => {
 		});
 	});
 
-	it('should return all comments from a user given userId', (done) => {
+	it('should return all pitches from a user given userId', (done) => {
 		supertest(app)
 		.get('/api/followers?userId=2')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(200);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
 			expect(res.body.length).to.equal(2);
-			expect(res.body[0]).to.deep.equal({ id: 1,
+			expect(res.body).to.deep.equal([ { id: 2,
+			    user_id: 2,
+			    name: 'Pitch 2',
+			    video: 'Pitch 2 Video URL',
+			    website: 'Pitch 2 Website URL',
+			    profile: 'Pitch 2 Profile',
+			    blurb: 'Pitch 2 Blurb',
+			    category_id: 2,
+			    votes: 2,
+			    investment_status: false },
+			  { id: 1,
 			    user_id: 1,
 			    name: 'Pitch 1',
 			    video: 'Pitch 1 Video URL',
@@ -364,7 +534,7 @@ xdescribe('test followers table', () => {
 			    blurb: 'Pitch 1 Blurb',
 			    category_id: 1,
 			    votes: 0,
-			    investment_status: true }
+			    investment_status: true } ]
 		    );
 			done();
 		});
@@ -374,27 +544,54 @@ xdescribe('test followers table', () => {
 		supertest(app)
 		.get('/api/followers?q=dkjfslk')
 		.end((err, res) => {
-			expect(res.statusCode).to.equal(404);
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(404);
 			done();
 		});
 	});
+	//follower POST:
+	it('should be able to post a follower', (done) => {
+		supertest(app)
+		.post('/api/followers')
+		.send({userId: 1, pitchId: 3})
+		.end((err, res) => {
+			if(err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
+			supertest(app)
+			.get('/api/followers?q=count&pitchId=3')
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				expect(+res.body[0].count).to.equal(1);
+				done();
+			});
+		});
+	});
+	//follower DELETE:
+	it('should be able to delete a following information', (done) => {
+		supertest(app)
+		.delete('/api/followers')
+		.send({userId: 1, pitchId: 1})
+		.end((err, res) => {
+			if (err) {
+				return done(err);
+			}
+			expect(res.status).to.equal(200);
+			supertest(app)
+			.get('/api/followers?q=count&pitchId=1')
+			.end((err, res) => {
+				if (err) {
+					return done(err);
+				}
+				expect(+res.body[0].count).to.equal(1);
+				done();
+			});
+		});
+	});
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
