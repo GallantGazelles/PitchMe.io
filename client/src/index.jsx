@@ -16,6 +16,8 @@ import SignIn from './components/SignIn.jsx';
 import SignUp from './components/SignUp.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import { Container, Divider } from 'semantic-ui-react';
+import { Provider } from 'react-redux';
+import configureStore from './configureStore';
 
 const Index = () => (
   <Router>
@@ -34,4 +36,10 @@ const Index = () => (
   </Router>
 )
 
-ReactDOM.render(<Index />, document.getElementById('app'))
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Index />
+  </Provider>, 
+  document.getElementById('app'))
