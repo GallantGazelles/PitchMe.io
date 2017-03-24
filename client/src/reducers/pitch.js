@@ -1,32 +1,18 @@
 const initialState = {
-  isFetching: false,
-  mainPitch: {},
-  list: []
+  vote: 0,
+  pitch: {}
 }
 
-function pitches (state = initialState, action) {
-
+function pitch (state = initialState, action) {
   switch (action.type) {
-    case 'FETCH_PITCHES':
+    case 'UPVOTE':
       return {
         ...state,
-        isFetching: true
-      }
-    case 'SELECT_PITCH':
-      return {
-        ...state,
-        mainPitch: action.select
-      }
-    case 'RECEIVE_PITCHES':
-      return {
-        ...state,
-        isFetching: false,
-        mainPitch: action.data[0],
-        list: action.data
+        action.votes
       }
     default:
       return state;
   }
-
-
 }
+
+export default pitches; 
