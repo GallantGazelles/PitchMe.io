@@ -21,8 +21,8 @@ module.exports.getPitches = (req, res, next) => {
 }
 
 module.exports.postPitches = (req, res, next) => {
-  const {userId, name, video, website, profile, blurb, catId} = req.body;
-  Pitch.addPitch(userId, name, video, website, profile, blurb, catId)
+  const {user_id, name, video, website, profile, blurb, category_id} = req.body;
+  Pitch.addPitch(user_id, name, video, website, profile, blurb, category_id)
   .then(results => res.send('Pitch created!'))
   .catch(error => res.status(404).send('Error occcured: Pitch not created'));
 }

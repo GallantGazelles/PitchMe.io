@@ -4,13 +4,12 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const pg = require('pg');
+
 const db = require('./db.js');
 const session = require('express-session');
 const app = express();
 const auth = require('./routes/auth.js');
 const router = require('./routes.js');
-// const SessionTAB = require('./routes/Sessions');
-
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '/../client/')));
 //Test for redux
@@ -22,6 +21,7 @@ app.use(session({
 	resave: true,//resave true updates session on each page view. this avoids session expire
 	saveUninitialized: true
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', auth);

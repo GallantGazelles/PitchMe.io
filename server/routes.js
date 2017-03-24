@@ -19,11 +19,11 @@ router.post('/users', Users.postUsers);
 router.put('/users', Users.putUsers);
 
 //Remove User from DB
-router.delete('/users', Users.deleteUsers);
+router.delete('/users', Users.deleteUserByName);
 
 // COMMENTS
 router.get('/comments', Comments.getComments);
-// router.post('/comments', Comments.createCommentInComments);
+router.post('/comments', Comments.postComment);
 // router.put('/comments', comments.something.put);
 // router.delete('/comments', comments.something.delete);
 

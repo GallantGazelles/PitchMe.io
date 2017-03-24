@@ -19,7 +19,7 @@ module.exports.deletePitch = (pitchId) => {
 };
 
 module.exports.updatePitchByPitchId = (pitchId, userId, newName, video, website, profile, blurb, category_id) => {
-	return db.query(`UPDATE pitches SET user_id='${userId}', name='${newName}', video='${video}', website='${website}', profile='${profile}', blurb='${blurb}', category_id='${category_id}' WHERE id='${pitchId}';`);
+	return db.query(`UPDATE pitches SET user_id=${userId}, name='${newName}', video='${video}', website='${website}', profile='${profile}', blurb='${blurb}', category_id=${category_id} WHERE id=${pitchId};`);
 };
 
 module.exports.getPitchByCategoryId = (categoryId) => {
