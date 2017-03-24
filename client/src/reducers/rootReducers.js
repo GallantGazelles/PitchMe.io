@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import pitches from './pitches';
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
   pitches
 })
+
+export default rootReducer;
