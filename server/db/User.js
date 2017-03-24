@@ -33,8 +33,11 @@ module.exports.deleteUserByUsername = (username) => {
 module.exports.createUser = (username, password, profile) => {
   return db.query(`INSERT INTO users (username, password, profile) VALUES ('${username}', '${password}', '${profile}')`);
 }
+module.exports.editUserProfileByUserId = (userId, profile) => {
+  return db.query(`UPDATE users SET profile = '${profile}' WHERE id=${userId};`);
+}
 
-module.exports.editUserProfile = (username, profile) => {
+module.exports.editUserProfileByUsername = (username, profile) => {
   return db.query(`UPDATE users SET profile = '${profile}' WHERE username='${username}';`);
 };
 

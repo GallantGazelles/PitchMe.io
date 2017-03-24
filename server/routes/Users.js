@@ -53,7 +53,7 @@ module.exports.putUsers = (req, res, next) => {
         if (results.rows[0].password !== password) {
           throw new Error('Invalid Password!');
         } else {
-          User.editUserProfile(username, profile)
+          User.editUserProfileByUsername(username, profile)
           .then(results => res.send('Profile successfully changed!'
           )).catch( error => res.status(404).send('An error occurred in changing your profile!'));
         }
