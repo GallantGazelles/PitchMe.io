@@ -1,53 +1,18 @@
+process.env.NODE_ENV = 'test';
 var supertest = require('supertest');
 var expect = require('chai').expect;
-var pg = require('pg');
-// var request = require('request');
 var app = require('../server/app.js');
 
-
-var server = supertest.agent('http://localhost:8080');
-
-const config = {
-  database: 'testggdb',
-  max: 10
-};
-//made it a pool
-let client = new pg.Pool(config);
-client.connect();
-
 describe('test homepage & users table', () => {
-	beforeEach((done) => {
-		console.log("**************beforeEach")
-		client.query('DROP TABLE IF EXISTS users')
-	    .then((results) => {
-	    	// console.log("after droping db: ", results);
-	    	return client.query('CREATE TABLE users \
-		      ( id SERIAL PRIMARY KEY, \
-		      username VARCHAR(30), \
-		      password VARCHAR(40), \
-		      profile TEXT,\
-		      CONSTRAINT username_unique UNIQUE (username) \
-		      )')
-	    }).then((results) => {
-	      return client.query(`INSERT INTO users (username, password, profile) VALUES ('User1', '123', 'Profile for User1')`);
-	    }).then((results) => (
-	      client.query(`INSERT INTO users (username, password, profile) VALUES ('User2', '123', 'Profile for User2')`)
-	    )).then((results) => (
-	      client.query(`INSERT INTO users (username, password, profile) VALUES ('User3', '123', 'Profile for User3')`)
-	    )).then(() => {
-	      	done();
-	      }
-	    ).catch((err) => {
-	    	console.log(err);
-	    });
+	// beforeEach((done) => {
+	// 	console.log("**************beforeEach")
+	// 	
+	//     console.log('Success');
+	// });
 
-	    console.log('Success');
-	});
-
-	afterEach(() => {
-		//return a promise so that we don't need to call done() anymore
-		return client.query('DROP TABLE IF EXISTS users');
-	});
+	// afterEach(() => {
+	// 	//return a promise so that we don't need to call done() anymore
+	// });
 
 	it('should return homepage', (done) => {
 		console.log("starting homepage test")
@@ -63,22 +28,20 @@ describe('test homepage & users table', () => {
 		});
 	});
     //Users get:
-	xit('should return all users', (done) => {
+	it('should return all users', (done) => {
 		supertest(app)
 		.get('/api/users?q=users')
-		// .expect('Content-Type', /json/)
 		.end((err,res) => {
 			if(err) {
 				return done(err);
 			}
-			// console.log('im response body: ', response.body);
 			expect(res.status).to.equal(200);
 			expect(res.body.length).to.equal(3);
 			done();
 		});
 	});
 
-	xit('should return a user given his/her userId', (done) => {
+	it('should return a user given his/her userId', (done) => {
 		supertest(app)
 		.get('/api/users?q=user&user_id=1')
 		.end((err, res) => {
@@ -93,22 +56,34 @@ describe('test homepage & users table', () => {
 	});
 
 	//users POST:
-	// it('should be able to add non-existing user', (done) => {
-	// 	supertest(app)
-	// 	.post('/api/users')
-	// 	.send({username: 'Alison', password: 'test', profile: 'helloYo'})
-	// 	.expect('Content-type', /json/)
-	// 	.end((err, res) => {
-	// 		expect(res.status).to.equal(200);
-	// 		done();
-	// 	});
-	// });
+	it('should be able to add non-existing user', (done) => {
+		supertest(app)
+		.post('/api/users')
+		.send({username: 'Alison', password: 'test', profile: 'helloYo'})
+		.end((err, res) => {
+			expect(res.status).to.equal(200);
+			done();
+		});
+	});
 
-	// it('should be able to add users', function(done) {
-	// 	supertest(app)
-	// 	.post('/api/users')
-	// });
-	//shouldn't add user with exisitng user name:
+	it('should not be able to add existing user', (done) => {
+		supertest(app)
+		.post('/api/users')
+		.send({username: 'Alison', password: 'test', profile: 'helloYo'})
+		.end((err, res) => {
+			expect(res.status).to.equal(404);
+			supertest(app)
+			.get('/api/users?q=users')
+			.end((err, res) => {
+				expect(res.body.length).to.equal(4);
+				supertest(app)
+				.delete()
+				done();
+			});
+		});
+	});
+
+	
 });
 
 

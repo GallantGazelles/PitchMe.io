@@ -2,15 +2,16 @@ const User = require('./../db/User');
 var Util = require('../util.js');
 
 module.exports.getUsers = (req, res, next) => {
-  const { q, userId } = req.query;
+  const { q, user_id } = req.query;
 
   if (q === 'users') {
     User.getAllUsers()
         .then(results => res.send(results.rows))
         .catch(error => res.status(404).send('Oops!'));
   } else if (q === 'user') {
-    User.getUserByUserId(req.query.user_id)
-        .then(results=> res.send(results.rows))
+    User.getUserByUserId(user_id)
+        .then(results=> { 
+          res.send(results.rows)})
         .catch(error => res.status(404).send('Oops!'));
   } else {
     res.status(404).send('Bad Query');
@@ -34,6 +35,7 @@ module.exports.deleteUsers = (req, res, next) => {
       .then(results => res.send('User successfully deleted!'))
       .catch(error => res.status(404).send('Error in deleting user!'));
 };
+
 //change user's profile
 module.exports.putUsers = (req, res, next) => {
   const { userId, password, profile } = req.body;

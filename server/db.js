@@ -1,13 +1,8 @@
 var pg = require('pg');
+var knex = require('../test/db/knex.js');
 
-// var connectionString = process.env.DATABASE_URL || 'postgress://localhost:8080';
-// console.log('connectionString: ', connectionString);
-var config = {
-	database: 'ggdb'
-};
-// config
-
-var client = new pg.Client(config);
+var client = new pg.Client(knex.connection);
+console.log('database: ', knex.connection);
 
 client.connect();
 

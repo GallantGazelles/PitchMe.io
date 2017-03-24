@@ -1,8 +1,6 @@
 const pg = require('pg');
 const db = require('../db.js');
 
-const connectionString = 'postgres://localhost:5432/ggdb';
-
 module.exports.getAllUsers = () => {
   //Returns promise with query
   return db.query("SELECT * FROM users");
@@ -13,11 +11,11 @@ module.exports.getUserByUsername = (username) => {
 };
 
 module.exports.getUserIdByUsername = (username) => {
-  return db.query(`SELECT * FROM users where username = "${username}";`);
+  return db.query(`SELECT * FROM users where username='${username}';`);
 }
 
 module.exports.getUserByUserId = (userId) => {
-  return db.query(`SELECT * FROM users where id = ${userId};`);
+  return db.query(`SELECT * FROM users where id=${userId};`);
 }
 
 module.exports.getUserByPitchId = (pitchId) => {
