@@ -28,7 +28,7 @@ module.exports.postFollower = (req, res, next) => {
 
   // EXAMPLE: /api/followers?userId=3&pitchId=2
   db.postNewPitchFollower(userId, pitchId)
-    .then(success => res.send())
+    .then(results => res.send('successfully added follower information'))
     .catch(error => res.status(404).send(error));
 };
 
@@ -37,6 +37,6 @@ module.exports.removeFollower = (req, res, next) => {
 
   // EXAMPLE: /api/followers?userId=3&pitchId=2
   db.deletePitchFollower(userId, pitchId)
-    .then(success => res.send())
+    .then(results => res.send())
     .catch(error => res.status(404).send(error));
 };

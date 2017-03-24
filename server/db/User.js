@@ -1,8 +1,6 @@
 const pg = require('pg');
 const db = require('../db.js');
 
-const connectionString = 'postgres://localhost:5432/ggdb';
-
 module.exports.getAllUsers = () => {
   //Returns promise with query
   return db.query("SELECT * FROM users");
@@ -13,11 +11,11 @@ module.exports.getUserByUsername = (username) => {
 };
 
 module.exports.getUserIdByUsername = (username) => {
-  return db.query(`SELECT * FROM users where username = "${username}";`);
+  return db.query(`SELECT * FROM users where username='${username}';`);
 }
 
 module.exports.getUserByUserId = (userId) => {
-  return db.query(`SELECT * FROM users where id = ${userId};`);
+  return db.query(`SELECT * FROM users where id=${userId};`);
 }
 
 module.exports.getUserByPitchId = (pitchId) => {
@@ -29,22 +27,29 @@ module.exports.deleteUserByUserId = (userId) => {
 }
 
 module.exports.deleteUserByUsername = (username) => {
-  return db.query(`DELETE FROM users where username = '${username}'`);
+  return db.query(`DELETE FROM users where username='${username}'`);
 }
 
 module.exports.createUser = (username, password, profile) => {
   return db.query(`INSERT INTO users (username, password, profile) VALUES ('${username}', '${password}', '${profile}')`);
 }
+module.exports.editUserProfileByUserId = (userId, profile) => {
+  return db.query(`UPDATE users SET profile = '${profile}' WHERE id=${userId};`);
+}
 
-module.exports.editUserProfile = (userId, profile) => {
-  return db.query(`UPDATE users SET profile = '${profile}' WHERE id = ${userId};`);
+module.exports.editUserProfileByUsername = (username, profile) => {
+  return db.query(`UPDATE users SET profile = '${profile}' WHERE username='${username}';`);
 };
 
 module.exports.getUserPassword = (userId) => {
-  return db.query(`SELECT password FROM users where id = ${userId};`)
+  return db.query(`SELECT password FROM users where id=${userId};`)
 };
 
 module.exports.getUserPasswordByName = (username) => {
   return db.query(`SELECT password FROM users WHERE username='${username}'`);
-}
+};
+
+module.exports.getUserProfile = (userId) => {
+  return db.query(`SELECT profile FROM users WHERE id=${userId}`);
+};
 
