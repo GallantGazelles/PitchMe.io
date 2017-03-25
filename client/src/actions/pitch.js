@@ -29,9 +29,21 @@ export function fetchPitches(category = 'all') {
   }
 }
 
-export const selectPitch = (pitchId) => {
+export function selectPitch (pitchId) {
   return {
     type: 'SELECT_PITCH',
     pitchId
+  }
+}
+
+export function nextPitch() {
+  return {
+    type: 'NEXT_PITCH'
+  }
+}
+
+export function previousPitch() {
+  return {
+    type: 'PREV_PITCH'
   }
 }
