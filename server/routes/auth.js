@@ -17,7 +17,6 @@ router.get('/login', (req, res, next) => {
 router.post('/login', passport.authenticate('local', {session: false}), (req, res, next) => {
 	//redirect to loggedIn home
 	// res.redirect('');
-	// console.log('response cookie: ', req.cookies);
 	console.log('reqeust user: ', req.user.rows);
 	res.end('POST login bye');
 });
