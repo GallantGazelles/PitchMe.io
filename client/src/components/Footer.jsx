@@ -30,8 +30,8 @@ export default class Footer extends Component {
             <Menu text>
               <Menu.Menu position='right'>
                 <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+                <Menu.Item name='how it works' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
                 <Menu.Item name='companies' active={activeItem === 'companies'} onClick={this.handleItemClick} />
-                <Menu.Item name='trending pitches' active={activeItem === 'trending pitches'} onClick={this.handleItemClick} />
               </Menu.Menu>
             </Menu>
           </Grid.Column>
