@@ -31,7 +31,7 @@ export default class CreatePitch extends Component {
           <Form>
             <Form.Group widths='equal'>
               <Form.Field control={Input} label='Company Name' />
-              <Form.Field control={Input} label='Logo' placeholder='.jpg or .png' />
+              <Form.Field control={Input} label='Logo' placeholder='.jpg or .png square (minimum size: 300x300px)' />
               <Form.Field control={Input} label='Pitch Title' placeholder='140 characters' />
             </Form.Group>
             <Form.Group widths='equal'>
