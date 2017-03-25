@@ -53,7 +53,6 @@ function upvoteToggle() {
     type: 'UPVOTE_TOGGLE'
   }
 }
-
 export function upvote(userId, pitchId, prevUpvoteState) {
   return function(dispatch) {
     dispatch(upvoteToggle())
@@ -71,7 +70,6 @@ function downvoteToggle() {
     type: 'DOWNVOTE_TOGGLE'
   }
 }
-
 export function downvote(userId, pitchId, prevDownvoteState) {
   return function(dispatch) {
     dispatch(downvoteToggle())

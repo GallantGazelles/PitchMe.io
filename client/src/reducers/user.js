@@ -15,7 +15,8 @@ export function user(state = initialState, action) {
       return {
         ...state,
         username: action.username,
-        userId: action.userId
+        userId: action.userId,
+        checkingInfo: false
       }
     default: 
       return state;

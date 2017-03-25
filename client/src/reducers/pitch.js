@@ -1,18 +1,23 @@
 const initialState = {
-  vote: 0,
-  pitch: {}
+  pitch: {},
+  isFetchingPitch: false
 }
 
-function pitch (state = initialState, action) {
+function pitchPage (state = initialState, action) {
   switch (action.type) {
-    case 'UPVOTE':
+    case 'FETCHING_PITCH_PAGE':
       return {
         ...state,
-        action.votes
+        isFetchingPitch: true
+      }
+    case 'PITCH_RECEIVED':
+      return {
+        ...state,
+        pitch: action.pitch,
+        isFetchingPitch: false
       }
     default:
       return state;
   }
 }
-
-export default pitches; 
+export default pitches;
