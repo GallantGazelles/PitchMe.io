@@ -3,12 +3,18 @@ const initialState = {
   mainPitch: {},
   pitches: [],
   error: null,
-  index: 0,
-  upvote: false,
-  downvote: false
+  index: 0
 }
 
+//Additional key/values I will expect in each pitch:
+// {
+//   upvote: boolean,
+//   downvote: boolean,
+//   votes: integer
+// }
+
 //upvote downvote logic needs to be determined from server
+//Needs to be accounted for by pitch 
 //NOTE: our mainPitch will need to have a way to account for votes.
 
 export default function pitches (state = initialState, action) {
@@ -19,7 +25,7 @@ export default function pitches (state = initialState, action) {
         isFetching: true
       };
     case 'SELECT_PITCH':
-    //onClick function for pitches?
+      //onClick function for pitches?
       let pitchIdArray = state.pitches.map(pitch => pitch.id);
       return {
         ...state,
@@ -31,7 +37,8 @@ export default function pitches (state = initialState, action) {
         ...state,
         isFetching: false,
         mainPitch: action.pitches[state.index],
-        pitches: action.pitches
+        pitches: action.pitches,
+        error: null
       };
     case 'NEXT_PITCH':
       let nextIndex = state.index + 1;
@@ -53,48 +60,24 @@ export default function pitches (state = initialState, action) {
           error: action.error
         };
     case 'UPVOTE_TOGGLE':
-      if (!state.upvote) {
-        return {
-          ...state,
-          mainPitch: {
-            ...state.mainPitch,
-            votes: state.mainPitch.votes + 1
-          },
-          upvote: true,
-          downvote: false
-        }
-      } else {
-        return {
-          ...state,
-          mainPitch: {
-            ...state.mainPitch,
-            votes: state.mainPitch.votes - 1
-          },
-          upvote: false,
+      return {
+        ...state,
+        mainPitch: {
+          ...state.mainPitch,
+          votes: state.mainPitch.upvote ? state.mainPitch.votes - 1 : state.mainPitch.votes + 1,
+          upvote: !state.mainPitch.upvote,
           downvote: false
         }
       }
     case 'DOWNVOTE_TOGGLE':
-      if (!state.downvote) {
-        return {
-          ...state,
-          mainPitch: {
-            ...state.mainPitch,
-            votes: state.mainPitch.votes - 1
-          },
+      return {
+        ...state,
+        mainPitch: {
+          ...state.mainPitch,
+          votes: state.mainPitch.downvote ? state.mainPitch.votes + 1 : state.mainPitch.votes - 1,
           upvote: false,
-          downvote: true
-        }
-      } else {
-        return {
-          ...state,
-          mainPitch: {
-            ...state.mainPitch,
-            votes: state.mainPitch.votes + 1
-          },
-          upvote: false,
-          downvote: false
-        }
+          downvote: !state.mainPitch.downvote
+        },
       }
     default:
       return state;

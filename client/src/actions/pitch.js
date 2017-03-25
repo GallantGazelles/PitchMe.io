@@ -48,14 +48,38 @@ export function previousPitch() {
   }
 }
 
-export function upvoteToggle() {
+function upvoteToggle() {
   return {
     type: 'UPVOTE_TOGGLE'
   }
 }
 
-export function downvoteToggle() {
+export function upvote(userId, pitchId, prevUpvoteState) {
+  return function(dispatch) {
+    dispatch(upvoteToggle())
+    axios({
+      method: 'PUT',
+      url: 'http://localhost:8080/api/pitches?'
+    })
+    .then(results => console.log(results))
+    .catch(error => console.error(error))
+  }
+}
+
+function downvoteToggle() {
   return {
     type: 'DOWNVOTE_TOGGLE'
+  }
+}
+
+export function downvote(userId, pitchId, prevDownvoteState) {
+  return function(dispatch) {
+    dispatch(downvoteToggle())
+    axios({
+      method: 'PUT',
+      url: 'http://localhost:8080/api/pitches'
+    })
+    .then(results => console.log(results))
+    .catch(error => console.error(error))
   }
 }
