@@ -8,14 +8,17 @@ const Comments = require('./routes/Comments');
 // const Categories = require('./routes/Categories');
 
 // Rest API to /api
-// router.get('/testSession', (req, res) => {
-// 	if (!req.session.votes) {
-// 		req.session.votes = 0;
-// 	} else {
-// 		req.session.votes += 1;
-// 	}
-// 	res.json({"frequency of votes": req.session.votes});
-// });
+router.get('/testSession', (req, res) => {
+	if(!req.session.pitchmeio) {
+    req.session.pitchmeio = 1;
+  } else {
+    req.session.pitchmeio += 1;
+  }
+  res.json({
+    "status": "ok",
+    "frequency": req.session.pitchmeio
+  });
+});
 
 // USERS
 //Get all users
