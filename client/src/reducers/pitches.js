@@ -31,7 +31,6 @@ export default function pitches (state = initialState, action) {
         pitches: action.pitches
       };
     case 'NEXT_PITCH':
-    //onClick function for pitches?
       let nextIndex = state.index + 1;
       return {
         ...state,
@@ -39,7 +38,6 @@ export default function pitches (state = initialState, action) {
         index: nextIndex
       };
     case 'PREV_PITCH':
-    //onClick function for pitches?
       let prevIndex = state.index - 1;
       return {
         ...state,
