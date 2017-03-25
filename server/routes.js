@@ -5,15 +5,9 @@ const Pitches = require('./routes/Pitches');
 const Categories = require('./routes/Categories');
 const Comments = require('./routes/Comments');
 const Votes = require('./routes/Votes');
-// cosnt Sessions = require('./roues/Sessions');
 // const Categories = require('./routes/Categories');
 
 // Rest API to /api
-
-router.post('/testSession', (req, res) => {
-	console.log('session in post request: ',req.session.pitchmeio);
-	res.send('haha');
-});
 
 // USERS
 //Get all users
