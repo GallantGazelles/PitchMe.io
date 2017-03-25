@@ -4,9 +4,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const pg = require('pg');
-
-const db = require('./db.js');
 const session = require('express-session');
+const PostgreSqlStore = require('connect-pg-simple')(session);
+const dbConfig = require('../test/db/knex.js');
+const db = require('./db.js');
 const app = express();
 const auth = require('./routes/auth.js');
 const router = require('./routes.js');
@@ -15,6 +16,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
 	secret: 'secret',
+	name: 'pitchmeio',
+	store: new PostgreSqlStore({
+		conString: dbConfig.config.connection
+	}),
 	resave: true,//resave true updates session on each page view. this avoids session expire
 	saveUninitialized: true
 }));

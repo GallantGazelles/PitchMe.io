@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
         {username: 'User3', password:'123', profile: 'Profile for User3'},
       ]);
     }).then(()=> {
-      return knex('comments').del()
+      return knex('pitches').del()
       .then(() => {
         return knex('pitches').insert([
           {user_id: 1, name: 'Pitch 1', video: 'Pitch 1 Video URL', website: 'Pitch 1 Website URL', profile: 'Pitch 1 Profile', blurb: 'Pitch 1 Blurb', category_id: '1', votes: '0',investment_status:'TRUE'},
@@ -68,6 +68,14 @@ exports.seed = function(knex, Promise) {
           {comment: 'What', user_id: 3, pitch_id: 1},
           {comment: 'No', user_id: 1, pitch_id: 1}
           ]);
+      });
+    }).then(() => {
+      return knex('session').del()
+      .then(() => {
+        return knex('session').insert([
+          {session_id: 'oekghweie85620%kdjwalddf', user_id: 1, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 0}},
+          {session_id: 'oekghweie85620^*3431lddf', user_id: 2, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 1}}
+        ]);
       });
     });
 };
