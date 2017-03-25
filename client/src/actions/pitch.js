@@ -28,3 +28,10 @@ export function fetchPitches(category = 'all') {
     .catch(error => dispatch(errorPitches(error)))
   }
 }
+
+export const selectPitch = (pitchId) => {
+  return {
+    type: 'SELECT_PITCH',
+    pitchId
+  }
+}
