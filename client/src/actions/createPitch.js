@@ -1,17 +1,28 @@
-const initialState = {
-
+function creatingPitch () {
+  return {
+    type: 'CREATING_PITCH'
+  }
 }
 
-export function createPitch(state=initialState, action) {
-  switch (action.type) {
-    case 'CREATING_PITCH':
-      return state;
-    case 'PITCH_CREATED':
-      return {
-        ...state
-      };
-    case 'PITCH_CREATED_ERROR':
-    default:
-      return state;
+function pitchCreated(data) {
+  return {
+    type: 'PITCH_CREATED',
+    pitch: data
+  }
+}
+
+function pitchError(error) {
+  return {
+    type: 'PITCH_CREATED_ERROR',
+    error
+  }
+}
+
+export function createPitch(id, user_id, name, video, website, profile, blurb, category_id) {
+  return (dispatch) => {
+    dispatch(creatingPitch())
+    axios.post()
+    .then(data => dispatch(pitchCreated(data)))
+    .catch(error => dispatch(pitchError(error)))
   }
 }

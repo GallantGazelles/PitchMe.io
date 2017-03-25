@@ -28,4 +28,4 @@ function pitchPage (state = initialState, action) {
       return state;
   }
 }
-export default pitches;
+export default pitchPage;

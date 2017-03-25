@@ -1,4 +1,4 @@
-function pitchToggleSuccessful() {
+function pitchFollowToggleSuccessful() {
   return {
     type: 'TOGGLE_FOLLOW'
   }
@@ -14,7 +14,7 @@ export function followPitch(userid, pitchid) {
     axios.({
       method: 'PUT'
     })
-    .then( results => dispatch(pitchFollowSuccessful())
+    .then( results => dispatch(pitchFollowToggleSuccessful())
     .catch( error => dispatch(pitchFollowError(error))
   }
 }

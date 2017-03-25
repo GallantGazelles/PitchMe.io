@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import pitches from './pitches';
+import createPitch from './createPitch';
 
 const appReducer = combineReducers({
-  pitches
+  pitches,
+  createPitch
 })
 
 const rootReducer = (state, action) => {
