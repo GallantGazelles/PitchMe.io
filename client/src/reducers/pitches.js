@@ -3,9 +3,12 @@ const initialState = {
   mainPitch: {},
   pitches: [],
   error: null,
-  index: 0
+  index: 0,
+  upvote: false,
+  downvote: false
 }
 
+//upvote downvote logic needs to be determined from server
 //NOTE: our mainPitch will need to have a way to account for votes.
 
 export default function pitches (state = initialState, action) {
@@ -49,6 +52,50 @@ export default function pitches (state = initialState, action) {
           ...state,
           error: action.error
         };
+    case 'UPVOTE_TOGGLE':
+      if (!state.upvote) {
+        return {
+          ...state,
+          mainPitch: {
+            ...state.mainPitch,
+            votes: ...state.mainPitch.votes + 1
+          },
+          upvote: true,
+          downvote: false
+        }
+      } else {
+        return {
+          ...state,
+          mainPitch: {
+            ...state.mainPitch,
+            votes: ...state.mainPitch.votes - 1
+          },
+          upvote: false,
+          downvote: false
+        }
+      }
+    case 'DOWNVOTE_TOGGLE':
+      if (!state.downvote) {
+        return {
+          ...state,
+          mainPitch: {
+            ...state.mainPitch,
+            votes: ...state.mainPitch.votes - 1
+          },
+          upvote: false,
+          downvote: true
+        }
+      } else {
+        return {
+          ...state,
+          mainPitch: {
+            ...state.mainPitch,
+            votes: ...state.mainPitch.votes + 1
+          },
+          upvote: false,
+          downvote: false
+        }
+      }
     default:
       return state;
   }
