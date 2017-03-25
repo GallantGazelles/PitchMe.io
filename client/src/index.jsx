@@ -8,6 +8,7 @@ import {
 
 import App from './components/App.jsx';
 import Companies from './components/CompaniesList.jsx';
+import CreatePitch from './components/CreatePitch.jsx';
 import Footer from './components/Footer.jsx';
 import Pitch from './components/Pitch.jsx';
 import NavBar from './components/NavBar.jsx';
@@ -26,6 +27,7 @@ const Index = () => (
       <NavBar />
       <Route exact path="/" component={ App }/>
       <Route path="/companies" component={ Companies }/>
+      <Route path="/createpitch" component={ CreatePitch }/>
       <Route path="/pitch" component={ Pitch }/>
       <Route path="/signup" component={ SignUp }/>
       <Route path="/signin" component={ SignIn }/>
@@ -42,5 +44,5 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <Index />
-  </Provider>, 
+  </Provider>,
   document.getElementById('app'))
