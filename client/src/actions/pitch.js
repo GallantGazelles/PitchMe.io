@@ -47,3 +47,15 @@ export function previousPitch() {
     type: 'PREV_PITCH'
   }
 }
+
+export function upvoteToggle() {
+  return {
+    type: 'UPVOTE_TOGGLE'
+  }
+}
+
+export function downvoteToggle() {
+  return {
+    type: 'DOWNVOTE_TOGGLE'
+  }
+}

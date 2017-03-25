@@ -58,7 +58,7 @@ export default function pitches (state = initialState, action) {
           ...state,
           mainPitch: {
             ...state.mainPitch,
-            votes: ...state.mainPitch.votes + 1
+            votes: state.mainPitch.votes + 1
           },
           upvote: true,
           downvote: false
@@ -68,7 +68,7 @@ export default function pitches (state = initialState, action) {
           ...state,
           mainPitch: {
             ...state.mainPitch,
-            votes: ...state.mainPitch.votes - 1
+            votes: state.mainPitch.votes - 1
           },
           upvote: false,
           downvote: false
@@ -80,7 +80,7 @@ export default function pitches (state = initialState, action) {
           ...state,
           mainPitch: {
             ...state.mainPitch,
-            votes: ...state.mainPitch.votes - 1
+            votes: state.mainPitch.votes - 1
           },
           upvote: false,
           downvote: true
@@ -90,7 +90,7 @@ export default function pitches (state = initialState, action) {
           ...state,
           mainPitch: {
             ...state.mainPitch,
-            votes: ...state.mainPitch.votes + 1
+            votes: state.mainPitch.votes + 1
           },
           upvote: false,
           downvote: false
