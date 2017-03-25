@@ -16,8 +16,8 @@ export default function pitches (state = initialState, action) {
     //onClick function for pitches?
       return {
         ...state,
-        mainPitch: action.select
-      };
+        mainPitch: state.pitches.filter(pitch => pitch.id === action.pitchId)
+      }
     case 'RECEIVE_PITCHES':
       return {
         ...state,
