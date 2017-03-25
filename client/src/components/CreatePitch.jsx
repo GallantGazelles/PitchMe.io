@@ -3,7 +3,7 @@ import {
   Button, Checkbox, Container, Divider, Form, Header, Icon, Input, Radio, Select, Segment, TextArea
 } from 'semantic-ui-react';
 
-export default class SignIn extends Component {
+export default class CreatePitch extends Component {
   constructor(props) {
     super(props);
 
