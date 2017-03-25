@@ -10,14 +10,16 @@ router.get('/login', (req, res, next) => {
 	//render or redirect
 	// res.render('');
 	// console.log(res);
-	console.log(res.session);
 	res.end('GET login bye');
 });
 
 router.post('/login', passport.authenticate('local', {session: false}), (req, res, next) => {
 	//redirect to loggedIn home
 	// res.redirect('');
-	console.log('reqeust user: ', req.user.rows);
+	console.log('user on session: ', req.session);
+	console.log(req.body.username);
+    req.session.username = req.body.username;
+
 	res.end('POST login bye');
 });
 
@@ -41,7 +43,7 @@ var localStrategy = new LocalStrategy((username, password, done) => {
 			throw 'Invalid information';
 		}
 	}).catch((err) => {
-		done(null, false, {message: 'Invalid information'});
+		done(err);
 	});
 });
 

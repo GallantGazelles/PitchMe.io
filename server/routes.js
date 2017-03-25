@@ -4,21 +4,15 @@ const Followers = require('./routes/Followers');
 const Pitches = require('./routes/Pitches');
 const Categories = require('./routes/Categories');
 const Comments = require('./routes/Comments');
+const Votes = require('./routes/Votes');
 // cosnt Sessions = require('./roues/Sessions');
 // const Categories = require('./routes/Categories');
 
 // Rest API to /api
-router.get('/testSession', (req, res) => {
-	console.log('request session:', req.session);
-	if(!req.session.pitchmeio) {
-    req.session.pitchmeio = 1;
-  } else {
-    req.session.pitchmeio += 1;
-  }
-  res.json({
-    "status": "ok",
-    "frequency": req.session.pitchmeio
-  });
+
+router.post('/testSession', (req, res) => {
+	console.log('session in post request: ',req.session.pitchmeio);
+	res.send('haha');
 });
 
 // USERS
@@ -54,6 +48,9 @@ router.get('/categories', Categories.getCategories);
 router.get('/followers', Followers.getFollowers);
 router.post('/followers', Followers.postFollower);
 router.delete('/followers', Followers.removeFollower);
-
+//VOTES:
+router.get('/votes', Votes.getVoteByUsername);
+	//query from db on whether this user voted for this specific pitch or not.
+// })
 
 module.exports = router;
