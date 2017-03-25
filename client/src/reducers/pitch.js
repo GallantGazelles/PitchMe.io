@@ -16,6 +16,14 @@ function pitchPage (state = initialState, action) {
         pitch: action.pitch,
         isFetchingPitch: false
       }
+    case 'TOGGLE_FOLLOW':
+      return {
+        ...state,
+        pitch: {
+          ...state.pitch,
+          follow: !state.pitch.follow
+        }
+      }
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-function pitchFollowSuccessful() {
+function pitchToggleSuccessful() {
   return {
     type: 'TOGGLE_FOLLOW'
   }

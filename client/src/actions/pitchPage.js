@@ -17,4 +17,3 @@ export function fetchPitch(url) {
     .then(results => dispatch(pitchReceived(results.data)))
   }
 }
-
