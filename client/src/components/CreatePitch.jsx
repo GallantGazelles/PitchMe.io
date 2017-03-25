@@ -14,7 +14,12 @@ export default class SignIn extends Component {
 
   render() {
     const categories = [
-      { key: '1', value: 'AL', text: 'Alabama' }
+      { key: '1', value: 'tech', text: 'Tech' },
+      { key: '2', value: 'games', text: 'Games' },
+      { key: '3', value: 'books', text: 'Books' },
+      { key: '4', value: 'iPhone', text: 'iPhone' },
+      { key: '5', value: 'android', text: 'Android' },
+      { key: '6', value: 'productivity', text: 'Productivity' }
     ];
 
     return (
