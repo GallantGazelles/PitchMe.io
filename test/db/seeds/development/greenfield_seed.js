@@ -69,13 +69,5 @@ exports.seed = function(knex, Promise) {
           {comment: 'No', user_id: 1, pitch_id: 1}
           ]);
       });
-    }).then(() => {
-      return knex('session').del()
-      .then(() => {
-        return knex('session').insert([
-          {sid: 'oekghweie85620%kdjwalddf', user_id: 1, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 0}},
-          {sid: 'oekghweie85620^*3431lddf', user_id: 2, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 1}}
-        ]);
-      });
     });
 };

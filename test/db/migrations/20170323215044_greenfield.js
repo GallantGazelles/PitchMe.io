@@ -51,14 +51,6 @@ exports.up = function(knex, Promise) {
   		table.integer('vote_type');
   		table.timestamp('timestamp').defaultTo(knex.fn.now());
   	});
-  }).then(() => {
-    return knex.schema.createTable('session', (table) => {
-      table.increments();
-      table.string('sid').notNullable().collate('default').unique();
-      table.integer('user_id').notNullable();
-      table.json('sess').notNullable();
-      table.timestamp('expire');
-    });
   });
 };
 
@@ -76,7 +68,5 @@ exports.down = function(knex, Promise) {
   	return knex.schema.dropTable('pitches');
   }).then(() => {
   	return knex.schema.dropTable('votes');
-  }).then(() => {
-    return knex.schema.dropTable('session');
   });
 };

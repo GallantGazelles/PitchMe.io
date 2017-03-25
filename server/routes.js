@@ -9,6 +9,7 @@ const Comments = require('./routes/Comments');
 
 // Rest API to /api
 router.get('/testSession', (req, res) => {
+	console.log('request session:', req.session);
 	if(!req.session.pitchmeio) {
     req.session.pitchmeio = 1;
   } else {

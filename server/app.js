@@ -15,15 +15,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 const sessionOptions = {
 	secret: 'secret',
 	name: 'pitchmeio',
-	// store: new PostgreSqlStore({
-	// 	conString: dbConfig.config.connection
-	// }),
+	store: new PostgreSqlStore({
+		conString: dbConfig.config.connection
+	}),
 	cookie: {},
 	resave: true,//resave true updates session on each page view. this avoids session expire
 	saveUninitialized: false
 };
 app.use(session(sessionOptions));
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', auth);
