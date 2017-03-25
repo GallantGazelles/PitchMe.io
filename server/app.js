@@ -1,34 +1,43 @@
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const pg = require('pg');
-const session = require('express-session');
+const app = express();
 const PostgreSqlStore = require('connect-pg-simple')(session);
 const dbConfig = require('../test/db/knex.js');
-const db = require('./db.js');
-const app = express();
 const auth = require('./routes/auth.js');
 const router = require('./routes.js');
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(session({
+const sessionOptions = {
 	secret: 'secret',
 	name: 'pitchmeio',
 	store: new PostgreSqlStore({
 		conString: dbConfig.config.connection
 	}),
+	cookie: {},
 	resave: true,//resave true updates session on each page view. this avoids session expire
-	saveUninitialized: true
-}));
+	saveUninitialized: false
+};
+app.use(session(sessionOptions));
 
+app.get('/tests', function(req, res) {
+	if (!req.session[sessionOptions.name]) {
+		req.session[sessionOptions.name] = 0;
+		console.log(req.session[sessionOptions.name]);
+	} else {
+		req.session[sessionOptions.name] += 1;
+	}
+	res.json({"frequency of heys": req.session[sessionOptions.name]});
+});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', auth);
-app.use(express.static(path.join(__dirname, '/../client/')));
 
+app.use(express.static(path.join(__dirname, '/../client/')));
 app.use('/', express.static(path.join(__dirname, '/../client/')));
 app.use('/companies', express.static(path.join(__dirname, '/../client/')));
 app.use('/pitch', express.static(path.join(__dirname, '/../client/')));

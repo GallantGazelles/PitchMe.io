@@ -54,7 +54,7 @@ exports.up = function(knex, Promise) {
   }).then(() => {
     return knex.schema.createTable('session', (table) => {
       table.increments();
-      table.string('session_id').notNullable().collate('default').unique();
+      table.string('sid').notNullable().collate('default').unique();
       table.integer('user_id').notNullable();
       table.json('sess').notNullable();
       table.timestamp('expire');

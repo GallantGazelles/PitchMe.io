@@ -73,8 +73,8 @@ exports.seed = function(knex, Promise) {
       return knex('session').del()
       .then(() => {
         return knex('session').insert([
-          {session_id: 'oekghweie85620%kdjwalddf', user_id: 1, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 0}},
-          {session_id: 'oekghweie85620^*3431lddf', user_id: 2, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 1}}
+          {sid: 'oekghweie85620%kdjwalddf', user_id: 1, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 0}},
+          {sid: 'oekghweie85620^*3431lddf', user_id: 2, sess: {"cookie": {"originalMaxAge": null, "expires": null, "httpOnly": true, "path": "/"}, "vote": 1}}
         ]);
       });
     });

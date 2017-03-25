@@ -4,9 +4,18 @@ const Followers = require('./routes/Followers');
 const Pitches = require('./routes/Pitches');
 const Categories = require('./routes/Categories');
 const Comments = require('./routes/Comments');
+// cosnt Sessions = require('./roues/Sessions');
 // const Categories = require('./routes/Categories');
 
 // Rest API to /api
+// router.get('/testSession', (req, res) => {
+// 	if (!req.session.votes) {
+// 		req.session.votes = 0;
+// 	} else {
+// 		req.session.votes += 1;
+// 	}
+// 	res.json({"frequency of votes": req.session.votes});
+// });
 
 // USERS
 //Get all users
