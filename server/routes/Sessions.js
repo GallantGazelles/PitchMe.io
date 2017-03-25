@@ -2,9 +2,7 @@ const pg = require('pg');
 const db = require('../db.js');
 const crypto = require('crypto');
 
-module.exports.getSalt = (userId) => {
-  return db.query(`SELECT salt FROM sessions WHERE user_id=${userId}`);
-};
+//alsdfkjaslkdfjas;lkdfjasl;kdfjsalfdkjasl;kdfjaslkfdj
 
 module.exports.addSession = (sessionId) => {
   // console.log('here!');

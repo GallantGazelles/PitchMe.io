@@ -17,25 +17,6 @@ var localStrategy = new LocalStrategy({
 	});
 });
 passport.use('local', localStrategy);
-// passport.use(localStrategy);
-// passport.use(new LocalStrategy ( (username, password, done) => {
-// 	User.getUserByUsername(username)
-// 	.then((results) => {
-// 		User.getUserPasswordByName(username)
-// 		.then((pwd) => {
-// 			if(pwd !== password) {
-// 				done(null, false);
-// 			} else {
-// 				console.log('success');
-// 				return User.getUserByUsername(username);
-// 			}
-// 		});
-// 	})
-// 	.catch((err) => {
-// 		done(nul, false);
-// 		console.log('Error in local strategy');
-// 	});
-// }));
 
 passport.serializeUser((user, done) => {
 	done(null, user.username);

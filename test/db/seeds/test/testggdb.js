@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
         {username: 'User3', password:'123', profile: 'Profile for User3'},
       ]);
     }).then(()=> {
-      return knex('comments').del()
+      return knex('pitches').del()
       .then(() => {
         return knex('pitches').insert([
           {user_id: 1, name: 'Pitch 1', video: 'Pitch 1 Video URL', website: 'Pitch 1 Website URL', profile: 'Pitch 1 Profile', blurb: 'Pitch 1 Blurb', category_id: '1', votes: '0',investment_status:'TRUE'},
