@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-const requestPitches = (category) => {
+const requestPitches = () => {
   return {
     type: 'REQUEST_PITCHES',
-    category
   }
 }
 
@@ -14,11 +13,18 @@ const receivePitches = (json) => {
   }
 }
 
+const errorPitches = (err) => {
+  return {
+    type: 'REQUEST_PITCHES_ERROR',
+    error: err
+  }
+}
 export function fetchPitches(category = 'all') {
   return function(dispatch) {
-    dispatch(requestPitches(category));
+    dispatch(requestPitches());
     //We can possibly define categories here? 
     axios.get('http://localhost:8080/api/pitches?q=all')
     .then(results => dispatch(receivePitches(results)))
+    .catch(error => dispatch(errorPitches(error)))
   }
 }

@@ -19,6 +19,7 @@ import { Container, Divider } from 'semantic-ui-react';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore';
 
+//will need to review react-redux-router relationship here...
 const Index = () => (
   <Router>
     <Container>

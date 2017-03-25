@@ -1,7 +1,8 @@
 const initialState = {
   isFetching: false,
   mainPitch: {},
-  pitches: []
+  pitches: [],
+  error: null
 }
 
 export default function pitches (state = initialState, action) {
@@ -24,6 +25,11 @@ export default function pitches (state = initialState, action) {
         mainPitch: action.pitches[0],
         pitches: action.pitches
       };
+      case 'REQUEST_PITCHES_ERROR':
+        return {
+          ...state,
+          error: action.error
+        }
     default:
       return state;
   }
