@@ -22,14 +22,18 @@ export default () => (
         </Grid.Column>
         <Grid.Column width={10}>
           <Header as='h1'>
-            Shift
+            Shift <Label>Tech</Label>
             <Header.Subheader>
               Switch between Gmail accounts like a boss
             </Header.Subheader>
           </Header>
           <p>Spicy jalapeno bacon ipsum dolor amet jowl cow ribeye corned beef. Pastrami tongue meatloaf chuck, bresaola pig strip steak andouille corned beef kielbasa brisket.</p>
           <p>Spicy jalapeno bacon ipsum dolor amet jowl cow ribeye corned beef. Pastrami tongue meatloaf chuck, bresaola pig strip steak andouille corned beef kielbasa brisket.</p>
-          <Label>Tech</Label><Label>iPhone</Label>
+          <p>
+            <Button>Visit Website</Button>
+            <Button>Invest</Button>
+            <Button><Icon name='share' />  Share</Button>
+          </p>
         </Grid.Column>
       </Grid>
     </Container>
