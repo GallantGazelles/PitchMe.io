@@ -19,7 +19,7 @@ module.exports.getUsers = (req, res, next) => {
 
 module.exports.postUsers = (req, res, next) => {
   const { username, password, profile } = req.body;
-
+  console.log(username, password, profile);
   let salt = Util.createSalt();
   let hashedPassword = Util.createHash(password, salt);
   User.createUser(username, hashedPassword, profile)

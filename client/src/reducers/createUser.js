@@ -46,4 +46,4 @@ function createUser (state=initialState, action) {
   }
 }
 
-export default createuser;
+export default createUser;
