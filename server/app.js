@@ -4,10 +4,10 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const app = express();
 const PostgreSqlStore = require('connect-pg-simple')(session);
 const dbConfig = require('../test/db/knex.js');
 const auth = require('./routes/auth.js');
+const app = express();
 const router = require('./routes.js');
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '/../client/')));
@@ -23,7 +23,7 @@ const sessionOptions = {
 	}),
 	cookie: {},
 	resave: true,//resave true updates session on each page view. this avoids session expire
-	saveUninitialized: false
+	saveUninitialized: true
 };
 app.use(session(sessionOptions));
 app.use(passport.initialize());
@@ -52,3 +52,4 @@ app.listen(8080, function() {
 });
 
 module.exports = app;
+
