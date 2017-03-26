@@ -41,10 +41,13 @@ function creatingUserError(error) {
     error
   }
 })
-export function createUser(userid, password) {
+export function createUser(username, password, email) {
   return (dispatch) => {
     dispatch(creatingUser())
-    axios.post()
+    axios.({
+      method: 'POST',
+      url: 'http://localhost:8080/api'
+    })
     .then(data => dispatch(completeSignIn(data.username, data.userId)))
     .catch(error => dispatch(creatingUserError(error)))
   }

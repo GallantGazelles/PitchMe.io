@@ -6,8 +6,8 @@ import user from './user';
 
 const appReducer = combineReducers({
   pitches,
-  createPitch,
   pitchPage,
+  createPitch,
   user
 })
 

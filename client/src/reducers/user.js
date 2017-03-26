@@ -5,7 +5,7 @@ const initialState = {
   error: null
 }
 
-export function user(state = initialState, action) {
+function user(state = initialState, action) {
   switch (action.type) {
     case 'CHECK_SIGN_IN':
       return {
@@ -33,3 +33,5 @@ export function user(state = initialState, action) {
       return state;
   }
 }
+
+export default user;

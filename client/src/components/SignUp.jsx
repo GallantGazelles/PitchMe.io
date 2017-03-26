@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Checkbox, Container, Divider, Form, Header, Icon, Segment } from 'semantic-ui-react';
 
-export default class SignUp extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -39,3 +39,6 @@ export default class SignUp extends Component {
     )
   }
 }
+
+
+export default SignUp;
