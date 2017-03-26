@@ -28,13 +28,7 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-//add cookie:
-app.use((req, res, next) => {
-	if(!req.session.pitchmeio) {
-	   req.session.pitchmeio = 1;
-	} 
-  next();
-});
+
 app.use(express.static(path.join(__dirname, '/../client/')));
 app.use('/', express.static(path.join(__dirname, '/../client/')));
 app.use('/companies', express.static(path.join(__dirname, '/../client/')));

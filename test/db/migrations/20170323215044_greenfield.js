@@ -40,7 +40,6 @@ exports.up = function(knex, Promise) {
   		table.string('profile');
   		table.string('blurb');
   		table.integer('category_id');
-  		table.integer('votes').defaultTo(0);
   		table.boolean('investment_status').defaultTo('FALSE');
   	});
   }).then(() => {
