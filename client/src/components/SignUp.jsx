@@ -6,13 +6,22 @@ import { editUsername, editPassword, editProfile, editEmail, submitUser } from '
 class SignUp extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      emailValidation: '',
+      passwordValidation: ''
+    }
+  }
+
+  handleValidation() {
+    this.setState({value: event.target.value});
   }
 
   render() {
     //User info
     const {dispatch, username, email, password, profile} = this.props;
     //Dispatch functions
-    const {changeUsername, changePassword, changeEmail, 
+    const {changeUsername, changePassword, changeEmail,
       changeProfile, submitUser} = this.props;
     return (
       <Container text>
