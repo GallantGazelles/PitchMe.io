@@ -12,9 +12,8 @@ module.exports.getVoteByUsername = (req, res, next) => {
 };
 
 module.exports.voteOnPitch = (req, res, next) => {
-  const { vote, pitch_id } = req.body;
-  let username = req.session.username;
-  Vote.voteOnPitch(username, pitch_id, vote)
+  const { vote_value, pitch_id, user_id } = req.body;
+  Vote.voteOnPitch(vote_value, pitch_id, user_id)
     .then(results => res.status(201).send(''))
     .catch(err => res.send(err));
 }
