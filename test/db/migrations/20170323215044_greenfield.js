@@ -46,6 +46,7 @@ exports.up = function(knex, Promise) {
   	return knex.schema.createTable('votes', (table) => {
   		table.increments();
   		table.integer('user_id');
+      table.unique(['user_id', 'pitch_id']);
   		table.integer('pitch_id');
   		table.integer('vote_type');
   		table.timestamp('timestamp').defaultTo(knex.fn.now());
