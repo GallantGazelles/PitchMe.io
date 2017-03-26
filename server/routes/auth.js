@@ -24,8 +24,6 @@ router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin
 });
 
 router.get('/logout', (req, res) => {
-	// console.log('logout function: ', req.logout);
-    // console.log('req session ', req._passport);
 	req.logout = function () {
   var property = 'user';
   if (this._passport && this._passport.instance) {
