@@ -16,7 +16,17 @@ module.exports.voteOnPitch = (username , pitch_id, vote) => {
   return db.query(`SELECT id FROM users WHERE username='${username}'`)
     .then(results => {
       let user_id = results.rows[0].id;
-      return db.query(`UPDATE votes SET vote_type = ${vote} WHERE user_id = ${user_id} AND pitch_id = ${pitch_id};`);
+      // See if user has voted on current Pitch
+      return db.query(`SELECT * FROM votes WHERE user_id = ${user_id} AND pitch_id = ${pitch_id}`)
+      .then(results => {
+        if (results.rows[0]) {
+          // If yes, then update their vote
+          return db.query(`UPDATE votes SET vote_type = ${vote} WHERE user_id = ${user_id} AND pitch_id = ${pitch_id};`);
+        } else {
+          // If no then create the record
+          return db.query(`INSERT INTO votes (user_id, pitch_id, vote_type) VALUES (${user_id}, ${pitch_id}, ${vote})`);
+        }
+      })
     })
     .catch(err => console.log(err));
 }
