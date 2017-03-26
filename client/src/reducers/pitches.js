@@ -66,8 +66,7 @@ export default function pitches (state = initialState, action) {
         mainPitch: {
           ...state.mainPitch,
           votes: state.mainPitch.upvote ? state.mainPitch.votes - 1 : state.mainPitch.votes + 1,
-          upvote: !state.mainPitch.upvote,
-          downvote: false
+          vote_type: state.mainPitch.vote_type === 1 ? 0 : 1
         }
       }
     case 'DOWNVOTE_TOGGLE':
@@ -76,8 +75,7 @@ export default function pitches (state = initialState, action) {
         mainPitch: {
           ...state.mainPitch,
           votes: state.mainPitch.downvote ? state.mainPitch.votes + 1 : state.mainPitch.votes - 1,
-          upvote: false,
-          downvote: !state.mainPitch.downvote
+          vote_type: state.mainPitch.vote_type === -1 ? 0 : -1
         },
       }
     default:

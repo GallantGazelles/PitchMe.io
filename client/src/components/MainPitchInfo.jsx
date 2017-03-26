@@ -3,7 +3,7 @@ import { upvote, downvote } from '../actions/pitch';
 import { connect } from 'react-redux';
 import { Button, Container, Header, Icon, Item, Label, Segment, Statistic } from 'semantic-ui-react';
 
-export default class MainPitchInfo extends Component {
+class MainPitchInfo extends Component {
   constructor(props) {
     super(props);
 
@@ -17,8 +17,6 @@ export default class MainPitchInfo extends Component {
   }
 
   render() {
-
-
     return (
       <Container textAlign='center' text>
         <Item.Group>
@@ -48,3 +46,17 @@ export default class MainPitchInfo extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ...state.pitches.mainPitch,
+    user: state.user.userid
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClickUpvote: (user, pitchid, vote) => { dispatch(upvote(user, pitchid, vote)) },
+    onClickDownvote: (user, pitchid, vote) => { dispatch(downvote(user, pitchid, vote)) }
+  }
+}
+export default MainPitchInfo;
