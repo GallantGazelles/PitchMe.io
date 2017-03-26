@@ -48,7 +48,7 @@ exports.up = function(knex, Promise) {
   		table.integer('user_id');
       table.unique(['user_id', 'pitch_id']);
   		table.integer('pitch_id');
-  		table.integer('vote_type');
+  		table.integer('vote_type').defaultTo(0);
   		table.timestamp('timestamp').defaultTo(knex.fn.now());
   	});
   });
