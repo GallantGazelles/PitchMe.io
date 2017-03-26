@@ -28,8 +28,13 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/auth', auth);
-
+//add cookie:
+app.use((req, res, next) => {
+	if(!req.session.pitchmeio) {
+	   req.session.pitchmeio = 1;
+	} 
+  next();
+});
 app.use(express.static(path.join(__dirname, '/../client/')));
 app.use('/', express.static(path.join(__dirname, '/../client/')));
 app.use('/companies', express.static(path.join(__dirname, '/../client/')));
@@ -40,6 +45,7 @@ app.use('/signin', express.static(path.join(__dirname, '/../client/')));
 app.use('/notfound', express.static(path.join(__dirname, '/../client/')));
 app.use('/user', express.static(path.join(__dirname, '/../client/')));
 app.use('/api', router);
+app.use('/auth', auth);
 
 app.listen(8080, function() {
 	console.log('listening to 8080');
