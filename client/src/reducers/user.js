@@ -1,6 +1,6 @@
 const initialState = {
-  userId: null,
   username: null,
+  userid: null,
   checkingInfo: false,
   error: null
 }
@@ -16,7 +16,7 @@ function user(state = initialState, action) {
       return {
         ...state,
         username: action.username,
-        userId: action.userId,
+        userid: action.userid,
         checkingInfo: false
       }
     case 'SIGN_IN_ERROR':
