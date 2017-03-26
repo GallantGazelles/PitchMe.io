@@ -13,8 +13,8 @@ exports.seed = function(knex, Promise) {
       return knex('pitches').del()
       .then(() => {
         return knex('pitches').insert([
-          {user_id: 1, name: 'Pitch 1', video: 'Pitch 1 Video URL', website: 'Pitch 1 Website URL', profile: 'Pitch 1 Profile', blurb: 'Pitch 1 Blurb', category_id: '1', votes: '0',investment_status:'TRUE'},
-          {user_id: 2, name: 'Pitch 2', video: 'Pitch 2 Video URL', website: 'Pitch 2 Website URL', profile: 'Pitch 2 Profile', blurb: 'Pitch 2 Blurb', category_id: '2', votes: '2',investment_status:'FALSE'}
+          {user_id: 1, name: 'Pitch 1', video: 'Pitch 1 Video URL', website: 'Pitch 1 Website URL', profile: 'Pitch 1 Profile', blurb: 'Pitch 1 Blurb', category_id: '1', investment_status:'TRUE'},
+          {user_id: 2, name: 'Pitch 2', video: 'Pitch 2 Video URL', website: 'Pitch 2 Website URL', profile: 'Pitch 2 Profile', blurb: 'Pitch 2 Blurb', category_id: '2', investment_status:'FALSE'}
           ]);
       });
     }).then(()=> {

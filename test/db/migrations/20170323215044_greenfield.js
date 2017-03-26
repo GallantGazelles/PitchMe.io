@@ -40,13 +40,13 @@ exports.up = function(knex, Promise) {
   		table.string('profile');
   		table.string('blurb');
   		table.integer('category_id');
-  		table.integer('votes').defaultTo(0);
   		table.boolean('investment_status').defaultTo('FALSE');
   	});
   }).then(() => {
   	return knex.schema.createTable('votes', (table) => {
   		table.increments();
   		table.integer('user_id');
+      table.unique(['user_id', 'pitch_id']);
   		table.integer('pitch_id');
   		table.integer('vote_type');
   		table.timestamp('timestamp').defaultTo(knex.fn.now());
