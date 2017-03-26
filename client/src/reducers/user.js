@@ -23,11 +23,6 @@ function user(state = initialState, action) {
       return {
         ...state,
         error: action.error
-      }  
-    case 'CREATING_USER_ERROR':
-      return {
-        ...state,
-        error: action.error
       }
     default: 
       return state;

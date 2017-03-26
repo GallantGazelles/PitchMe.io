@@ -29,30 +29,6 @@ export function signIn() {
   }
 }
 
-//Creating user functions
-function creatingUser () {
-  return {
-    type: 'CREATING_USER'
-  }
-}
-function creatingUserError(error) {
-  return {
-    type: 'CREATING_USER_ERROR',
-    error
-  }
-})
-export function createUser(username, password, email) {
-  return (dispatch) => {
-    dispatch(creatingUser())
-    axios.({
-      method: 'POST',
-      url: 'http://localhost:8080/api'
-    })
-    .then(data => dispatch(completeSignIn(data.username, data.userId)))
-    .catch(error => dispatch(creatingUserError(error)))
-  }
-}
-
 //Logging out function
 export function logOut() {
   return {
