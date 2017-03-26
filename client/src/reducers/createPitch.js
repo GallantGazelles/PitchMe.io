@@ -4,7 +4,7 @@ const initialState = {
   error: null
 }
 
-export function createPitch(state=initialState, action) {
+function createPitch(state=initialState, action) {
   switch (action.type) {
     case 'CREATING_PITCH':
       return {
@@ -27,3 +27,5 @@ export function createPitch(state=initialState, action) {
       return state;
   }
 }
+
+export default createPitch;
