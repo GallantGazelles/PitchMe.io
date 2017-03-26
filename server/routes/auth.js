@@ -24,18 +24,6 @@ router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin
 });
 
 router.get('/logout', (req, res) => {
-	req.logout = function () {
-  var property = 'user';
-  if (this._passport && this._passport.instance) {
-    property = this._passport.instance._userProperty || 'user';
-  }
-  console.log('property is: ', property);
-  this[property] = null;
-  if (this._passport && this._passport.session) {
-    delete this._passport.session.user;
-  }
-};
-
 	req.logout();
 	res.redirect('/signin');
 });
