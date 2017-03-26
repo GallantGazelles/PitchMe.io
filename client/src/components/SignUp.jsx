@@ -9,6 +9,11 @@ class SignUp extends Component {
   }
 
   render() {
+    //User info
+    const {dispatch, username, email, password, profile} = this.props;
+    //Dispatch functions
+    const {changeUsername, changePassword, changeEmail, 
+      changeProfile, submitUser} = this.props;
     return (
       <Container text>
         <Segment padded raised>
@@ -16,11 +21,11 @@ class SignUp extends Component {
             <Header as='h1' floated='left'>Sign Up</Header>
             <Header as='h5' floated='right'>Already have an account? Sign in here</Header>
           </Segment>
-          <Form>
-            <Form.Input label='Name' />
-            <Form.Input label='Email' />
+          <Form onSubmit={()=> {dispatch(submitUser(username, password, profile, email))}}>
+            <Form.Input label='Name' onChange={(e)=>{changeUsername(e.target.value)}} />
+            <Form.Input label='Email' onChange={(e)=>{changeEmail(e.target.value)}} />
             <Form.Input label='Re-Enter Email' />
-            <Form.Input label='Password' type='password' />
+            <Form.Input label='Password' type='password' onChange={(e)=>{changePassword(e.target.value)}} />
             <Form.Input label='Re-Password' type='password' />
             <Form.Button basic primary>Sign Up!</Form.Button>
           </Form>
@@ -47,4 +52,17 @@ const mapStoreToProps = (state) => {
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeUsername: (username) => {dispatch(editUsername(username))},
+    changePassword: (password) => {dispatch(editPassword(password))},
+    changeEmail: (email) => {dispatch(editEmail(email))},
+    changeProfile: (profile) => {dispatch(editProfile(profile))},
+    submitUser: (username, pw, profile, email) => {
+      dispatch(submitUser(username, pw, profile, email))
+    }
+  }
+}
+
+export default connect(mapStoreToProps, mapDispatchToProps)(SignUp);
+
