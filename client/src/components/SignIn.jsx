@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Button, Checkbox, Container, Divider, Form, Header, Icon, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { signInUsername, signInPassword, signIn } from '../actions/signIn';
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
-
-    this.handleChange = (e, { value }) => this.setState({ value });
   }
 
   render() {
+    const { dispatch, username, password, inputUsername, inputPassword, submitSignIn } = this.props;
+    console.log(this.props);
     return (
       <Container text>
         <Segment padded raised>
@@ -19,10 +20,18 @@ export default class SignIn extends Component {
             <Header as='h5' floated='right'>New to PitchMe? Sign up here! <Icon name='write' /></Header>
           </Segment>
           <Form>
-            <Form.Input label='Email' />
-            <Form.Input label='Password' type='password' />
+            <Form.Input label='Username' 
+              onChange={(e) => { inputUsername(e.target.value) } }
+            />
+            <Form.Input label='Password' type='password'
+              onChange = { (e) => { inputPassword(e.target.value) } } 
+            />
             <Form.Checkbox label='Remember Me' />
-            <Form.Button basic primary>Sign In</Form.Button>
+            <Form.Button basic primary 
+              onClick={ () => { submitSignIn(username, password) } }
+            >
+              Sign In
+            </Form.Button>
           </Form>
           <Divider horizontal>
             <Header as='h4'>Or</Header>
@@ -37,3 +46,19 @@ export default class SignIn extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    username: state.signIn.username,
+    password: state.signIn.password
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    inputUsername: (username) => { dispatch(signInUsername(username)) },
+    inputPassword: (password) => { dispatch(signInPassword(password)) },
+    submitSignIn: (username, password) => { dispatch(signIn(username, password))}
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
