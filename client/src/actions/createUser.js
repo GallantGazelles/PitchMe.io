@@ -46,8 +46,7 @@ function userSubmitted() {
 export function submitUser(username, password, profile, email) {
   return (dispatch) => {
     dispatch(creatingUser())
-    axios.post('http://localhost:8080/api/users',
-      data: { username, password, email, profile })
+    axios.post('http://localhost:8080/api/users', { username, password, email, profile })
     .then( results => dispatch(userSubmitted()))
     .catch( error => dispatch(creatingUserError(error)))
   }

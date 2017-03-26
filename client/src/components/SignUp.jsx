@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Checkbox, Container, Divider, Form, Header, Icon, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { editUsername, editPassword, editProfile, editEmail, submitUser } from '../actions/createUser'
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
-
-    this.handleChange = (e, { value }) => this.setState({ value });
   }
 
   render() {
@@ -40,5 +38,13 @@ class SignUp extends Component {
   }
 }
 
+const mapStoreToProps = (state) => {
+  return {
+    username: state.createUser.username,
+    email: state.createUser.email,
+    password: state.createUser.password,
+    profile: state.createUser.profile
+  }
+}
 
 export default SignUp;
