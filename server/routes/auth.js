@@ -10,17 +10,13 @@ router.get('/signin', (req, res, next) => {
 	//render or redirect
 	// res.render('');
 	// console.log(res);
-	res.end('GET login bye');
+	res.end('GET login, bye');
 });
 
 router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin'}), (req, res) => {
 	//redirect to loggedIn home
 	// res.redirect('');
-	console.log('user on session: ');
-	console.log(req.body.username);
-    req.session.username = req.body.username;
-
-	res.end('POST login bye');
+	res.json({username: req.body.username});
 });
 
 router.get('/logout', (req, res) => {
@@ -62,6 +58,8 @@ const _comparePassword = (newPass, oldPass) => {
 
 passport.serializeUser((user, done) => {
 	//using user.id in done led to failure in writing passport into req.session!!!!
+	// req.session.passport.user.rows
+	// done(null, user.rows.id);
 	done(null, user);
 });
 
