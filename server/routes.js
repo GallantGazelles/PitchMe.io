@@ -42,9 +42,10 @@ router.get('/categories', Categories.getCategories);
 router.get('/followers', Followers.getFollowers);
 router.post('/followers', Followers.postFollower);
 router.delete('/followers', Followers.removeFollower);
+
 //VOTES:
+//query from db on whether this user voted for this specific pitch or not.
 router.get('/votes', Votes.getVoteByUsername);
-	//query from db on whether this user voted for this specific pitch or not.
-// })
+router.put('/votes', Votes.voteOnPitch);
 
 module.exports = router;

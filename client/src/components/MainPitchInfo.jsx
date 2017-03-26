@@ -8,7 +8,7 @@ export default class MainPitchInfo extends Component {
     super(props);
 
     this.state = {
-      vote_type: -1
+      vote_type: 1
     }
 
     this.handleClick = (value) => this.setState({
@@ -17,7 +17,10 @@ export default class MainPitchInfo extends Component {
   }
 
   render() {
-
+    const upvoteButton = <Button icon size='big' color='green'><Icon name='arrow up' /></Button>
+    const downvoteButton = <Button icon size='big' color='red'><Icon name='arrow down' /></Button>
+    const neutralUpButton = <Button icon basic size='big' color='grey'><Icon name='arrow up' /></Button>
+    const neutralDownButton = <Button icon basic size='big' color='grey'><Icon name='arrow down' /></Button>
 
     return (
       <Container textAlign='center' text>
@@ -32,14 +35,10 @@ export default class MainPitchInfo extends Component {
           </Item>
           <Item>
             <Item.Content>
-              <Item.Header as='h1'><Icon color='green' name='check' />1609 Votes</Item.Header>
+              <Item.Header as='h1'><Icon color='blue' name='thumbs outline up' />1609 Votes</Item.Header>
               <Segment basic textAlign='center'>
-                <Button icon size='big' color={this.state.vote_type === 1 ? 'green' : 'blue'} >
-                  <Icon name='arrow up' />
-                </Button>
-                <Button icon size='big' color={this.state.vote_type === -1 ? 'red' : 'blue'}>
-                  <Icon name='arrow down' />
-                </Button>
+                { this.state.vote_type === 1 ? upvoteButton : neutralUpButton }
+                { this.state.vote_type === -1 ? downvoteButton : neutralDownButton }
               </Segment>
             </Item.Content>
           </Item>
