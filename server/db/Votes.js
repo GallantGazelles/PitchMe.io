@@ -11,3 +11,12 @@ module.exports.getVoteByUsername = (username, pitch_id) => {
 		console.log('errrrr: ', err);
 	});
 };
+
+module.exports.voteOnPitch = (username , pitch_id, vote) => {
+  return db.query(`SELECT id FROM users WHERE username='${username}'`)
+    .then(results => {
+      let user_id = results.rows[0].id;
+      return db.query(``);
+    })
+    .catch(err => console.log(err));
+}
