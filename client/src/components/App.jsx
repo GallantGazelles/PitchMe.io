@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const {dispatch} = this.props;
     dispatch(fetchPitches())
   }

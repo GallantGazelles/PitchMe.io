@@ -50,6 +50,6 @@ module.exports.getUserPasswordByName = (username) => {
 };
 
 module.exports.getUserProfile = (userId) => {
-  return db.query(`SELECT profile FROM users WHERE id=${userId}`);
+  return db.query(`SELECT username, profile FROM users WHERE id=${userId}`);
 };
 

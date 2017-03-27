@@ -71,7 +71,7 @@ module.exports.putUsers = (req, res, next) => {
 
 module.exports.getUserProfile = (req, res, next) => {
   User.getUserProfile(req.query.userId)
-  .then(results => res.send(results))
+  .then(results => res.send(results.rows))
   .catch(error => res.status(404).send('Error in getting user profile!'));
 }
 

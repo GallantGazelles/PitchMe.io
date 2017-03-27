@@ -11,6 +11,8 @@ const Votes = require('./routes/Votes');
 router.get('/signin', (req, res) => {
 	res.redirect('/');
 });
+
+router.get('/user', Users.getUserProfile)
 // USERS
 //Get all users
 router.get('/users', Users.getUsers);

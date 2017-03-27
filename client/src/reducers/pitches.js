@@ -6,18 +6,6 @@ const initialState = {
   index: 0
 }
 
-
-//Additional key/values I will expect in each pitch:
-// {
-//   upvote: boolean,
-//   downvote: boolean,
-//   votes: integer
-// }
-
-//upvote downvote logic needs to be determined from server
-//Needs to be accounted for by pitch 
-//NOTE: our mainPitch will need to have a way to account for votes.
-
 export default function pitches (state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_PITCHES':
@@ -61,11 +49,12 @@ export default function pitches (state = initialState, action) {
           error: action.error
         };
     case 'UPVOTE_TOGGLE':
+      
       return {
         ...state,
         mainPitch: {
           ...state.mainPitch,
-          votes: state.mainPitch.upvote ? state.mainPitch.votes - 1 : state.mainPitch.votes + 1,
+          votes: state.mainPitch.vote_type === 1 ? parseInt(state.mainPitch.votes) - 1 : state.mainPitch.vote_type === -1 ? parseInt(state.mainPitch.votes) + 2: parseInt(state.mainPitch.votes) + 1,
           vote_type: state.mainPitch.vote_type === 1 ? 0 : 1
         }
       }
@@ -74,7 +63,7 @@ export default function pitches (state = initialState, action) {
         ...state,
         mainPitch: {
           ...state.mainPitch,
-          votes: state.mainPitch.downvote ? state.mainPitch.votes + 1 : state.mainPitch.votes - 1,
+          votes: state.mainPitch.vote_type === -1 ? parseInt(state.mainPitch.votes) + 1 : state.mainPitch.vote_type === 1 ? parseInt(state.mainPitch.votes) - 2: parseInt(state.mainPitch.votes) - 1,
           vote_type: state.mainPitch.vote_type === -1 ? 0 : -1
         },
       }
