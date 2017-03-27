@@ -18,7 +18,7 @@ export default class LoggedOutNav extends Component {
       <Grid padded>
         <Grid.Column width={5}>
           <Header color='black' as="h3">
-            <Link to="/"><Image width='100' height='50' src='../logo.jpg' />PitchMe.io</Link>
+            <Link to="/"><img src="../logo.jpg" alt="Smiley face" height="50" width="100" /><p>PitchMe.io</p></Link>
           </Header>
         </Grid.Column>
 
