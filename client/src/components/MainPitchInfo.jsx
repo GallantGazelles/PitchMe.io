@@ -33,7 +33,7 @@ class MainPitchInfo extends Component {
           </Item>
           <Item>
             <Item.Content>
-              <Item.Header as='h1'><Icon color='blue' name='thumbs outline up' />{this.props.votes} Votes</Item.Header>
+              <Item.Header as='h1'>{this.props.votes} { this.props.votes === 1 ? 'Vote' : 'Votes' }</Item.Header>
               <Segment basic textAlign='center'>
                 { user !== null && user !== undefined ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
                 { user !== null && user !== undefined ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }

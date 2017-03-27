@@ -53,11 +53,11 @@ class Pitch extends Component {
           <Container text>
             <Grid padded columns={2}>
               <Grid.Column width={6}>
-                <Image centered shape='rounded' size='small' src='https://ph-files.imgix.net/8a2b7acf-d24d-46f3-9060-723db65625a9?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=120&h=120&fit=crop&dpr=2' />
+                <Image centered bordered size='small' src='https://ph-files.imgix.net/8a2b7acf-d24d-46f3-9060-723db65625a9?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=120&h=120&fit=crop&dpr=2' />
                 <Segment basic textAlign='center'>
                   <Item>
                     <Item.Content>
-                      <Item.Header as='h2'><Icon color='green' name='check' />{this.props.votes} Votes</Item.Header>
+                      <Item.Header as='h2'>{this.props.votes} { this.props.votes === 1 ? 'Vote' : 'Votes' }</Item.Header>
                       { user ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
                       { user ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
                     </Item.Content>
