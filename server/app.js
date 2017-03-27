@@ -29,7 +29,7 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (5000));
 
 // console.log('process.env: ', process.env);
 app.use(express.static(path.join(__dirname, '/../client/')));
