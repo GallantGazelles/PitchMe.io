@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchUserPage } from '../actions/userPage';
 import UserPortfolio from './UserPortfolio.jsx';
 import UserFollow from './UserFollow.jsx';
+import { checkSession } from '../actions/user';
 
 class userProfile extends Component {
   constructor(props) {
@@ -15,14 +16,22 @@ class userProfile extends Component {
     this.handleItemClick = (e, { name }) => this.setState({ activeItem: name });
   }
 
-  componentWillMount() {
-    const {dispatch} = this.props
-    dispatch(fetchUserPage(this.props.userId))
+  componentDidMount() {
+    let {dispatch} = this.props;
+    dispatch(fetchUserPage(this.props.userId));
+  }
+  componentWillReceiveProps(nextProps) {
+    let {dispatch} = this.props;
+    if (nextProps.userId !== this.props.userId) {
+      console.log(nextProps.userId)
+      dispatch(fetchUserPage(nextProps.userId))
+    }
   }
 
   render() {
     const { activeItem } = this.state;
     const { username, userProfile, comments, follows, pitches } = this.props
+    console.log(this.props.userId);
     return (
       <Segment basic>
         <Container text textAlign='center'>

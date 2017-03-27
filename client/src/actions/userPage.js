@@ -7,7 +7,6 @@ function fetchingUser () {
 }
 
 function receivedUserProfile(userProfile) {
-  console.log(userProfile);
   return {
     type: 'RECEIVED_USER_PROFILE',
     username: userProfile[0].username,
