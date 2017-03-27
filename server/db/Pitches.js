@@ -7,15 +7,14 @@ const db = require('../db.js');
 // };
 //new getAllPitches:
 module.exports.getAllPitches = (user_id) => {
-  console.log(user_id);
 	return db.query(`SELECT pitchTable.*, followertable.follow_count, votestable.votes, uservote.vote_type
 FROM (SELECT * FROM pitches) pitchTable 
 LEFT JOIN (SELECT count(followers.id) follow_count, pitch_id FROM followers GROUP BY pitch_id) followertable
 ON (pitchTable.id = followertable.pitch_id)
 LEFT JOIN (SELECT sum(vote_type) votes, pitch_id FROM votes GROUP BY pitch_id) votestable
-ON (followertable.pitch_id = votestable.pitch_id)
+ON (pitchTable.id = votestable.pitch_id)
 LEFT JOIN (SELECT vote_type, pitch_id FROM votes WHERE user_id =${user_id}) uservote
-ON (votestable.pitch_id = uservote.pitch_id);`);
+ON (pitchTable.id = uservote.pitch_id);`);
 };
 
 //add pitch, needs all info:
