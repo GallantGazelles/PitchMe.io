@@ -32,6 +32,9 @@ router.post('/comments', Comments.postComment);
 // router.put('/comments', comments.something.put);
 // router.delete('/comments', comments.something.delete);
 
+// PITCH PAGE
+router.get('/pitch', Pitches.getOnePitch);
+
 // PITCHES
 router.get('/pitches', Pitches.getPitches);
 router.post('/pitches', Pitches.postPitches);
@@ -39,7 +42,6 @@ router.put('/pitches', Pitches.putPitches);
 router.delete('/pitches', Pitches.deletePitches);
 
 // CATEGORIES
-
 router.get('/categories', Categories.getCategories);
 
 // FOLLOWERS

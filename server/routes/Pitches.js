@@ -53,3 +53,13 @@ module.exports.deletePitches = (req, res, next) => {
       .then(results => res.status(200).send('Pitch deleted!'))
       .catch(error => res.status(404).send('Error occurred: Pitch not deleted'));
 }
+
+module.exports.getOnePitch = (req, res, next) => {
+  const { pitchId } = req.query;
+  Pitch.getPitchByPitchId(pitchId)
+    .then(results => {
+      console.log(results);
+      res.status(200).send(results.rows);
+    })
+    .catch(error => res.status(404).send(error));
+}
