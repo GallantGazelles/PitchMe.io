@@ -26,7 +26,7 @@ const Index = () => (
     <Container>
       <NavBar />
       <Route exact path="/" component={ App }/>
-      <Route path="/companies" component={ Companies }/>
+      <Route path="/startups" component={ Companies }/>
       <Route path="/createpitch" component={ CreatePitch }/>
       <Route path="/pitch" component={ Pitch }/>
       <Route path="/signup" component={ SignUp }/>

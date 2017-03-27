@@ -28,9 +28,9 @@ export default class Footer extends Component {
           <Grid.Column floated='right' verticalAlign='middle'>
             <Menu text>
               <Menu.Menu position='right'>
-                <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-                <Menu.Item name='how it works' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
-                <Menu.Item name='companies' active={activeItem === 'companies'} onClick={this.handleItemClick} />
+                <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
+                <Menu.Item name='how it works' as={Link} to='/howitworks' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
+                <Menu.Item name='startups' as={Link} to='/startups' active={activeItem === 'startups'} onClick={this.handleItemClick} />
               </Menu.Menu>
             </Menu>
           </Grid.Column>
