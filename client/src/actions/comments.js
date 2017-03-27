@@ -16,10 +16,10 @@ const commentSubmitted = () => {
     type: 'COMMENT_SUBMITTED'
   }
 }
-export const creatingComment = (userid, text) => {
+export const creatingComment = (userId, pitchId, comment) => {
   return (dispatch) => {
     dispatch(sendingComment())
-    axios.post('http://localhost:8080/api/comments', { userid, text })
+    axios.post('http://localhost:8080/api/comments', { userId, pitchId, comment })
     .then( (results) => dispatch(commentSubmitted()) )
     .catch( (error) => dispatch(sendingCommentError(error)) )
   }
@@ -50,5 +50,12 @@ export const fetchPitchComments = (pitchId) => {
     })
     .then( results => { dispatch(receivedComments(results.data))})
     .catch( error => { dispatch(fetchingCommentsError(error))})
+  }
+}
+
+export const typingComment = (text) => {
+  return {
+    type: 'TYPING_COMMENT',
+    text
   }
 }

@@ -13,6 +13,11 @@ const comments = (state=initialState, action) => {
         ...state,
         creatingComment: true
       };
+    case 'TYPING_COMMENT':
+      return {
+        ...state,
+        text: action.text
+      }
     case 'COMMENT_SUBMITTED':
       return {
         ...initialState

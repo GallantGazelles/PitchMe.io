@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SingleComment from './SingleComment.jsx';
 import { Button, Comment, Container, Divider, Form, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { creatingComment } from '../actions/comments';
+import { creatingComment, typingComment } from '../actions/comments';
 import UserSingleComment from './UserSingleComment.jsx';
 
 class Discussion extends Component {
@@ -11,8 +11,8 @@ class Discussion extends Component {
   }
 
   render() {
-    const { comments } = this.props
-    console.log('comments', comments)
+    const { comments, onTypeChange, submitComment } = this.props
+    console.log(this.props);
     return (
       <Container text>
         <Divider horizontal>
@@ -30,8 +30,12 @@ class Discussion extends Component {
               timestamp={comment.timestamp}
               comment = {comment.comment} />
           })}
-          <Form reply onSubmit={e => e.preventDefault()}>
-            <Form.TextArea />
+          <Form reply onSubmit={ e => {
+            if (this.props.text.length > 0) {
+              submitComment(this.props.user, this.props.pitch, this.props.text)
+            }
+          }}>
+            <Form.TextArea onChange={ (e) => { onTypeChange(e.target.value) }}/>
             <Button content='Add Reply' labelPosition='left' icon='edit' primary />
           </Form>
         </Comment.Group>
@@ -40,18 +44,20 @@ class Discussion extends Component {
   }
 }
 
-export default Discussion;
+const mapStateToProps = (state) => {
+  return {
+    text: state.comments.text,
+    user: state.user.userid,
+    pitch: state.pitches.mainPitch.id
+  }
+}
 
-          // { if (comments.length > 0) {
-          //     comments.map( (comment) => {
-          //       return <SingleComment comment={ comment } />
-          //     }) 
-          //   }
-          // }
-          // { comments.map((comment)=> {
-          //     return <SingleComment 
-          //       username={comment.username}
-          //       text={comment.comment}
-          //       timestamp={comment.timestamp}
-          //     />
-          // })}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTypeChange: (text) => { dispatch(typingComment(text)) },
+    submitComment: (user, pitch, comment) => { dispatch(creatingComment(user, pitch, comment)) }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Discussion);

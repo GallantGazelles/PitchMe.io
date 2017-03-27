@@ -8,7 +8,7 @@ import Discussion from './Discussion.jsx';
 import {
   Button, Container, Dimmer, Divider, Grid, Header, Icon, Image, Item, Label, Loader, Segment, Statistic
 } from 'semantic-ui-react';
-import { fetchPitchComments } from '../actions/comments';
+import { fetchPitchComments, typingComment } from '../actions/comments';
 
 class Pitch extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class Pitch extends Component {
 
   render() {
     const {user, id, vote_type} = this.props
-    const {onClickUpvote, onClickDownvote} = this.props
+    const {onClickUpvote, onClickDownvote, onTypeChange } = this.props
     const upvoteButton = <Button icon size='big' color='green' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>
     const downvoteButton = <Button icon size='big' color='red' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
     const neutralUpButton = (<Button icon basic size='big' color='grey' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>)
