@@ -6,18 +6,6 @@ const initialState = {
   index: 0
 }
 
-
-//Additional key/values I will expect in each pitch:
-// {
-//   upvote: boolean,
-//   downvote: boolean,
-//   votes: integer
-// }
-
-//upvote downvote logic needs to be determined from server
-//Needs to be accounted for by pitch 
-//NOTE: our mainPitch will need to have a way to account for votes.
-
 export default function pitches (state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_PITCHES':

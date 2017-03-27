@@ -1,7 +1,7 @@
 const Pitch = require('./../db/Pitches');
 
 module.exports.getPitches = (req, res, next) => {
-  const { q, pitchId, cat } = req.query;
+  const { q, pitchId, cat, userId } = req.query;
   if (q === 'all') {
     if(req.session.passport) {
       Pitch.getAllPitches(req.session.passport.user.rows[0].id)
@@ -18,8 +18,12 @@ module.exports.getPitches = (req, res, next) => {
       .catch(error => res.status(404).send('error in getting pitch ', error));
   } else if (q === 'cat') {
     Pitch.getPitchByCategoryId(cat)
-      .then(results => res.send(results.rows))
-      .catch(error => res.status(404).send('error in sorting by category', error));
+      .then(results => res.status(200).send(results.rows))
+      .catch(error => res.status(404).send('error in sorting by category'));
+  } else if (q === 'user') {
+    Pitch.getPitchByUserId(userId)
+      .then(results => res.status(200).send(results.rows))
+      .catch(error => res.status(404).send('error in getting pitches by userid'))
   } else {
     res.status(404).send('Bad query');
   }

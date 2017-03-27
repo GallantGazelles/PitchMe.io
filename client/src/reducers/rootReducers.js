@@ -4,7 +4,8 @@ import createPitch from './createPitch';
 import pitchPage from './pitch';
 import user from './user';
 import createUser from './createUser';
-import signIn from './signIn'
+import signIn from './signIn';
+import userPage from './userPage';
 
 const appReducer = combineReducers({
   pitches,
@@ -12,7 +13,8 @@ const appReducer = combineReducers({
   createPitch,
   user,
   createUser,
-  signIn
+  signIn,
+  userPage
 })
 
 const rootReducer = (state, action) => {

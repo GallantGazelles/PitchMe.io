@@ -38,3 +38,7 @@ module.exports.updatePitchByPitchId = (pitchId, userId, newName, video, website,
 module.exports.getPitchByCategoryId = (categoryId) => {
   return db.query(`SELECT * FROM pitches WHERE category_id = ${categoryId};`)
 };
+
+module.exports.getPitchByUserId = (userId) => {
+  return db.query(`SELECT * from pitches where user_id = ${userId};`)
+};

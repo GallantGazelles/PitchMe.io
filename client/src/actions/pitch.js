@@ -24,9 +24,6 @@ export function fetchPitches(category = 'all') {
   return function(dispatch) {
     dispatch(requestPitches());
     //We can possibly define categories here?
-    axios.get('http://localhost:8080/auth/signin')
-    .then(results => dispatch(completeSignIn(results.data.username, results.data.user_id)))
-    .catch(error => dispatch(signInError(error)))
     axios.get('http://localhost:8080/api/pitches?q=all')
     .then(results => dispatch(receivePitches(results)))
     .catch(error => dispatch(errorPitches(error)))

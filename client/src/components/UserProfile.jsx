@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import UserComments from './UserComments.jsx';
 import { Container, Divider, Grid, Header, Image, Item, Menu, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { fetchUserPage } from '../actions/userPage';
 
-export default class userProfile extends Component {
+class userProfile extends Component {
   constructor(props) {
     super(props);
 
     this.state = { activeItem: 'comments' };
 
     this.handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  }
+
+  componentDidMount() {
+    const {dispatch} = this.props
+    dispatch(fetchUserPage(this.props.userId))
   }
 
   render() {
@@ -51,3 +58,12 @@ export default class userProfile extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ...state.userPage,
+    userId: state.user.userid
+  }
+}
+
+export default connect(mapStateToProps)(userProfile)

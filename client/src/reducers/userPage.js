@@ -17,23 +17,23 @@ const userPage = (state=initialState, action) => {
     case 'RECEIVED_USER_PROFILE':
       return {
         ...state,
-        username: username,
-        profile: profile
+        username: action.username,
+        profile: action.profile
       };
     case 'RECEIVED_USER_COMMENTS':
       return {
         ...state,
-        comments: comments
+        comments: action.comments
       };
     case 'RECEIVED_USER_FOLLOWS':
       return {
         ...state,
-        follows: follows 
+        follows: action.follows 
       };
     case 'RECEIVED_USER_PITCHES':
       return {
         ...state,
-        pitches: pitches
+        pitches: action.pitches
       }
     default: 
       return state;
