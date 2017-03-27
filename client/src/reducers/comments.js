@@ -1,6 +1,6 @@
 const initialState = {
   text: null,
-  comments: null,
+  comments: [],
   creatingComment: false,
   error: null,
   fetchingComments: false,
