@@ -26,6 +26,7 @@ module.exports.getPitches = (req, res, next) => {
 }
 
 module.exports.postPitches = (req, res, next) => {
+  console.log('postPitches', req.body)
   const {user_id, name, video, website, profile, blurb, category_id} = req.body;
   Pitch.addPitch(user_id, name, video, website, profile, blurb, category_id)
   .then(results => res.statu(200).send('Pitch created!'))

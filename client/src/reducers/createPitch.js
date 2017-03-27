@@ -1,11 +1,46 @@
 const initialState = {
   creatingPitch: false,
-  pitch: {},
-  error: null
+  error: null,
+  name: null,
+  video: null,
+  website: null,
+  profile: null,
+  blurb: null,
+  category_id: null
 }
 
 function createPitch(state=initialState, action) {
   switch (action.type) {
+    case 'PITCH_NAME':
+      return {
+        ...state,
+        name: action.name
+      }
+    case 'PITCH_VIDEO':
+      return {
+        ...state,
+        video: action.video
+      }
+    case 'PITCH_WEBSITE':
+      return {
+        ...state,
+        website: action.website
+      }
+    case 'PITCH_PROFILE':
+      return {
+        ...state,
+        profile: action.profile
+      }
+    case 'PITCH_BLURB':
+      return {
+        ...state,
+        blurb: action.blurb
+      }
+    case 'PITCH_CATEGORY':
+      return {
+        ...state,
+        category_id: action.id
+      }
     case 'CREATING_PITCH':
       return {
         ...state,
@@ -13,9 +48,7 @@ function createPitch(state=initialState, action) {
       }
     case 'PITCH_CREATED':
       return {
-        ...state,
-        creatingPitch: false,
-        pitch: action.pitch
+        ...initialState
       };
     case 'PITCH_CREATED_ERROR':
       return {
