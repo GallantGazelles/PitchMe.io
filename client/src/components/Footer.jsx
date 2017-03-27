@@ -22,7 +22,7 @@ export default class Footer extends Component {
         <Grid padded container columns='2'>
 
           <Grid.Column floated='left' verticalAlign='middle'>
-            <Link to="/"><img src="../logo.jpg" alt="Smiley face" height="25" width="50" /></Link>
+            <Link to="/">PitchMe.io</Link>
           </Grid.Column>
 
           <Grid.Column floated='right' verticalAlign='middle'>
