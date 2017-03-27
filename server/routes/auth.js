@@ -9,12 +9,16 @@ const User = require('../db/User.js');
 router.get('/signin', (req, res, next) => {
 	//render or redirect
 	// res.render('');
-	console.log('get signin', {user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
-	res.send({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
-	res.end('GET login, bye');
+	if(req.session.passport && req.session.passport.user) {
+		res.send({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
+	} else {
+		res.end('GET request to login, bye');
+	}
 });
 
-router.post('/signin', passport.authenticate('local', {successReturnToOrRedirect: '/', failureRedirect: '/signin', failureFlash: true}));
+router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin', failureFlash: true}), (req, res) =>{
+	res.send({redirect: '/'});
+});
 
 router.get('/logout', (req, res) => {
 	req.logout();
