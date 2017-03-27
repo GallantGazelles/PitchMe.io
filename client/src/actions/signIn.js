@@ -48,5 +48,5 @@ export function signIn(username, password) {
     //   dispatch(completeSignIn(results.data.username, results.data.user_id));
     // })
     // .catch(error => dispatch(signInError(error)))
-  }
+  };
 }
