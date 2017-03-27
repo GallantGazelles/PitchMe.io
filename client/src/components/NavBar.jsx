@@ -16,7 +16,7 @@ class NavBar extends Component {
   }
   render () {
     if (this.props.username) {
-      return <LoggedInNav />
+      return <LoggedInNav username={this.props.username}/>
     } else {
       return <LoggedOutNav />
     }
