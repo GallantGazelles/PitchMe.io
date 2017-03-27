@@ -18,14 +18,14 @@ class App extends Component {
   }
 
   render() {
-
+    console.log(this.state);
     return (
       <section>
         <Video />
         <Divider hidden />
         <MainPitchInfo />
         <Divider hidden />
-        <TrendingVideos />
+        <TrendingVideos pitches={this.props.pitches} />
       </section>
     )
   }
