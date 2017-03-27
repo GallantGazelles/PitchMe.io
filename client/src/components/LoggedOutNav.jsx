@@ -16,13 +16,13 @@ export default class LoggedOutNav extends Component {
 
     return (
       <Grid padded>
-        <Grid.Column width={5}>
-          <Header color='black' as="h3">
-            <Link to="/"><img src="../logo.jpg" alt="Smiley face" height="50" width="100" /><p>PitchMe.io</p></Link>
+        <Grid.Column width={3} verticalAlign='middle'>
+            <Header as="h1" textAlign='center'>
+            <Link to="/"><img src="../logo.jpg" alt="PitchMe.io" height="50" width="100" /><p>PitchMe.io</p></Link>
           </Header>
         </Grid.Column>
 
-        <Grid.Column width={11}>
+        <Grid.Column width={13}>
           <Menu secondary>
             <Menu.Menu position='right'>
               <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
@@ -30,7 +30,7 @@ export default class LoggedOutNav extends Component {
               <Menu.Item name='sign up' as={Link} to='/signup' active={activeItem === 'sign up'} onClick={this.handleItemClick} />
               <Menu.Item name='sign in' as={Link} to='/signin' active={activeItem === 'sign in'} onClick={this.handleItemClick} />
               <Menu.Item>
-                <Input icon='search' placeholder='Search...' />
+                <Input icon='search' placeholder='Search' />
               </Menu.Item>
             </Menu.Menu>
           </Menu>
