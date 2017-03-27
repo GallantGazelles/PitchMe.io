@@ -17,8 +17,8 @@ export default class LoggedOutNav extends Component {
     return (
       <Grid padded>
         <Grid.Column width={5}>
-          <Header as="h1">
-            <Icon name='meh' />PitchMe
+          <Header color='black' as="h1">
+            <Link to="/"><Icon name='meh' />PitchMe</Link>
           </Header>
         </Grid.Column>
 
