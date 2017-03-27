@@ -16,13 +16,13 @@ export default class LoggedInNav extends Component {
 
     return (
       <Grid padded>
-        <Grid.Column width={5} verticalAlign='middle'>
-          <Header as="h1">
-            <Link to="/"><img src="../logo.jpg" alt="Smiley face" height="50" width="100" /><p>PitchMe.io</p></Link>
+        <Grid.Column width={3} verticalAlign='middle'>
+          <Header as="h1" textAlign='center'>
+            <Link to="/"><img src="../logo.jpg" alt="PitchMe.io" height="50" width="100" /><p>PitchMe.io</p></Link>
           </Header>
         </Grid.Column>
 
-        <Grid.Column width={11}>
+        <Grid.Column width={13}>
           <Menu secondary compact floated='right'>
             <Menu.Menu position='right'>
               <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
@@ -32,7 +32,7 @@ export default class LoggedInNav extends Component {
                 <Icon name='user circle outline' color='blue' size='large' /> {this.props.username}
               </Menu.Item>
               <Menu.Item>
-                <Input icon='search' placeholder='Search...' />
+                <Input icon='search' placeholder='Search' />
               </Menu.Item>
             </Menu.Menu>
           </Menu>
