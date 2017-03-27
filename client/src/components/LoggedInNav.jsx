@@ -27,6 +27,7 @@ export default class LoggedInNav extends Component {
             <Menu.Menu position='right'>
               <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
               <Menu.Item name='how it works' as={Link} to='/howitworks' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
+              <Menu.Item name='start a pitch' as={Link} to='/createpitch' active={activeItem === 'start a pitch'} onClick={this.handleItemClick} />
               <Menu.Item name='user' as={Link} to='/user' active={activeItem === 'user'} onClick={this.handleItemClick} />
               <Menu.Item>
                 <Input icon='search' placeholder='Search...' />

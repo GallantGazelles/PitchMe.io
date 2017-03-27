@@ -62,14 +62,17 @@ class CreatePitch extends Component {
                 onChange = { (e) => submitWebsite(e.target.value) }
               />
             </Form.Group>
-            <Form.Field control={TextArea} label='Description' placeholder='Tell us more about your idea...' />
+            <Form.Field control={TextArea} label='Description' placeholder='Tell us more about your idea...' onChange = { (e) => submitProfile(e.target.value)}/>
             <Form.Dropdown 
               placeholder='Select Category' 
               search selection options={categories}
               onChange = { (e, data) => submitCategory(data.value) }
             />
-            <Form.Field control={Checkbox} label='I agree to the Terms and Conditions' />
-            <Form.Button onClick={()=>submitPitch(userid, name, video, website, profile, blurb, category_id)}>Upload Pitch!</Form.Button>
+            <Form.Field control={Checkbox} label='I agree to the Terms and Conditions' /> 
+            <Form.Button onClick={(e)=> {
+              e.preventDefault();
+              submitPitch(userid, name, video, website, profile, blurb, category_id)
+            }}>Upload Pitch!</Form.Button>
           </Form>
         </Segment>
       </Container>
@@ -78,9 +81,8 @@ class CreatePitch extends Component {
 }
 
 const mapStateToProps = (state) => {
-  let cp = state.createPitch
   return {
-    ...cp,
+    ...state.createPitch,
     userid: state.user.userid
   }
 }

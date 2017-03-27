@@ -44,7 +44,7 @@ export function pitchBlurb(blurb) {
 export function pitchCategory(id) {
   return {
     type: 'PITCH_CATEGORY',
-    category_id: id
+    id: id
   }
 }
 

@@ -1,5 +1,4 @@
 const User = require('./../db/User');
-const Util = require('../util.js');
 const bcrypt = require('bcrypt');
 
 module.exports.getUsers = (req, res, next) => {
@@ -22,11 +21,19 @@ module.exports.getUsers = (req, res, next) => {
 
 module.exports.postUsers = (req, res, next) => {
   const { username, password, profile } = req.body;
-  
-  let hashedPassword = Util.createHash(password, salt);
-  User.createUser(username, hashedPassword, profile)
-      .then(results => res.send('User created!'))
-      .catch(error => res.status(404).send('User already exists!'));
+  const saltRounds = 10;
+
+  bcrypt.hash(password, saltRounds)
+  .then(hash => {
+    User.createUser(username, hash, profile)
+    .then(results => {
+      res.status(201).send('User created!');
+    }).catch(error => {
+      res.status(404).send('User already exists!');
+    });
+  }).catch(err => {
+    res.status(404).send('Error posting user!');
+  });
 };
 
 module.exports.deleteUsers = (req, res, next) => {

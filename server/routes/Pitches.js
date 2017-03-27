@@ -29,13 +29,15 @@ module.exports.postPitches = (req, res, next) => {
   console.log('postPitches', req.body)
   const {user_id, name, video, website, profile, blurb, category_id} = req.body;
   Pitch.addPitch(user_id, name, video, website, profile, blurb, category_id)
-  .then(results => res.statu(200).send('Pitch created!'))
-  .catch(error => res.status(404).send('Error occcured: Pitch not created'));
+  .then(results => res.redirect('/'))
+  .catch(error => {
+    res.status(404).send('Error occcured: Pitch not created')
+  });
 }
 
 module.exports.putPitches = (req, res, next) => {
-  const {pitchId, userId, newName, video, website, profile, blurb, catId} = req.body;
-  Pitch.updatePitchByPitchId(pitchId, userId, newName, video, website, profile, blurb, catId)
+  const {pitchId, userId, newName, video, website, profile, blurb, category_id} = req.body;
+  Pitch.updatePitchByPitchId(pitchId, userId, newName, video, website, profile, blurb, category_id)
   .then(results => res.status(200).send('Pitch edited!'))
   .catch(error => res.status(404).send('Error occurred: Pitch no edited ' + error));
 }
