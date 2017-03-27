@@ -6,6 +6,8 @@ const initialState = {
   index: 0
 }
 
+let vote_count = null;
+
 export default function pitches (state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_PITCHES':
@@ -49,21 +51,30 @@ export default function pitches (state = initialState, action) {
           error: action.error
         };
     case 'UPVOTE_TOGGLE':
-      
+      if (state.mainPitch.votes === null) {
+        vote_count = 0
+      } else {
+        vote_count = parseInt(state.mainPitch.votes)
+      }
       return {
         ...state,
         mainPitch: {
           ...state.mainPitch,
-          votes: state.mainPitch.vote_type === 1 ? parseInt(state.mainPitch.votes) - 1 : state.mainPitch.vote_type === -1 ? parseInt(state.mainPitch.votes) + 2: parseInt(state.mainPitch.votes) + 1,
+          votes: state.mainPitch.vote_type === 1 ? vote_count - 1 : state.mainPitch.vote_type === -1 ? vote_count + 2: vote_count + 1,
           vote_type: state.mainPitch.vote_type === 1 ? 0 : 1
         }
       }
     case 'DOWNVOTE_TOGGLE':
+      if (state.mainPitch.votes === null) {
+        vote_count = 0
+      } else {
+        vote_count = parseInt(state.mainPitch.votes)
+      }
       return {
         ...state,
         mainPitch: {
           ...state.mainPitch,
-          votes: state.mainPitch.vote_type === -1 ? parseInt(state.mainPitch.votes) + 1 : state.mainPitch.vote_type === 1 ? parseInt(state.mainPitch.votes) - 2: parseInt(state.mainPitch.votes) - 1,
+          votes: state.mainPitch.vote_type === -1 ? vote_count + 1 : state.mainPitch.vote_type === 1 ? vote_count - 2: vote_count - 1,
           vote_type: state.mainPitch.vote_type === -1 ? 0 : -1
         },
       }

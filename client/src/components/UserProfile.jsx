@@ -17,11 +17,11 @@ class userProfile extends Component {
   }
 
   componentDidMount() {
-    let {dispatch} = this.props;
+    const {dispatch} = this.props;
     dispatch(fetchUserPage(this.props.userId));
   }
   componentWillReceiveProps(nextProps) {
-    let {dispatch} = this.props;
+    const {dispatch} = this.props;
     if (nextProps.userId !== this.props.userId) {
       console.log(nextProps.userId)
       dispatch(fetchUserPage(nextProps.userId))
