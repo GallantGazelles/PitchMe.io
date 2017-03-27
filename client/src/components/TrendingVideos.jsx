@@ -1,9 +1,8 @@
 import React from 'react';
 import TrendingVideoCard from './TrendingVideoCard.jsx'
 import { Card, Divider, Grid, Header, Icon, Image } from 'semantic-ui-react';
-
-
-export default (props) => {
+import { connect } from 'react-redux';
+const TrendingVideos = (props) => {
   if (props.pitches.length > 0) {
     return (
       <section>
@@ -48,3 +47,11 @@ export default (props) => {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    pitches: state.pitches.pitches
+  }
+}
+
+export default connect(mapStateToProps)(TrendingVideos)

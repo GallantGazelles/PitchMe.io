@@ -33,7 +33,6 @@ class Pitch extends Component {
     const neutralUpButton = (<Button icon basic size='big' color='grey' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>)
     const neutralDownButton = <Button icon basic size='big' color='grey' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
 
-
     if (this.state.pitch) {
       return (
         <Segment basic>
