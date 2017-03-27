@@ -19,7 +19,7 @@ export default (props) => {
          <Icon name='user' color='blue' /> {props.pitch.follow_count} Followers
        </a>
        <span className="right floated">
-        {props.pitch.votes} Votes <Icon name='thumbs outline up' color='blue' />
+        {props.pitch.votes} <Icon name='thumbs outline up' color='blue' />
        </span>
       </Card.Content>
     </Card>
