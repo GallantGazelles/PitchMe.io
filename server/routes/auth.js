@@ -1,6 +1,7 @@
 const passport = require('passport');
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../db/User.js');
@@ -13,9 +14,8 @@ router.get('/signin', (req, res, next) => {
 
 router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin'}), (req, res) => {
 	//redirect to loggedIn home
-	console.log('ha');
-	res.json({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
-	// res.redirect('/notfound');
+	// res.json({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
+	res.redirect(301, '/api/users?q=users');
 });
 
 router.get('/logout', (req, res) => {
@@ -32,11 +32,14 @@ var localStrategy = new LocalStrategy((username, password, done) => {
 		if(user.rows.length !== 0) {
 			//check pwd
 			console.log('check pwd');
-			if(_comparePassword(password, user.rows[0].password)) {
-				done(null, user);
-			} else {
-				throw 'Invalid information';
-			}
+			bcrypt.compare(password, user.rows[0].password)
+			.then(res => {
+				if(res) {
+					done(null, user);
+				} else {
+					throw 'Invalid information';
+				}
+			});
 		} else {
 			throw 'Invalid information';
 		}
