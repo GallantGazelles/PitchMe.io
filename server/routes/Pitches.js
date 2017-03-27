@@ -56,7 +56,6 @@ module.exports.deletePitches = (req, res, next) => {
 
 module.exports.getOnePitch = (req, res, next) => {
   const { pitchId, userId } = req.query;
-  console.log(req.query);
   if (pitchId && userId) {
     Pitch.getSinglePitch(pitchId, userId)
       .then(results => {

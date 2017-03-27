@@ -2,7 +2,7 @@ const db = require('./../db/Comments');
 
 module.exports.getComments = (req, res) => {
 	const { userId, pitchId } = req.query;
-
+	console.log(req.query);
 	if(pitchId) {
 		db.getCommentsByPitchId(pitchId)
 		.then(results => res.send(results.rows))

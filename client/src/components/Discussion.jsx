@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import SingleComment from './SingleComment.jsx';
 import { Button, Comment, Container, Divider, Form, Header, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { creatingComment } from '../actions/comments';
 
-export default class Discussion extends Component {
+class Discussion extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    console.log(this.props.comments);
     return (
       <Container text>
         <Divider horizontal>
@@ -32,3 +35,5 @@ export default class Discussion extends Component {
     )
   }
 }
+
+export default Discussion;
