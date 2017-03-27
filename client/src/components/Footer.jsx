@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Divider, Grid, Header, Icon, Input, Menu } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default class Footer extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class Footer extends Component {
 
           <Grid.Column floated='left' verticalAlign='middle'>
             <Header as="h3">
-              <Icon name='meh' />PitchMe
+              <Link to="/">PitchMe.io</Link>
             </Header>
           </Grid.Column>
 
