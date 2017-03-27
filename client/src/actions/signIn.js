@@ -27,11 +27,26 @@ export function signIn(username, password) {
     dispatch(signingIn())
     //axios call to check information
     //pass userId or username information from request.
-    axios.post('http://localhost:8080/auth/signin', {username, password} )
-    .then( $.get('http://localhost:8080/auth/signin'))
-    .then((results) => {
-      dispatch(completeSignIn(results.data.username, results.data.user_id));
-    })
-    .catch(error => dispatch(signInError(error)))
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8080/auth/signin',
+      data: {"username": username, "password": password},
+      success: (msg)=> {
+        console.log(msg);
+        if(typeof msg.redirect === 'string') {
+          window.location = msg.redirect;
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        dispatch(signInError(err));
+      }
+    });
+    // axios.post('http://localhost:8080/auth/signin', {username, password} )
+    // .then((results) => {
+    //   console.log('hehehehehehe');
+    //   dispatch(completeSignIn(results.data.username, results.data.user_id));
+    // })
+    // .catch(error => dispatch(signInError(error)))
   }
 }
