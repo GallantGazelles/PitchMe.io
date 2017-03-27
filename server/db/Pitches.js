@@ -7,6 +7,7 @@ const db = require('../db.js');
 // };
 //new getAllPitches:
 module.exports.getAllPitches = (user_id) => {
+  console.log(user_id);
 	return db.query(`SELECT pitchTable.*, followertable.follow_count, votestable.votes, uservote.vote_type
 FROM (SELECT * FROM pitches) pitchTable 
 LEFT JOIN (SELECT count(followers.id) follow_count, pitch_id FROM followers GROUP BY pitch_id) followertable

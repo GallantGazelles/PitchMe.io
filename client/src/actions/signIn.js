@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 import { completeSignIn, signInError } from './user';
 
 export function signInUsername(username) {
@@ -27,9 +28,9 @@ export function signIn(username, password) {
     //axios call to check information
     //pass userId or username information from request.
     axios.post('http://localhost:8080/auth/signin', {username, password} )
-    .then(results => {
-      console.log('im results: ', results);
-      dispatch(completeSignIn(results.username, results.user_id))
+    .then( $.get('http://localhost:8080/auth/signin'))
+    .then((results) => {
+      dispatch(completeSignIn(results.data.username, results.data.user_id));
     })
     .catch(error => dispatch(signInError(error)))
   }

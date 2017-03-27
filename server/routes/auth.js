@@ -7,14 +7,16 @@ const User = require('../db/User.js');
 
 router.get('/signin', (req, res, next) => {
 	//render or redirect
+	// res.render('');
+	console.log('get signin', {user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
+	res.send({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
 	res.end('GET login, bye');
 	// res.status(200).json({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
 });
 
 router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin'}), (req, res) => {
 	//redirect to loggedIn home
-	console.log('ha');
-	res.json({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
+	res.send({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
 	// res.redirect('/notfound');
 });
 
