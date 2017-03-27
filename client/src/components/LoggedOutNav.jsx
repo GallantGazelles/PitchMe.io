@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Header, Icon, Input, Menu } from 'semantic-ui-react';
+import { Grid, Header, Icon, Image, Input, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 
@@ -17,8 +17,8 @@ export default class LoggedOutNav extends Component {
     return (
       <Grid padded>
         <Grid.Column width={5}>
-          <Header color='black' as="h1">
-            <Link to="/"><Icon name='meh' />PitchMe</Link>
+          <Header color='black' as="h3">
+            <Link to="/"><Image width='100' height='50' src='../logo.jpg' />PitchMe.io</Link>
           </Header>
         </Grid.Column>
 
