@@ -23,13 +23,13 @@ export default class LoggedInNav extends Component {
         </Grid.Column>
 
         <Grid.Column width={11}>
-          <Menu color='blue' secondary compact floated='right'>
+          <Menu secondary compact floated='right'>
             <Menu.Menu position='right'>
               <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
               <Menu.Item name='how it works' as={Link} to='/howitworks' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
               <Menu.Item name='start a pitch' as={Link} to='/createpitch' active={activeItem === 'start a pitch'} onClick={this.handleItemClick} />
               <Menu.Item name='user' as={Link} to='/user' active={activeItem === 'user'} onClick={this.handleItemClick}>
-                <Icon name='user circle outline' color='blue' /> {this.props.username}
+                <Icon name='user circle outline' color='blue' size='large' /> {this.props.username}
               </Menu.Item>
               <Menu.Item>
                 <Input icon='search' placeholder='Search...' />
