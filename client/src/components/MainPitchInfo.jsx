@@ -3,13 +3,9 @@ import { upvote, downvote } from '../actions/pitch';
 import { connect } from 'react-redux';
 import { Button, Container, Header, Icon, Item, Label, Segment, Statistic } from 'semantic-ui-react';
 
-export default class MainPitchInfo extends Component {
+class MainPitchInfo extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      vote_type: 1
-    }
 
     this.handleClick = (value) => this.setState({
       active: value
@@ -17,28 +13,29 @@ export default class MainPitchInfo extends Component {
   }
 
   render() {
-    const upvoteButton = <Button icon size='big' color='green'><Icon name='arrow up' /></Button>
-    const downvoteButton = <Button icon size='big' color='red'><Icon name='arrow down' /></Button>
-    const neutralUpButton = <Button icon basic size='big' color='grey'><Icon name='arrow up' /></Button>
-    const neutralDownButton = <Button icon basic size='big' color='grey'><Icon name='arrow down' /></Button>
-
+    const {user, id, vote_type} = this.props
+    const {onClickUpvote, onClickDownvote} = this.props
+    const upvoteButton = <Button icon size='big' color='green' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>
+    const downvoteButton = <Button icon size='big' color='red' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
+    const neutralUpButton = (<Button icon basic size='big' color='grey' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>)
+    const neutralDownButton = <Button icon basic size='big' color='grey' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
     return (
       <Container textAlign='center' text>
         <Item.Group>
           <Item>
             <Item.Content>
-              <Header as="h1">Shift</Header>
+              <Header as="h1">{this.props.name}</Header>
               <Item.Description>
-                <p>Switch between Gmail accounts like a boss.</p>
+                <p>{this.props.profile}</p>
               </Item.Description>
             </Item.Content>
           </Item>
           <Item>
             <Item.Content>
-              <Item.Header as='h1'><Icon color='blue' name='thumbs outline up' />1609 Votes</Item.Header>
+              <Item.Header as='h1'><Icon color='blue' name='thumbs outline up' />{this.props.votes} Votes</Item.Header>
               <Segment basic textAlign='center'>
-                { this.state.vote_type === 1 ? upvoteButton : neutralUpButton }
-                { this.state.vote_type === -1 ? downvoteButton : neutralDownButton }
+                { user !== null ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
+                { user !== null ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
               </Segment>
             </Item.Content>
           </Item>
@@ -47,3 +44,17 @@ export default class MainPitchInfo extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ...state.pitches.mainPitch,
+    user: state.user.userid
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClickUpvote: (user, pitchid, vote) => { dispatch(upvote(user, pitchid, vote)) },
+    onClickDownvote: (user, pitchid, vote) => { dispatch(downvote(user, pitchid, vote)) }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MainPitchInfo);

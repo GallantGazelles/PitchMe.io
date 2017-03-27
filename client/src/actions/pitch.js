@@ -53,13 +53,12 @@ function upvoteToggle() {
     type: 'UPVOTE_TOGGLE'
   }
 }
-export function upvote(userId, pitchId, prevUpvoteState) {
+export function upvote(user_id, pitch_id, vote) {
   return function(dispatch) {
     dispatch(upvoteToggle())
-    axios({
-      method: 'PUT',
-      url: 'http://localhost:8080/api/pitches?'
-    })
+    let vote_value = vote === 1 ? 0 : 1;
+    console.log(vote_value)
+    axios.put('http://localhost:8080/api/votes', { user_id, pitch_id, vote_value })
     .then(results => console.log(results))
     .catch(error => console.error(error))
   }
@@ -70,13 +69,12 @@ function downvoteToggle() {
     type: 'DOWNVOTE_TOGGLE'
   }
 }
-export function downvote(userId, pitchId, prevDownvoteState) {
+export function downvote(user_id, pitch_id, vote) {
   return function(dispatch) {
     dispatch(downvoteToggle())
-    axios({
-      method: 'PUT',
-      url: 'http://localhost:8080/api/pitches'
-    })
+    let vote_value = vote === - 1 ? 0 : -1;
+    console.log(vote_value)
+    axios.put('http://localhost:8080/api/votes', { user_id, pitch_id, vote_value })
     .then(results => console.log(results))
     .catch(error => console.error(error))
   }
