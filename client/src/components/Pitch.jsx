@@ -30,8 +30,8 @@ class Pitch extends Component {
                 <Item>
                   <Item.Content>
                     <Item.Header as='h2'><Icon color='green' name='check' />1609 Votes</Item.Header>
-                    { user !== null ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
-                    { user !== null ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
+                    { user !== null && user === undefined ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
+                    { user !== null && user === undefined ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
                   </Item.Content>
                 </Item>
               </Segment>

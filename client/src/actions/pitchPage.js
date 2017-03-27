@@ -13,7 +13,7 @@ export function fetchPitch(url) {
   return (dispatch) => {
     dispatch(pitchFetching())
     //URL to get pitch
-    axios.get()
+    axios.get('http://localhost:8080/api/pitches?q=all')
     .then(results => dispatch(pitchReceived(results.data)))
   }
 }

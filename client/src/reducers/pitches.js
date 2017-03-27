@@ -20,7 +20,7 @@ export default function pitches (state = initialState, action) {
       let pitchIdArray = state.pitches.map(pitch => pitch.id);
       return {
         ...state,
-        mainPitch: state.pitches.filter(pitch => pitch.id === action.pitchId),
+        mainPitch: state.pitches.filter(pitch => pitch.id === action.pitchId)[0],
         index: pitchIdArray.indexOf(action.pitchId)
       };
     case 'RECEIVE_PITCHES':
@@ -51,7 +51,7 @@ export default function pitches (state = initialState, action) {
           error: action.error
         };
     case 'UPVOTE_TOGGLE':
-      if (state.mainPitch.votes === null) {
+      if (!parseInt(state.mainPitch.votes)) {
         vote_count = 0
       } else {
         vote_count = parseInt(state.mainPitch.votes)
@@ -65,7 +65,7 @@ export default function pitches (state = initialState, action) {
         }
       }
     case 'DOWNVOTE_TOGGLE':
-      if (state.mainPitch.votes === null) {
+      if (!parseInt(state.mainPitch.votes)) {
         vote_count = 0
       } else {
         vote_count = parseInt(state.mainPitch.votes)
