@@ -40,7 +40,7 @@ class Pitch extends Component {
           <Container text>
             <Grid padded columns={2}>
               <Grid.Column width={6}>
-                <Image centered size='small' src='https://ph-files.imgix.net/8a2b7acf-d24d-46f3-9060-723db65625a9?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=120&h=120&fit=crop&dpr=2' />
+                <Image centered shape='rounded' size='small' src='https://ph-files.imgix.net/8a2b7acf-d24d-46f3-9060-723db65625a9?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=120&h=120&fit=crop&dpr=2' />
                 <Segment basic textAlign='center'>
                   <Item>
                     <Item.Content>
