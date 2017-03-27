@@ -1,5 +1,6 @@
 const User = require('./../db/User');
-var Util = require('../util.js');
+const Util = require('../util.js');
+const bcrypt = require('bcrypt');
 
 module.exports.getUsers = (req, res, next) => {
   const { q, user_id } = req.query;
@@ -21,8 +22,7 @@ module.exports.getUsers = (req, res, next) => {
 
 module.exports.postUsers = (req, res, next) => {
   const { username, password, profile } = req.body;
-  console.log(username, password, profile);
-  let salt = Util.createSalt();
+  
   let hashedPassword = Util.createHash(password, salt);
   User.createUser(username, hashedPassword, profile)
       .then(results => res.send('User created!'))
