@@ -34,7 +34,7 @@ class userProfile extends Component {
     return (
       <Segment basic>
         <Container text textAlign='center'>
-          <Segment color='red' padded='very' piled>
+          <Segment color='blue' padded='very' raised>
             <Item>
               <Item.Image size='small' shape='circular' src='http://react.semantic-ui.com/assets/images/wireframe/image.png' />
               <Divider hidden />
