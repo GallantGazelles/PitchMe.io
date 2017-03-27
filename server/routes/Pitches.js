@@ -55,11 +55,19 @@ module.exports.deletePitches = (req, res, next) => {
 }
 
 module.exports.getOnePitch = (req, res, next) => {
-  const { pitchId } = req.query;
-  Pitch.getPitchByPitchId(pitchId)
-    .then(results => {
-      console.log(results);
-      res.status(200).send(results.rows);
-    })
-    .catch(error => res.status(404).send(error));
+  const { pitchId, userId } = req.query;
+  console.log(req.query);
+  if (pitchId && userId) {
+    Pitch.getSinglePitch(pitchId, userId)
+      .then(results => {
+        res.status(200).send(results.rows);
+      })
+      .catch(error => res.status(404).send(error));
+  } else {
+    Pitch.getPitchByPitchId(pitchId)
+      .then(results => {
+        res.status(200).send(results.rows)
+      })
+      .catch(error => res.status(404).send(error));
+  }
 }

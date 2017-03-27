@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { upvote, downvote } from '../actions/pitch';
+import { fetchPitch } from '../actions/pitchPage';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Video from './Video.jsx';
@@ -14,14 +15,26 @@ class Pitch extends Component {
     this.state = {};
   }
 
-  componentWillReceiveProps() {
+  componentWillMount() {
+    let { dispatch, getPitch } = this.props;
     let pitchId = this.props.match.params.pitchId;
-    if (pitchId) {
-      axios.get('http://localhost:8080/api/pitch', {params: {pitchId: pitchId}})
-        .then(results => {
-          this.setState({pitch: results.data[0]});
-        })
-        .catch(error => console.log(error))
+    console.log('this pitchid', pitchId)
+    getPitch(this.props.user, pitchId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let { dispatch, getPitch } = this.props;
+    let pitchId = this.props.match.params.pitchId;
+    console.log('this pitchid', pitchId)
+    console.log('next pitchid', nextProps.match.params.pitchId);
+    if (this.props.user !== nextProps.user) {
+      getPitch(nextProps.user, pitchId);
+      // axios.get('http://localhost:8080/api/pitch', {params: {pitchId: pitchId}})
+      //   .then(results => {
+      //     this.setState({pitch: results.data[0]});
+      //   })
+      //   .catch(error => console.log(error))
+
     }
   }
 
@@ -33,7 +46,7 @@ class Pitch extends Component {
     const neutralUpButton = (<Button icon basic size='big' color='grey' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>)
     const neutralDownButton = <Button icon basic size='big' color='grey' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
 
-    if (this.state.pitch) {
+    if (this.props.name) {
       return (
         <Segment basic>
           <Video />
@@ -44,18 +57,18 @@ class Pitch extends Component {
                 <Segment basic textAlign='center'>
                   <Item>
                     <Item.Content>
-                      <Item.Header as='h2'><Icon color='green' name='check' />{this.state.pitch.votes} Votes</Item.Header>
-                      { user !== null ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
-                      { user !== null ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
+                      <Item.Header as='h2'><Icon color='green' name='check' />{this.props.votes} Votes</Item.Header>
+                      { user ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
+                      { user ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
                     </Item.Content>
                   </Item>
                 </Segment>
               </Grid.Column>
               <Grid.Column width={10} >
                 <Header as='h1'>
-                  {this.state.pitch.name} <Label basic color='blue'>Tech</Label>
+                  {this.props.name} <Label basic color='blue'>Tech</Label>
                   <Header.Subheader>
-                    {this.state.pitch.blurb}
+                    {this.props.blurb}
                   </Header.Subheader>
                 </Header>
                 <p>Spicy jalapeno bacon ipsum dolor amet jowl cow ribeye corned beef. Pastrami tongue meatloaf chuck, bresaola pig strip steak andouille corned beef kielbasa brisket.</p>
@@ -89,15 +102,15 @@ class Pitch extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    ...state.pitches.mainPitch,
     user: state.user.userid,
-    pitch: state.pitches.mainPitch.id,
-    vote_type: state.pitches.mainPitch.vote_type
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     onClickUpvote: (user, pitchid, vote) => { dispatch(upvote(user, pitchid, vote)) },
-    onClickDownvote: (user, pitchid, vote) => { dispatch(downvote(user, pitchid, vote)) }
+    onClickDownvote: (user, pitchid, vote) => { dispatch(downvote(user, pitchid, vote)) },
+    getPitch: (pitchid, userid) => { dispatch(fetchPitch(pitchid, userid)) }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Pitch);

@@ -15,6 +15,11 @@ export default function pitches (state = initialState, action) {
         ...state,
         isFetching: true
       };
+    case 'PITCH_LOADED':
+      return {
+        ...state,
+        mainPitch: action.pitch[0]
+      };
     case 'SELECT_PITCH':
       //onClick function for pitches?
       let pitchIdArray = state.pitches.map(pitch => pitch.id);
