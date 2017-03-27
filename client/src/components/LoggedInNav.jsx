@@ -15,7 +15,7 @@ export default class LoggedInNav extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Grid padded>
+      <Grid padded stackable>
         <Grid.Column width={3} verticalAlign='middle'>
           <Header as="h1" textAlign='center'>
             <Link to="/"><img src="../logo.jpg" alt="PitchMe.io" height="50" width="100" /><p>PitchMe.io</p></Link>
