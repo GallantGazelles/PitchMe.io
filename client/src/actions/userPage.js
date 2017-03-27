@@ -7,17 +7,17 @@ function fetchingUser () {
 }
 
 function receivedUserProfile(userProfile) {
-  console.log(userProfile)
+  console.log(userProfile);
   return {
     type: 'RECEIVED_USER_PROFILE',
     username: userProfile[0].username,
-    profile: userProfile[0].profile
+    userProfile: userProfile[0].profile
   }
 }
 
 function receivedUserComments(comments) {
   return {
-    type: 'RECEIVED_USER_PROFILE',
+    type: 'RECEIVED_USER_COMMENTS',
     comments: comments
   }
 }
@@ -45,14 +45,14 @@ export function fetchUserPage(userid) {
         userId: userid
       }
     })
-    .then( results => { dispatch(receivedUserProfile(results.data)) } )
+    .then( profile => { dispatch(receivedUserProfile(profile.data)) } )
     //Fetch comments
     axios.get('http://localhost:8080/api/comments', {
       params: {
         userId: userid
       }
     })
-    .then( results => { dispatch(receivedUserComments(results.data)) } )
+    .then( comments => { dispatch(receivedUserComments(comments.data)) } )
     //Fetch pitches
     axios.get('http://localhost:8080/api/pitches', {
       params: {
@@ -60,13 +60,13 @@ export function fetchUserPage(userid) {
         userId: userid
       }
     })
-    .then( results => { dispatch(receivedUserProfile(results.data)) } )
+    .then( pitches => { dispatch(receivedUserPitches(pitches.data)) } )
     //Fetch follows
     axios.get('http://localhost:8080/api/followers', {
       params: {
         userId: userid
       }
     })
-    .then( results => { dispatch(receivedUserFollows(results.data)) } )
+    .then( follows => { dispatch(receivedUserFollows(follows.data)) } )
   }
 }

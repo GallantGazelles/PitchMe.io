@@ -1,6 +1,6 @@
 const initialState = {
   username: null,
-  profile: null,
+  userProfile: null,
   comments: [],
   follows: [],
   pitches: [],
@@ -18,7 +18,7 @@ const userPage = (state=initialState, action) => {
       return {
         ...state,
         username: action.username,
-        profile: action.profile
+        userProfile: action.userProfile
       };
     case 'RECEIVED_USER_COMMENTS':
       return {
