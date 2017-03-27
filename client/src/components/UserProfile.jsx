@@ -31,7 +31,6 @@ class userProfile extends Component {
   render() {
     const { activeItem } = this.state;
     const { username, userProfile, comments, follows, pitches } = this.props
-    console.log(this.props.userId);
     return (
       <Segment basic>
         <Container text textAlign='center'>
