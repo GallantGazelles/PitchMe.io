@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
+import LoggedInNav from './LoggedInNav.jsx';
+import LoggedOutNav from './LoggedOutNav.jsx';
 import { Grid, Header, Icon, Input, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props)
-    this.state = { activeItem: 'home' };
-
-    this.handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+    this.state = {};
   }
 
   render () {
-    const { activeItem } = this.state;
+    console.log(this.state.username);
 
-    return (
-      <Grid padded>
-        <Grid.Column width={5}>
-          <Header as="h1">
-            <Icon name='meh' />PitchMe
-          </Header>
-        </Grid.Column>
-
-        <Grid.Column width={11}>
-          <Menu secondary>
-            <Menu.Menu position='right'>
-              <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
-              <Menu.Item name='how it works' as={Link} to='/howitworks' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
-              <Menu.Item name='sign up' as={Link} to='/signup' active={activeItem === 'sign up'} onClick={this.handleItemClick} />
-              <Menu.Item name='sign in' as={Link} to='/signin' active={activeItem === 'sign in'} onClick={this.handleItemClick} />
-              <Menu.Item>
-                <Input icon='search' placeholder='Search...' />
-              </Menu.Item>
-            </Menu.Menu>
-          </Menu>
-        </Grid.Column>
-      </Grid>
-    )
+    if (this.state.username) {
+      return <LoggedInNav />
+    } else {
+      return <LoggedOutNav />
+    }
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    username: state.user.username
+  }
+}
+
+
+export default connect(mapStateToProps)(NavBar);
