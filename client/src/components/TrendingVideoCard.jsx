@@ -3,8 +3,6 @@ import { Card, Icon, Image } from 'semantic-ui-react';
 
 
 export default (props) => {
-  console.log(props);
-
   return (
     <Card centered color='blue'>
       <Image
