@@ -23,7 +23,8 @@ module.exports.getPitchByPitchId = (pitchId) => {
 };
 //should set the default value of investment status & votes in the table schema
 module.exports.addPitch = (user_id, name, video, website, profile, blurb, category_id)=> {
-  return db.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id) VALUES (${user_id}, '${name}', '${video}', '${website}', '${profile}', '${blurb}', '${category_id}');`);
+  return db.query(`INSERT INTO pitches (user_id, name, video, website, profile, blurb, category_id) VALUES (${user_id}, '${name}', '${video}', '${website}', '${profile}', '${blurb}', '${category_id}')
+    RETURNING id;`);
 };
 //currently by name, later on change to a unique hash we created for the user when pitch was created
 module.exports.deletePitch = (pitchId) => {
@@ -41,3 +42,14 @@ module.exports.getPitchByCategoryId = (categoryId) => {
 module.exports.getPitchByUserId = (userId) => {
   return db.query(`SELECT * from pitches where user_id = ${userId};`)
 };
+
+module.exports.getSinglePitch = (pitchId, userId) => {
+  return db.query(`SELECT pitchTable.*, followertable.follow_count, votestable.votes, uservote.vote_type
+FROM (SELECT * FROM pitches WHERE pitches.id=${pitchId}) pitchTable 
+LEFT JOIN (SELECT count(followers.id) follow_count, pitch_id FROM followers GROUP BY pitch_id) followertable
+ON (pitchTable.id = followertable.pitch_id)
+LEFT JOIN (SELECT sum(vote_type) votes, pitch_id FROM votes GROUP BY pitch_id) votestable
+ON (pitchTable.id = votestable.pitch_id)
+LEFT JOIN (SELECT vote_type, pitch_id FROM votes WHERE user_id =${userId}) uservote
+ON (pitchTable.id = uservote.pitch_id);`)
+}
