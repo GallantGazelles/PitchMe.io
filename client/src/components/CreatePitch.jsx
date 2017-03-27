@@ -3,7 +3,7 @@ import {
   Button, Checkbox, Container, Divider, Form, Header, Icon, Input, Radio, Select, Segment, TextArea
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { pitchName, pitchVideo, pitchWebsite, pitchProfile, 
+import { pitchName, pitchVideo, pitchWebsite, pitchProfile,
   pitchBlurb, pitchCategory, createPitch } from '../actions/createPitch';
 
 
@@ -35,41 +35,41 @@ class CreatePitch extends Component {
           </Segment>
           <Form>
             <Form.Group widths='equal'>
-              <Form.Field 
-                control={Input} 
+              <Form.Field
+                control={Input}
                 label='Pitch Title'
                 onChange = { (e) => submitName(e.target.value) }
               />
               <Form.Field control={Input} label='Logo' placeholder='.jpg or .png square (minimum size: 300x300px)' />
             </Form.Group>
             <Form.Group widths='equal'>
-              <Form.Field 
-                control={Input} 
-                placeholder='60 seconds maximum' 
+              <Form.Field
+                control={Input}
+                placeholder='60 seconds maximum'
                 label='Video URL (Youtube/Vimeo)'
-                onChange = { (e) => submitVideo(e.target.value) } 
+                onChange = { (e) => submitVideo(e.target.value) }
               />
-              <Form.Field 
-                control={Input} 
-                label='Blurb' 
-                placeholder='140 characters'  
+              <Form.Field
+                control={Input}
+                label='Blurb'
+                placeholder='140 characters'
                 onChange = { (e) => submitBlurb(e.target.value) }
               />
-              <Form.Field 
-                control={Input} 
-                label='Website' 
+              <Form.Field
+                control={Input}
+                label='Website'
                 placeholder='Your website'
                 onChange = { (e) => submitWebsite(e.target.value) }
               />
             </Form.Group>
             <Form.Field control={TextArea} label='Description' placeholder='Tell us more about your idea...' onChange = { (e) => submitProfile(e.target.value)}/>
-            <Form.Dropdown 
-              placeholder='Select Category' 
+            <Form.Dropdown
+              placeholder='Select Category'
               search selection options={categories}
               onChange = { (e, data) => submitCategory(data.value) }
             />
-            <Form.Field control={Checkbox} label='I agree to the Terms and Conditions' /> 
-            <Form.Button onClick={(e)=> {
+            <Form.Field control={Checkbox} label='I agree to the Terms and Conditions' />
+            <Form.Button primary onClick={(e)=> {
               e.preventDefault();
               submitPitch(userid, name, video, website, profile, blurb, category_id)
             }}>Upload Pitch!</Form.Button>
@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
     submitProfile: (profile) => { dispatch(pitchProfile(profile)) },
     submitBlurb: (blurb) => { dispatch(pitchBlurb(blurb)) },
     submitCategory: (id) => { dispatch(pitchCategory(id)) },
-    submitPitch: (user_id, name, video, website, profile, blurb, category_id) => { 
+    submitPitch: (user_id, name, video, website, profile, blurb, category_id) => {
       dispatch(createPitch(user_id, name, video, website, profile, blurb, category_id))
     }
   }
