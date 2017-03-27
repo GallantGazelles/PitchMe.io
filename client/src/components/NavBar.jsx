@@ -11,8 +11,6 @@ class NavBar extends Component {
   }
 
   render () {
-    console.log(this.props);
-
     if (this.props.username) {
       return <LoggedInNav />
     } else {
