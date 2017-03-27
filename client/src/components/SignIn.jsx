@@ -11,7 +11,6 @@ class SignIn extends Component {
 
   render() {
     const { dispatch, username, password, inputUsername, inputPassword, submitSignIn } = this.props;
-    console.log(this.props);
     return (
       <Container text>
         <Segment padded raised>
@@ -19,16 +18,23 @@ class SignIn extends Component {
             <Header as='h1' floated='left'>Sign In</Header>
             <Header as='h5' floated='right'>New to PitchMe? Sign up here! <Icon name='write' /></Header>
           </Segment>
-          <Form>
+          <Form onSubmit={ (e) => {
+            e.preventDefault();
+            submitSignIn(username, password);
+          }}>
             <Form.Input label='Username' 
-              onChange={(e) => { inputUsername(e.target.value) } }
+              onChange={(e) => { 
+                inputUsername(e.target.value) } }
             />
             <Form.Input label='Password' type='password'
               onChange = { (e) => { inputPassword(e.target.value) } } 
             />
             <Form.Checkbox label='Remember Me' />
             <Form.Button basic primary 
-              onClick={ () => { submitSignIn(username, password) } }
+              onClick={ (e) => {
+                e.preventDefault();
+                submitSignIn(username, password) 
+              } }
             >
               Sign In
             </Form.Button>

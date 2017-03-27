@@ -9,12 +9,13 @@ const User = require('../db/User.js');
 router.get('/signin', (req, res, next) => {
 	//render or redirect
 	// res.render('');
-	res.end('GET login, bye');
+	console.log('get signin', {user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
+	res.send({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
 });
 
 router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin'}), (req, res) => {
 	//redirect to loggedIn home
-	res.json({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
+	res.send({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
 });
 
 router.get('/logout', (req, res) => {

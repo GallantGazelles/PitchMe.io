@@ -8,13 +8,12 @@ import { connect } from 'react-redux';
 class NavBar extends Component {
   constructor(props) {
     super(props)
-    this.state = {};
   }
 
   render () {
-    console.log(this.state.username);
+    console.log(this.props);
 
-    if (this.state.username) {
+    if (this.props.username) {
       return <LoggedInNav />
     } else {
       return <LoggedOutNav />
