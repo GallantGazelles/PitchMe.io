@@ -24,7 +24,7 @@ class App extends Component {
         <Divider hidden />
         <MainPitchInfo />
         <Divider hidden />
-        <TrendingVideos pitches={this.props.pitches} />
+        <TrendingVideos />
       </section>
     )
   }

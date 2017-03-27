@@ -13,11 +13,12 @@ class MainPitchInfo extends Component {
   }
 
   render() {
+    console.log('main pitch props', this.props)
     const {user, id, vote_type} = this.props
     const {onClickUpvote, onClickDownvote} = this.props
     const upvoteButton = <Button icon size='big' color='green' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>
-    const downvoteButton = <Button icon size='big' color='red' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
     const neutralUpButton = (<Button icon basic size='big' color='grey' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>)
+    const downvoteButton = <Button icon size='big' color='red' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
     const neutralDownButton = <Button icon basic size='big' color='grey' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
     return (
       <Container textAlign='center' text>
@@ -34,8 +35,8 @@ class MainPitchInfo extends Component {
             <Item.Content>
               <Item.Header as='h1'><Icon color='blue' name='thumbs outline up' />{this.props.votes} Votes</Item.Header>
               <Segment basic textAlign='center'>
-                { user !== null ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
-                { user !== null ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
+                { user !== null && user !== undefined ? (this.props.vote_type === 1 ? upvoteButton : neutralUpButton):<div></div> }
+                { user !== null && user !== undefined ? (this.props.vote_type === -1 ? downvoteButton : neutralDownButton):<div></div> }
               </Segment>
             </Item.Content>
           </Item>

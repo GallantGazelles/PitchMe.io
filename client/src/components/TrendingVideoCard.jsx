@@ -1,10 +1,12 @@
 import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { selectPitch } from '../actions/pitch'
 
-
-export default (props) => {
+const TrendingVideoCard = (props) => {
+  const { dispatch } = props;
   return (
-    <Card centered color='blue'>
+    <Card centered color='blue' onClick = { () => { dispatch(selectPitch(props.pitch.id)) } }>
       <Image
         size='medium'
         src='https://ph-files.imgix.net/8a2b7acf-d24d-46f3-9060-723db65625a9?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=120&h=120&fit=crop&dpr=2'
@@ -25,3 +27,5 @@ export default (props) => {
     </Card>
   )
 }
+
+export default connect()(TrendingVideoCard);
