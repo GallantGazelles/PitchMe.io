@@ -29,7 +29,7 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-app.set('port', (5000));
+app.set('port', (process.env.PORT || 5000));
 
 // console.log('process.env: ', process.env);
 app.use(express.static(path.join(__dirname, '/../client/')));
@@ -45,6 +45,7 @@ app.use('/api', router);
 app.use('/auth', auth);
 
 app.listen(app.get('port'), function() {
+	console.log('heroku test');
 	console.log('Our app is listening to ', app.get('port'));
 });
 
