@@ -12,14 +12,9 @@ router.get('/signin', (req, res, next) => {
 	console.log('get signin', {user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
 	res.send({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
 	res.end('GET login, bye');
-	// res.status(200).json({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
 });
 
-router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin'}), (req, res) => {
-	//redirect to loggedIn home
-	// res.json({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
-	res.redirect(301, '/api/users?q=users');
-});
+router.post('/signin', passport.authenticate('local', {successReturnToOrRedirect: '/', failureRedirect: '/signin', failureFlash: true}));
 
 router.get('/logout', (req, res) => {
 	req.logout();
@@ -33,7 +28,6 @@ var localStrategy = new LocalStrategy((username, password, done) => {
 	User.getUserByUsername(username)
 	.then((user) => {
 		if(user.rows.length !== 0) {
-			//check pwd
 			console.log('check pwd');
 			bcrypt.compare(password, user.rows[0].password)
 			.then(res => {

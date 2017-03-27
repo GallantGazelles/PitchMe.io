@@ -16,9 +16,9 @@ export default class LoggedInNav extends Component {
 
     return (
       <Grid padded>
-        <Grid.Column width={5}>
+        <Grid.Column width={5} verticalAlign='middle'>
           <Header as="h1">
-            <Link to="/">PitchMe.io</Link>
+            <Link to="/"><img src="../logo.jpg" alt="Smiley face" height="50" width="100" /><p>PitchMe.io</p></Link>
           </Header>
         </Grid.Column>
 
