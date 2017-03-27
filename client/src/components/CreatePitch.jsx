@@ -40,7 +40,7 @@ export default class CreatePitch extends Component {
               <Form.Field control={Input} label='Website' placeholder='Your website' />
             </Form.Group>
             <Form.Field control={TextArea} label='Description' placeholder='Tell us more about your idea...' />
-            <Form.Dropdown placeholder='Select Category' search selection options={categories} />
+            <Form.Dropdown placeholder='Select Category' fluid selection options={categories} />
             <Form.Field control={Checkbox} label='I agree to the Terms and Conditions' />
             <Form.Button>Upload Pitch!</Form.Button>
           </Form>

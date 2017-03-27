@@ -36,7 +36,7 @@ class SignUp extends Component {
             <Form.Input label='Re-Enter Email' />
             <Form.Input label='Password' type='password' onChange={(e)=>{changePassword(e.target.value)}} />
             <Form.Input label='Re-Password' type='password' />
-            <Form.Button basic primary>Sign Up!</Form.Button>
+            <Form.Button primary>Sign Up!</Form.Button>
           </Form>
           <Divider horizontal>
             <Header as='h4'>Or</Header>

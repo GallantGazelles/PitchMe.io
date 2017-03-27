@@ -22,18 +22,18 @@ class SignIn extends Component {
             e.preventDefault();
             submitSignIn(username, password);
           }}>
-            <Form.Input label='Username' 
-              onChange={(e) => { 
+            <Form.Input label='Username'
+              onChange={(e) => {
                 inputUsername(e.target.value) } }
             />
             <Form.Input label='Password' type='password'
-              onChange = { (e) => { inputPassword(e.target.value) } } 
+              onChange = { (e) => { inputPassword(e.target.value) } }
             />
             <Form.Checkbox label='Remember Me' />
-            <Form.Button basic primary 
+            <Form.Button primary
               onClick={ (e) => {
                 e.preventDefault();
-                submitSignIn(username, password) 
+                submitSignIn(username, password)
               } }
             >
               Sign In

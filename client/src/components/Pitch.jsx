@@ -3,7 +3,7 @@ import Video from './Video.jsx';
 import Comment from './Comment.jsx';
 import { Button, Container, Divider, Grid, Header, Icon, Image, Item, Label, Segment, Statistic } from 'semantic-ui-react';
 
-export default () => (
+export default (props) => (
   <Segment basic>
     <Video />
     <Container text>
