@@ -8,7 +8,9 @@ const Votes = require('./routes/Votes');
 // const Categories = require('./routes/Categories');
 
 // Rest API to /api
-
+router.get('/signin', (req, res) => {
+	res.redirect('/');
+});
 // USERS
 //Get all users
 router.get('/users', Users.getUsers);

@@ -5,16 +5,17 @@ const router = express.Router();
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../db/User.js');
 
-
 router.get('/signin', (req, res, next) => {
 	//render or redirect
-	// res.render('');
 	res.end('GET login, bye');
+	// res.status(200).json({user_id: req.session.passport.user.rows[0].id, username: req.session.passport.user.rows[0].username});
 });
 
 router.post('/signin', passport.authenticate('local', {failureRedirect: '/signin'}), (req, res) => {
 	//redirect to loggedIn home
+	console.log('ha');
 	res.json({username: req.body.username, user_id: req.session.passport.user.rows[0].id});
+	// res.redirect('/notfound');
 });
 
 router.get('/logout', (req, res) => {
@@ -28,8 +29,6 @@ module.exports = router;
 var localStrategy = new LocalStrategy((username, password, done) => {
 	User.getUserByUsername(username)
 	.then((user) => {
-		console.log('this is user: ', user.rows);
-		console.log('username: ', user.rows[0].username);
 		if(user.rows.length !== 0) {
 			//check pwd
 			console.log('check pwd');
