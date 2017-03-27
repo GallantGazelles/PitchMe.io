@@ -1,6 +1,6 @@
 import React from 'react';
 import Video from './Video.jsx';
-import Comment from './Comment.jsx';
+import Discussion from './Discussion.jsx';
 import { Button, Container, Divider, Grid, Header, Icon, Image, Item, Label, Segment, Statistic } from 'semantic-ui-react';
 
 export default (props) => (
@@ -38,7 +38,7 @@ export default (props) => (
       </Grid>
     </Container>
 
-    <Comment />
+    <Discussion />
 
   </Segment>
 )
