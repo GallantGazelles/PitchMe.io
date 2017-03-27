@@ -23,7 +23,7 @@ export default class LoggedInNav extends Component {
         </Grid.Column>
 
         <Grid.Column width={11}>
-          <Menu color='blue' secondary compact floated='right'>
+          <Menu secondary compact floated='right'>
             <Menu.Menu position='right'>
               <Menu.Item name='home' as={Link} to='/' active={activeItem === 'home'} onClick={this.handleItemClick} />
               <Menu.Item name='how it works' as={Link} to='/howitworks' active={activeItem === 'how it works'} onClick={this.handleItemClick} />
