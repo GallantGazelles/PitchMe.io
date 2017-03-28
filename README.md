@@ -47,6 +47,12 @@ bower install
 
 View the project roadmap [here](LINK_TO_DOC)
 
+### How to Install
+
+1. Fork the repo
+2. npm install
+3. Visit react.semantic-ui.com and semantic-ui.com and be sure to run through the default installation and Gulp unpacking.
+
 
 ## Contributing
 
