@@ -17,11 +17,15 @@
 ## Usage
 
 ### Learning Redux
-Docs - http://redux.js.org/
-Tutorial - https://egghead.io/courses/getting-started-with-redux
-Code Academy Series - https://www.youtube.com/watch?v=1w-oQ-i1XB8
-Dan Abramov (Redux's Creator) Talk - https://www.youtube.com/watch?v=xsSnOQynTHs
+  - Docs - http://redux.js.org/
+  - Tutorial - https://egghead.io/courses/getting-started-with-redux
+  - Code Academy Series - https://www.youtube.com/watch?v=1w-oQ-i1XB8
+  - Dan Abramov (Redux's Creator) Talk - https://www.youtube.com/watch?v=xsSnOQynTHs
 
+
+### Installing Postgres
+  - Download postgres App!
+  - Download Postico for a SQL 
 
 ### Server Setup
 Set up server & db tables: With all dependencies installed, please also install Postgres.app (for Mac users) and Postico. The former works with postgres database and the latter allows you to directly check the tables on your Mac.
