@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<nav>
+  <div>
+    <span>
+      Home 
+    </span>
+    <span>
+      Start a Pitch 
+    </span>
+    <span>
+      How it works 
+    </span>
+    <span>
+      Companies 
+    </span>
+    <span>
+      Sign in 
+    </span>
+    <span>
+      Sign up 
+    </span>
+  </div>
+  <div>
+    <input
+      name="search"
+      placeholder="Search"
+      type="text"
+    />
+  </div>
+</nav>
+`;
