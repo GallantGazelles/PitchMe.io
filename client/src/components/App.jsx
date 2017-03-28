@@ -18,9 +18,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.mainPitch);
+
     return (
       <section>
-        <Video />
+        <Video video={this.props.mainPitch.video}/>
         <Divider hidden />
         <MainPitchInfo />
         <Divider hidden />

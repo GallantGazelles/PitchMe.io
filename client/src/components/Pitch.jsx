@@ -49,7 +49,7 @@ class Pitch extends Component {
     if (this.props.name) {
       return (
         <Segment basic>
-          <Video />
+          <Video video={this.props.video}/>
           <Container text>
             <Grid padded columns={2}>
               <Grid.Column width={6}>
@@ -71,8 +71,7 @@ class Pitch extends Component {
                     {this.props.blurb}
                   </Header.Subheader>
                 </Header>
-                <p>Spicy jalapeno bacon ipsum dolor amet jowl cow ribeye corned beef. Pastrami tongue meatloaf chuck, bresaola pig strip steak andouille corned beef kielbasa brisket.</p>
-                <p>Spicy jalapeno bacon ipsum dolor amet jowl cow ribeye corned beef. Pastrami tongue meatloaf chuck, bresaola pig strip steak andouille corned beef kielbasa brisket.</p>
+                <p>{this.props.profile}</p>
                 <p>
                   <Button primary>Follow</Button>
                   <Button primary>Visit Website</Button>
