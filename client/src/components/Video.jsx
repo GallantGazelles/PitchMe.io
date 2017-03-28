@@ -12,8 +12,7 @@ let Video = (props) => (
         brandedUI = {false}
         color = 'white'
         hd = {true}
-        id = 'D0WnZyxp_Wo'
-        source = 'youtube'
+        url={props.video}
       />
     </Segment>
   </Container>
