@@ -2,10 +2,13 @@ const Pitch = require('./../db/Pitches');
 
 module.exports.getPitches = (req, res, next) => {
   const { q, pitchId, cat, userId } = req.query;
+
   if (q === 'all') {
-    if(req.session.passport) {
+    if(req.session.passport.user) {
       Pitch.getAllPitches(req.session.passport.user.rows[0].id)
-        .then(results => res.status(200).send(results.rows))
+        .then(results => {
+          res.status(200).send(results.rows)
+        })
         .catch(error => res.status(404).json(error));
     } else {
       Pitch.getAllPitches(null)
