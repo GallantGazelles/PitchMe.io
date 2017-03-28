@@ -8,6 +8,7 @@ import Discussion from './Discussion.jsx';
 import {
   Button, Container, Dimmer, Divider, Grid, Header, Icon, Image, Item, Label, Loader, Segment, Statistic
 } from 'semantic-ui-react';
+import { fetchPitchComments, typingComment } from '../actions/comments';
 
 class Pitch extends Component {
   constructor(props) {
@@ -16,17 +17,16 @@ class Pitch extends Component {
   }
 
   componentWillMount() {
-    let { dispatch, getPitch } = this.props;
+    let { dispatch, getPitch, getComments } = this.props;
     let pitchId = this.props.match.params.pitchId;
     console.log('this pitchid', pitchId)
     getPitch(this.props.user, pitchId);
+    getComments(pitchId);
   }
 
   componentWillReceiveProps(nextProps) {
     let { dispatch, getPitch } = this.props;
     let pitchId = this.props.match.params.pitchId;
-    console.log('this pitchid', pitchId)
-    console.log('next pitchid', nextProps.match.params.pitchId);
     if (this.props.user !== nextProps.user) {
       getPitch(nextProps.user, pitchId);
       // axios.get('http://localhost:8080/api/pitch', {params: {pitchId: pitchId}})
@@ -40,7 +40,7 @@ class Pitch extends Component {
 
   render() {
     const {user, id, vote_type} = this.props
-    const {onClickUpvote, onClickDownvote} = this.props
+    const {onClickUpvote, onClickDownvote, onTypeChange } = this.props
     const upvoteButton = <Button icon size='big' color='green' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>
     const downvoteButton = <Button icon size='big' color='red' onClick={() => onClickDownvote(user, id, vote_type)}><Icon name='arrow down' /></Button>
     const neutralUpButton = (<Button icon basic size='big' color='grey' onClick={() => onClickUpvote(user, id, vote_type)}><Icon name='arrow up' /></Button>)
@@ -83,7 +83,7 @@ class Pitch extends Component {
             </Grid>
           </Container>
 
-          <Discussion />
+          <Discussion comments={this.props.comments} />
 
         </Segment>
       )
@@ -103,6 +103,7 @@ class Pitch extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state.pitches.mainPitch,
+    comments: state.comments.comments,
     user: state.user.userid,
   }
 }
@@ -110,7 +111,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onClickUpvote: (user, pitchid, vote) => { dispatch(upvote(user, pitchid, vote)) },
     onClickDownvote: (user, pitchid, vote) => { dispatch(downvote(user, pitchid, vote)) },
-    getPitch: (pitchid, userid) => { dispatch(fetchPitch(pitchid, userid)) }
+    getPitch: (pitchid, userid) => { dispatch(fetchPitch(pitchid, userid)) },
+    getComments: (pitchid) => { dispatch(fetchPitchComments(pitchid)) }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Pitch);

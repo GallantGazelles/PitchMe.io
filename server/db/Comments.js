@@ -12,7 +12,7 @@ module.exports.getCommentsByPitchName = (pitchName) => {
 }
 
 module.exports.getCommentsByPitchId = (pitchId) => {
-  return db.query(`SELECT comments.* FROM comments WHERE comments.pitch_id = '${pitchId}' ORDER BY timestamp DESC`);
+  return db.query(`SELECT users.username, comments.* FROM comments, users WHERE comments.user_id = users.id AND comments.pitch_id = '${pitchId}' ORDER BY timestamp DESC`);
 }
 
 module.exports.getCommentsByUserId = (userId) => {

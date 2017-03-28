@@ -1,7 +1,9 @@
 const initialState = {
-  comments: null,
+  text: null,
+  comments: [],
   creatingComment: false,
-  error: null
+  error: null,
+  fetchingComments: false,
 }
 
 const comments = (state=initialState, action) => {
@@ -11,15 +13,36 @@ const comments = (state=initialState, action) => {
         ...state,
         creatingComment: true
       };
+    case 'TYPING_COMMENT':
+      return {
+        ...state,
+        text: action.text
+      }
     case 'COMMENT_SUBMITTED':
       return {
         ...initialState
       };
-    case 'COMMENT_ERROR',
+    case 'COMMENT_ERROR':
       return {
         ...state,
         error: action.error,
         creatingComment: false
+      };
+    case 'FETCHING_COMMENTS':
+      return {
+        ...state,
+        fetchingComments: true
+      }
+    case 'FETCH_COMMENTS_ERROR':
+      return {
+        ...state,
+        error: action.error,
+        fetchingComments: true
+      }
+    case 'RECEIVED_COMMENTS':
+      return {
+        ...state,
+        comments: action.comments
       }
     default:
       return state;
