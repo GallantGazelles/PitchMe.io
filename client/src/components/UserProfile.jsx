@@ -23,7 +23,6 @@ class userProfile extends Component {
   componentWillReceiveProps(nextProps) {
     const {dispatch} = this.props;
     if (nextProps.userId !== this.props.userId) {
-      console.log(nextProps.userId)
       dispatch(fetchUserPage(nextProps.userId))
     }
   }

@@ -3,7 +3,7 @@ import Video from './Video.jsx';
 import MainPitchInfo from './MainPitchInfo.jsx';
 import TrendingVideos from './TrendingVideos.jsx';
 import axios from 'axios';
-import { Container, Divider } from 'semantic-ui-react';
+import { Container, Dimmer, Divider, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchPitches } from '../actions/pitch';
 
@@ -18,17 +18,26 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.mainPitch);
-
-    return (
-      <section>
-        <Video video={this.props.mainPitch.video}/>
-        <Divider hidden />
-        <MainPitchInfo />
-        <Divider hidden />
-        <TrendingVideos />
-      </section>
-    )
+    if (this.props.mainPitch.video) {
+      return (
+        <section>
+          <Video video={this.props.mainPitch.video}/>
+          <Divider hidden />
+          <MainPitchInfo />
+          <Divider hidden />
+          <TrendingVideos />
+        </section>
+      )
+    } else {
+      return (
+        <Container>
+          <Dimmer active inverted>
+            <Loader size='large'>Loading</Loader>
+          </Dimmer>
+          LOADING
+        </Container>
+      )
+    }
   }
 }
 
