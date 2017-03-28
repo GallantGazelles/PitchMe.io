@@ -22,11 +22,12 @@
   - Code Academy Series - https://www.youtube.com/watch?v=1w-oQ-i1XB8
   - Dan Abramov (Redux's Creator) Talk - https://www.youtube.com/watch?v=xsSnOQynTHs
 
-### How to Install Semantic
+### How to Learn & Install Semantic
 
-1. Fork the repo
-2. npm install
-3. Visit react.semantic-ui.com and semantic-ui.com and be sure to run through the default installation and Gulp unpacking.
+1. Learn here https://www.pluralsight.com/courses/semantic-ui-2-0
+2. Fork the repo
+3. npm install
+4. Visit react.semantic-ui.com and semantic-ui.com and be sure to run through the default installation and Gulp unpacking.
 
 ### Installing Postgres
   - Download postgres App!
