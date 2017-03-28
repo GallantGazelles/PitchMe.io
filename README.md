@@ -20,7 +20,11 @@
 
 ## Usage
 
-> Fill this in later when.
+Set up server & db tables: With all dependencies installed, please also install Postgres.app (for Mac users) and Postico. The former works with postgres database and the latter allows you to directly check the tables on your Mac.
+
+The test/db folder contains data that we need for both development and backend tests. With knex installed, you can refer to the commands in this link(http://mherman.org/blog/2016/04/28/test-driven-development-with-node/#.WNqmIHQrJo5) to create the tables and fill in data. (No need to create schema and dummy data again.)
+
+For session to work, session table should be created by hand and a specific schema should be used. To create the table, go to 'SQL Query' in Postico and run the table.sql file in node_modules/connect-pg-simple.
 
 ## Requirements
 
