@@ -22,6 +22,11 @@
   - Code Academy Series - https://www.youtube.com/watch?v=1w-oQ-i1XB8
   - Dan Abramov (Redux's Creator) Talk - https://www.youtube.com/watch?v=xsSnOQynTHs
 
+### How to Install Semantic
+
+1. Fork the repo
+2. npm install
+3. Visit react.semantic-ui.com and semantic-ui.com and be sure to run through the default installation and Gulp unpacking.
 
 ### Installing Postgres
   - Download postgres App!
@@ -49,5 +54,7 @@ bower install
 ```
 ### Roadmap
 View the project roadmap [here](LINK_TO_DOC)
+
+
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
