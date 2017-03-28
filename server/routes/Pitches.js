@@ -33,7 +33,7 @@ module.exports.postPitches = (req, res, next) => {
   console.log('postPitches', req.body)
   const {user_id, name, video, website, profile, blurb, category_id} = req.body;
   Pitch.addPitch(user_id, name, video, website, profile, blurb, category_id)
-  .then(results => res.redirect('/'))
+  .then(results => res.status(201).send('Pitch created'))
   .catch(error => {
     res.status(404).send('Error occcured: Pitch not created')
   });
