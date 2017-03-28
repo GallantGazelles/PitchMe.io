@@ -10,6 +10,7 @@
   "scripts": {
     "start": "webpack -d && node ./server/app.js",
     "dev": "webpack -d --watch",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
     "test": "jest"
   },
   "dependencies": {
